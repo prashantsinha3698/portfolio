@@ -74,7 +74,7 @@ npm run build
    ```bash
    git add .
    git commit -m "feat: complete personal systems engineering portfolio"
-   git remote add origin <YOUR_GITHUB_REPO_URL>
+   git remote add origin https://github.com/prashantsinha3698/portfolio.git
    git branch -M main
    git push -u origin main
    ```

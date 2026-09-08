@@ -158,7 +158,7 @@ html, body {
 }
 
 a, button, [role="button"], input, select, textarea, summary, [style*="cursor: pointer"], [style*="cursor:pointer"] {
-  cursor: url("/cursors/mac-pointer.svg") 10 0, pointer !important;
+  cursor: url("/cursors/mac-pointer.svg") 7 0, pointer !important;
 }
 
 /* SELECTION */

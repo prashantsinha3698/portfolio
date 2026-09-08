@@ -1,0 +1,23 @@
+export const profile = {
+  name: "PRASHANT SINHA",
+  firstName: "Prashant",
+  lastName: "Sinha",
+  email: "iam.prashantsinha@yahoo.com",
+  location: "Raipur, India",
+  roles: [
+    "Salesforce Developer",
+    "Systems Thinker",
+    "Independent Builder",
+  ],
+  bio: "I build software for a living and spend time understanding what happens around it. My work moved from e-commerce experiments and Salesforce at Tata Consultancy Services to exam preparation, a coffee shop in Raipur, and an algorithmic trading platform called OnyxFlow.",
+  base: "Raipur, India",
+  experienceYears: "3+ years Salesforce",
+  currentBuild: "OnyxFlow",
+  background: "Enterprise + Independent",
+  primaryTech: "Salesforce / Apex",
+  alsoTech: "Python / APIs / Systems",
+  linkedin: "https://www.linkedin.com/in/prashant-sinha3",
+  github: "https://github.com/prashantsinha3698",
+  codewars: "https://www.codewars.com/users/prashant.sinha",
+  resumeUrl: "/resume.pdf",
+};

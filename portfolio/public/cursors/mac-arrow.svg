@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <!-- Classic Macintosh Precision Arrow Cursor -->
+  <!-- White outline -->
+  <path d="M 0,0 L 0,17.5 L 4.5,13.5 L 8.2,21 L 11.8,19.2 L 8,11.8 L 13.5,11.8 Z" 
+        fill="#FFFFFF" 
+        stroke="#FFFFFF" 
+        stroke-width="2" 
+        stroke-linejoin="round" 
+        stroke-linecap="round"/>
+  <!-- Black interior -->
+  <path d="M 0,0 L 0,16.5 L 4.2,12.8 L 7.8,20 L 10.2,18.8 L 6.8,11.5 L 12,11.5 Z" 
+        fill="#151515"/>
+</svg>

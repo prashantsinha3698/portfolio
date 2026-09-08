@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — PRASHANT SINHA: SYSTEMS ARCHIVE
+   A thoughtful blend of editorial design, brutalist engineering,
+   and restrained retro computing.
+   ============================================================ */
+
+:root {
+  /* LIGHT MODE (Warm Paper & Editorial Ink) */
+  --background: #F3EBDD;      /* Warm Paper */
+  --surface: #FFFDF9;         /* Clean elevated surface */
+  --surface-alt: #EBE3D3;     /* Warm Cream */
+  
+  --ink-primary: #151515;     /* Ink Black */
+  --ink-secondary: #524E48;   /* Editorial Grey */
+  --ink-muted: #8C867C;       /* Warm Mid-Grey */
+  
+  --accent-primary: #F05A28;  /* Heritage Orange */
+  --accent-secondary: #F2C94C;/* Warm Amber Yellow */
+  --accent-yellow: #F2C94C;
+  --accent-blue: #66B8D9;     /* Technical Blue */
+  --accent-mint: #B5D7C8;     /* Muted Mint */
+  --accent-pink: #E7B7C9;     /* Editorial Pink */
+  
+  --border: #151515;          /* Solid structural boundary */
+  --border-light: #D8D1C3;    /* Light warm grey divider */
+  
+  --status-online: #2E7D32;   /* Dark green */
+  --status-offline: #C62828;  /* Dark red */
+  
+  /* Focus */
+  --focus-ring: var(--accent-primary);
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), "IBM Plex Mono", "JetBrains Mono", "Courier New", monospace;
+  --font-pixel: var(--font-press-start), "Courier New", monospace;
+
+  /* Font weights */
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-display: 700;
+
+  /* Spacing Scale */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+  --space-9: 128px;
+
+  /* Borders */
+  --border-thin: 1px solid var(--border);
+  --border-medium: 2px solid var(--border);
+  --border-heavy: 3px solid var(--border);
+
+  /* Border Radius */
+  --radius-0: 0px;
+  --radius-1: 2px;
+  --radius-2: 4px;
+
+  /* Hard Offset Shadows (Retro-Brutalist) */
+  --shadow-pixel: 4px 4px 0px var(--border);
+  --shadow-heavy: 6px 6px 0px var(--border);
+  --shadow-soft: 0px 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-none: none;
+
+  /* Motion */
+  --motion-instant: 0ms;
+  --motion-fast: 150ms;
+  --motion-normal: 260ms;
+  --motion-slow: 450ms;
+
+  --ease-in: cubic-bezier(0.4, 0, 0.6, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  /* DARK MODE (Deep Charcoal & Warm Off-White) */
+  --background: #0E0E0D;      /* Deep warm charcoal */
+  --surface: #171715;         /* Elevated dark grey */
+  --surface-alt: #1F1F1D;     /* Mid charcoal */
+  
+  --ink-primary: #EAE7E0;     /* Warm off-white */
+  --ink-secondary: #9E9A92;   /* Muted warm cream */
+  --ink-muted: #6B6760;       /* Warm subtle grey */
+  
+  --accent-primary: #F05A28;  /* Heritage Orange */
+  --accent-secondary: #D5A03A;/* Muted Amber */
+  --accent-yellow: #D5A03A;
+  --accent-blue: #5B9BBE;     /* Technical Blue */
+  --accent-mint: #4A7A60;     /* Deep Mint */
+  --accent-pink: #C98BA0;     /* Muted Pink */
+  
+  --border: #333330;          /* Controlled dark boundary */
+  --border-light: #242422;    /* Dark divider */
+  
+  --status-online: #4CAF50;   /* Green */
+  --status-offline: #EF5350;  /* Red */
+  
+  --focus-ring: var(--accent-primary);
+  --shadow-pixel: 4px 4px 0px #000000;
+  --shadow-heavy: 6px 6px 0px #000000;
+}
+
+/* ============================================================
+   GLOBAL RESETS & FOUNDATIONS
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-body);
+  background-color: var(--background);
+  color: var(--ink-primary);
+  line-height: 1.6;
+  transition: background-color var(--motion-normal) var(--ease-in-out),
+              color var(--motion-normal) var(--ease-in-out);
+  overflow-x: hidden;
+}
+
+/* Crisp Classic Macintosh Cursors with Exact Hotspots */
+html, body {
+  cursor: url("/cursors/mac-arrow.svg") 0 0, default;
+}
+
+a, button, [role="button"], input, select, textarea, summary {
+  cursor: url("/cursors/mac-pointer.svg") 6 1, pointer;
+}
+
+/* SELECTION */
+::selection {
+  background: var(--accent-primary);
+  color: #FFFFFF;
+  text-shadow: none;
+}
+::-moz-selection {
+  background: var(--accent-primary);
+  color: #FFFFFF;
+  text-shadow: none;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-left: var(--border-thin);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border: var(--border-thin);
+  border-radius: var(--radius-1);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-primary);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-primary) var(--background);
+}
+
+/* INTERACTIVE & ACCESSIBILITY */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-1);
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* ============================================================
+   TYPOGRAPHY CLASSES
+   ============================================================ */
+
+.font-display {
+  font-family: var(--font-sans);
+  font-weight: var(--weight-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+}
+
+/* Layout Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-5);
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 960px;
+    padding: 0 var(--space-4);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    max-width: 100%;
+    padding: 0 1.25rem;
+  }
+}
+
+/* Content visibility: reliable by default for robust accessibility, SEO and smooth render */
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--motion-slow) var(--ease-out),
+              transform var(--motion-slow) var(--ease-out);
+}
+
+/* Blinking cursor for typewriter effect */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: cursorBlink 0.9s step-start infinite;
+}

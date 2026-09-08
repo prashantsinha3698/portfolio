@@ -157,8 +157,8 @@ html, body {
   cursor: url("/cursors/mac-arrow.svg") 0 0, default;
 }
 
-a, button, [role="button"], input, select, textarea, summary {
-  cursor: url("/cursors/mac-pointer.svg") 6 1, pointer;
+a, button, [role="button"], input, select, textarea, summary, [style*="cursor: pointer"], [style*="cursor:pointer"] {
+  cursor: url("/cursors/mac-pointer.svg") 10 0, pointer !important;
 }
 
 /* SELECTION */

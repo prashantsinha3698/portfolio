@@ -425,7 +425,7 @@ export default function Projects() {
 
             {/* Links and Source Access */}
             <div
-              className="font-mono"
+              className="font-mono onyxflow-links-row"
               style={{
                 display: "flex",
                 gap: "1rem",
@@ -441,6 +441,7 @@ export default function Projects() {
                   href={link.url || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="onyxflow-action-btn"
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -453,6 +454,7 @@ export default function Projects() {
                     fontSize: "0.78rem",
                     boxShadow: "2px 2px 0 var(--border)",
                     transition: "all var(--motion-fast) var(--ease-out)",
+                    boxSizing: "border-box",
                   }}
                   onMouseDown={(e) => (e.currentTarget.style.transform = "translate(1px, 1px)")}
                   onMouseUp={(e) => (e.currentTarget.style.transform = "translate(0, 0)")}
@@ -562,6 +564,7 @@ export default function Projects() {
                     href={link.url || "#"}
                     target="_blank"
                     rel="noopener noreferrer"
+                    className="secondary-action-btn"
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -574,6 +577,8 @@ export default function Projects() {
                       fontSize: "0.78rem",
                       boxShadow: "2px 2px 0 var(--border)",
                       transition: "all var(--motion-fast)",
+                      boxSizing: "border-box",
+                      whiteSpace: "nowrap",
                     }}
                     onMouseDown={(e) => (e.currentTarget.style.transform = "translate(1px, 1px)")}
                     onMouseUp={(e) => (e.currentTarget.style.transform = "translate(0, 0)")}
@@ -596,6 +601,7 @@ export default function Projects() {
           }
           .secondary-project-card {
             grid-template-columns: 1fr !important;
+            gap: 1.5rem !important;
           }
           .secondary-links-col {
             align-items: flex-start !important;
@@ -604,6 +610,53 @@ export default function Projects() {
           }
         }
         @media (max-width: 640px) {
+          .secondary-project-card {
+            padding: 1.25rem 1rem !important;
+            box-shadow: 3px 3px 0 var(--border) !important;
+          }
+
+          /* OnyxFlow buttons: Long labels (Architecture Overview, GitHub Repository)
+             stacked vertically 1 per row taking 100% full width, centered */
+          .onyxflow-links-row {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 0.75rem !important;
+          }
+          .onyxflow-action-btn {
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            min-height: 44px !important;
+            padding: 0.85rem 1rem !important;
+            font-size: 0.82rem !important;
+          }
+
+          /* Secondary project buttons (COVID-19 Tracker):
+             Short labels (Live Demo, Source Code) fitted side-by-side with 50-50% width */
+          .secondary-links-col {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            width: 100% !important;
+            gap: 0.65rem !important;
+            align-items: stretch !important;
+          }
+          .secondary-links-col a:only-child {
+            grid-column: 1 / -1 !important;
+          }
+          .secondary-action-btn {
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            min-height: 44px !important;
+            padding: 0.85rem 0.4rem !important;
+            font-size: 0.76rem !important;
+          }
+
           .onyxflow-banner-header {
             padding: 1.25rem 1rem !important;
           }
@@ -618,6 +671,13 @@ export default function Projects() {
             min-width: 0 !important;
             overflow-wrap: break-word !important;
             word-break: break-word !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .secondary-action-btn {
+            font-size: 0.7rem !important;
+            gap: 0.3rem !important;
+            padding: 0.75rem 0.2rem !important;
           }
         }
       `}</style>

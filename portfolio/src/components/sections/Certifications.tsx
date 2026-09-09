@@ -100,6 +100,7 @@ export default function Certifications() {
           <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
             {/* Formal Academic Foundation */}
             <div
+              className="edu-card"
               style={{
                 background: "var(--surface)",
                 border: "var(--border-medium)",
@@ -136,6 +137,7 @@ export default function Certifications() {
                   color: "var(--ink-primary)",
                   letterSpacing: "-0.01em",
                   marginBottom: "0.35rem",
+                  wordBreak: "break-word",
                 }}
               >
                 {educationData.institution}
@@ -148,6 +150,7 @@ export default function Certifications() {
                   color: "var(--ink-secondary)",
                   fontWeight: 600,
                   marginBottom: "0.65rem",
+                  wordBreak: "break-word",
                 }}
               >
                 {educationData.degree} · {educationData.field}
@@ -163,6 +166,7 @@ export default function Certifications() {
                   paddingBottom: "1rem",
                   borderBottom: "1px solid var(--border-light)",
                   marginBottom: "1rem",
+                  flexWrap: "wrap",
                 }}
               >
                 <span>{educationData.period}</span>
@@ -214,7 +218,7 @@ export default function Certifications() {
                       </div>
                       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
                         {educationData.achievements.map((item, i) => (
-                          <li key={i} style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: 1.4 }}>
+                          <li key={i} style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: 1.4, wordBreak: "break-word" }}>
                             • {item}
                           </li>
                         ))}
@@ -235,7 +239,7 @@ export default function Certifications() {
                       </div>
                       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.3rem" }}>
                         {educationData.activities.map((item, i) => (
-                          <li key={i} style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: 1.4 }}>
+                          <li key={i} style={{ fontSize: "0.82rem", color: "var(--ink-secondary)", lineHeight: 1.4, wordBreak: "break-word" }}>
                             • {item}
                           </li>
                         ))}
@@ -248,6 +252,7 @@ export default function Certifications() {
 
             {/* Technical Internship & Vocational Training */}
             <div
+              className="edu-card"
               style={{
                 background: "var(--surface)",
                 border: "var(--border-medium)",
@@ -303,6 +308,7 @@ export default function Certifications() {
                           color: "var(--ink-primary)",
                           fontWeight: 700,
                           margin: 0,
+                          wordBreak: "break-word",
                         }}
                       >
                         {item.title}
@@ -386,6 +392,7 @@ export default function Certifications() {
                         color: "var(--ink-secondary)",
                         lineHeight: 1.45,
                         margin: "0.3rem 0 0.55rem",
+                        wordBreak: "break-word",
                       }}
                     >
                       {item.summary}
@@ -408,6 +415,7 @@ export default function Certifications() {
                             fontSize: "0.78rem",
                             color: "var(--ink-muted)",
                             lineHeight: 1.35,
+                            wordBreak: "break-word",
                           }}
                         >
                           • {learning}
@@ -465,6 +473,7 @@ export default function Certifications() {
               return (
                 <div
                   key={cert.id}
+                  className="cert-card"
                   style={{
                     background: isProgress ? "var(--surface-alt)" : "var(--surface)",
                     border: isProgress ? "1px dashed var(--border)" : "var(--border-thin)",
@@ -476,7 +485,7 @@ export default function Certifications() {
                     gap: "1rem",
                   }}
                 >
-                  <div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
                     <div
                       className="font-mono"
                       style={{
@@ -495,6 +504,7 @@ export default function Certifications() {
                         fontSize: "1.05rem",
                         color: "var(--ink-primary)",
                         fontWeight: 700,
+                        wordBreak: "break-word",
                       }}
                     >
                       {cert.title}
@@ -505,6 +515,7 @@ export default function Certifications() {
                         fontSize: "0.74rem",
                         color: "var(--ink-muted)",
                         marginTop: "0.2rem",
+                        wordBreak: "break-word",
                       }}
                     >
                       Issuer: {cert.issuer}
@@ -529,6 +540,13 @@ export default function Certifications() {
         @media (max-width: 820px) {
           .edu-cred-grid {
             grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .edu-card,
+          .cert-card {
+            padding: 1.25rem 1rem !important;
           }
         }
       `}</style>

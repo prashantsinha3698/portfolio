@@ -134,59 +134,62 @@ export default function Contact() {
             </p>
 
             {/* Email Copy Trigger */}
-            <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", alignItems: "center", width: "100%", maxWidth: "100%" }}>
               <div
-                className="font-mono"
+                className="font-mono contact-email-box"
                 style={{
-                  display: "inline-flex",
-                  alignItems: "center",
                   background: "var(--surface-alt)",
                   border: "var(--border-thin)",
                   boxShadow: "3px 3px 0 var(--border)",
+                  boxSizing: "border-box",
                 }}
               >
                 <a
                   href={`mailto:${profile.email}`}
+                  className="contact-email-link"
                   style={{
-                    padding: "0.85rem 1.25rem",
                     color: "var(--ink-primary)",
                     fontWeight: 700,
-                    fontSize: "0.88rem",
+                    fontSize: "0.85rem",
                     display: "flex",
                     alignItems: "center",
                     gap: "0.5rem",
+                    minHeight: "44px",
+                    boxSizing: "border-box",
                   }}
                 >
-                  <Mail size={15} style={{ color: "var(--accent-primary)" }} />
-                  <span>{profile.email}</span>
+                  <Mail size={15} style={{ color: "var(--accent-primary)", flexShrink: 0 }} />
+                  <span style={{ wordBreak: "break-all" }}>{profile.email}</span>
                 </a>
 
                 <button
                   onClick={copyEmail}
+                  className="contact-copy-btn"
                   aria-label="Copy email address"
                   style={{
-                    padding: "0.85rem 1rem",
-                    borderLeft: "var(--border-thin)",
                     background: "var(--surface)",
                     color: copied ? "var(--status-online)" : "var(--ink-secondary)",
                     display: "flex",
                     alignItems: "center",
+                    justifyContent: "center",
                     gap: "0.4rem",
                     fontSize: "0.75rem",
                     fontWeight: 600,
                     cursor: "pointer",
+                    minHeight: "44px",
                     transition: "all var(--motion-fast)",
+                    boxSizing: "border-box",
                   }}
                 >
                   {copied ? (
                     <>
                       <Check size={14} />
-                      <span>COPIED</span>
+                      <span>COPIED EMAIL</span>
                     </>
                   ) : (
                     <>
                       <Copy size={14} />
-                      <span>COPY</span>
+                      <span>COPY EMAIL</span>
                     </>
                   )}
                 </button>
@@ -201,6 +204,7 @@ export default function Contact() {
               display: "flex",
               flexDirection: "column",
               gap: "0.75rem",
+              width: "100%",
             }}
           >
             <div style={{ fontSize: "0.72rem", color: "var(--ink-muted)", marginBottom: "0.25rem", letterSpacing: "0.08em", fontWeight: 700 }}>
@@ -215,14 +219,16 @@ export default function Contact() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "1rem 1.25rem",
+                padding: "0.9rem 1.25rem",
                 border: "var(--border-thin)",
                 background: "var(--surface)",
                 color: "var(--ink-primary)",
                 fontWeight: 600,
                 fontSize: "0.82rem",
+                minHeight: "48px",
                 boxShadow: "2px 2px 0 var(--border)",
                 transition: "all var(--motion-fast)",
+                boxSizing: "border-box",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--accent-primary)")}
               onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
@@ -242,14 +248,16 @@ export default function Contact() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "1rem 1.25rem",
+                padding: "0.9rem 1.25rem",
                 border: "var(--border-thin)",
                 background: "var(--surface)",
                 color: "var(--ink-primary)",
                 fontWeight: 600,
                 fontSize: "0.82rem",
+                minHeight: "48px",
                 boxShadow: "2px 2px 0 var(--border)",
                 transition: "all var(--motion-fast)",
+                boxSizing: "border-box",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--accent-primary)")}
               onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
@@ -269,14 +277,16 @@ export default function Contact() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "1rem 1.25rem",
+                padding: "0.9rem 1.25rem",
                 border: "var(--border-thin)",
                 background: "var(--surface)",
                 color: "var(--ink-primary)",
                 fontWeight: 600,
                 fontSize: "0.82rem",
+                minHeight: "48px",
                 boxShadow: "2px 2px 0 var(--border)",
                 transition: "all var(--motion-fast)",
+                boxSizing: "border-box",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--accent-primary)")}
               onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
@@ -295,14 +305,16 @@ export default function Contact() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
-                padding: "1rem 1.25rem",
+                padding: "0.9rem 1.25rem",
                 border: "2px solid var(--border)",
                 background: "var(--ink-primary)",
                 color: "var(--background)",
                 fontWeight: 700,
                 fontSize: "0.82rem",
+                minHeight: "48px",
                 boxShadow: "3px 3px 0 var(--border)",
                 transition: "all var(--motion-fast)",
+                boxSizing: "border-box",
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
@@ -316,11 +328,47 @@ export default function Contact() {
       </div>
 
       <style>{`
+        .contact-email-box {
+          display: inline-flex;
+          alignItems: stretch;
+          max-width: 100%;
+        }
+        .contact-email-link {
+          padding: 0.85rem 1.25rem;
+        }
+        .contact-copy-btn {
+          padding: 0.85rem 1rem;
+          border-left: var(--border-thin);
+          border-top: none;
+        }
         @media (max-width: 860px) {
           .contact-main-grid {
             grid-template-columns: 1fr !important;
-            padding: 2rem !important;
-            gap: 2.5rem !important;
+            padding: 2rem 1.5rem !important;
+            gap: 2rem !important;
+          }
+        }
+        @media (max-width: 540px) {
+          .contact-main-grid {
+            padding: 1.5rem 1rem !important;
+            box-shadow: 3px 3px 0 var(--border) !important;
+          }
+          .contact-email-box {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          .contact-email-link {
+            width: 100% !important;
+            justify-content: center !important;
+            padding: 0.85rem 0.75rem !important;
+            text-align: center !important;
+          }
+          .contact-copy-btn {
+            width: 100% !important;
+            border-left: none !important;
+            border-top: var(--border-thin) !important;
+            padding: 0.85rem 0.75rem !important;
           }
         }
       `}</style>

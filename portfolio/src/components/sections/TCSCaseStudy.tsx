@@ -98,6 +98,7 @@ export default function TCSCaseStudy() {
         >
           {/* Header Banner: Career Progression inside TCS */}
           <div
+            className="tcs-banner-header"
             style={{
               padding: "2rem 2.25rem",
               borderBottom: "var(--border-thin)",
@@ -170,6 +171,7 @@ export default function TCSCaseStudy() {
 
           {/* VISUAL ARTIFACT: INTEGRATION FLOW DIAGRAM */}
           <div
+            className="tcs-flow-container"
             style={{
               padding: "1.75rem 2.25rem",
               borderBottom: "var(--border-thin)",
@@ -456,7 +458,7 @@ export default function TCSCaseStudy() {
 
           {/* Footer Tags */}
           <div
-            className="font-mono"
+            className="font-mono tcs-footer-tags"
             style={{
               padding: "1rem 2.25rem",
               borderTop: "var(--border-thin)",
@@ -495,6 +497,14 @@ export default function TCSCaseStudy() {
           }
           .tcs-outcomes-subgrid {
             grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .tcs-banner-header,
+          .tcs-flow-container,
+          .tcs-narrative-grid,
+          .tcs-footer-tags {
+            padding: 1.25rem 1rem !important;
           }
         }
       `}</style>

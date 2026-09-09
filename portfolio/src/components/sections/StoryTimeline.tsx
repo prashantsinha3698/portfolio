@@ -532,6 +532,7 @@ export default function StoryTimeline() {
           {storyChapters.map((chapter) => (
             <div
               key={chapter.id}
+              className="story-mobile-card"
               style={{
                 background: "var(--surface)",
                 border: "var(--border-thin)",
@@ -548,12 +549,14 @@ export default function StoryTimeline() {
                   justifyContent: "space-between",
                   fontSize: "0.72rem",
                   marginBottom: "0.75rem",
+                  flexWrap: "wrap",
+                  gap: "0.4rem",
                 }}
               >
                 <span style={{ color: "var(--accent-primary)", fontWeight: 700 }}>
                   {chapter.year}
                 </span>
-                <span style={{ color: "var(--ink-muted)" }}>
+                <span style={{ color: "var(--ink-muted)", wordBreak: "break-word" }}>
                   {chapter.shortLabel}
                 </span>
               </div>
@@ -561,10 +564,12 @@ export default function StoryTimeline() {
               <h3
                 className="font-display"
                 style={{
-                  fontSize: "1.35rem",
+                  fontSize: "clamp(1.15rem, 4vw, 1.35rem)",
                   color: "var(--ink-primary)",
                   letterSpacing: "-0.01em",
                   marginBottom: "0.75rem",
+                  wordBreak: "break-word",
+                  overflowWrap: "break-word",
                 }}
               >
                 {chapter.title}
@@ -572,7 +577,7 @@ export default function StoryTimeline() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.25rem" }}>
                 {chapter.story.map((p, pIdx) => (
-                  <p key={pIdx} style={{ fontSize: "0.92rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
+                  <p key={pIdx} style={{ fontSize: "0.92rem", color: "var(--ink-secondary)", lineHeight: 1.6, wordBreak: "break-word" }}>
                     {p}
                   </p>
                 ))}
@@ -583,6 +588,7 @@ export default function StoryTimeline() {
                   padding: "1rem",
                   background: "var(--surface-alt)",
                   borderLeft: "3px solid var(--accent-primary)",
+                  wordBreak: "break-word",
                 }}
               >
                 <div className="font-mono" style={{ fontSize: "0.68rem", color: "var(--accent-primary)", fontWeight: 700, marginBottom: "0.25rem" }}>
@@ -632,6 +638,11 @@ export default function StoryTimeline() {
           }
           .story-mobile-stack {
             display: block !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .story-mobile-card {
+            padding: 1.25rem 1rem !important;
           }
         }
       `}</style>

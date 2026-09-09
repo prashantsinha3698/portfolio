@@ -249,6 +249,18 @@ button {
   }
 }
 
+@media (max-width: 380px) {
+  .container {
+    padding: 0 0.85rem;
+  }
+}
+
+/* Defensive responsive media constraints */
+img, svg, canvas, video {
+  max-width: 100%;
+  height: auto;
+}
+
 /* Content visibility: reliable by default for robust accessibility, SEO and smooth render */
 .reveal {
   opacity: 1;

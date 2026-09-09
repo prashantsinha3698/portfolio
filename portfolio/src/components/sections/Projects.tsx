@@ -102,6 +102,7 @@ export default function Projects() {
         >
           {/* Project Banner / Spec Header */}
           <div
+            className="onyxflow-banner-header"
             style={{
               padding: "2rem 2.25rem",
               borderBottom: "var(--border-thin)",
@@ -252,7 +253,7 @@ export default function Projects() {
           </div>
 
           {/* Progressive Disclosure Section: 7 Deep Technical Levels */}
-          <div style={{ padding: "1.5rem 2.25rem" }}>
+          <div className="onyxflow-specs-container" style={{ padding: "1.5rem 2.25rem" }}>
             <div
               className="font-mono"
               style={{
@@ -364,7 +365,7 @@ export default function Projects() {
 
                         {lvl.techNotes && (
                           <div
-                            className="font-mono"
+                            className="font-mono onyxflow-tech-notes-grid"
                             style={{
                               background: "var(--surface)",
                               border: "1px solid var(--border-light)",
@@ -373,14 +374,23 @@ export default function Projects() {
                               gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
                               gap: "0.75rem",
                               fontSize: "0.78rem",
+                              width: "100%",
+                              boxSizing: "border-box",
                             }}
                           >
                             {lvl.techNotes.map((note) => (
-                              <div key={note.label}>
-                                <div style={{ color: "var(--ink-muted)", marginBottom: "0.2rem" }}>
+                              <div
+                                key={note.label}
+                                style={{
+                                  minWidth: 0,
+                                  wordBreak: "break-word",
+                                  overflowWrap: "break-word",
+                                }}
+                              >
+                                <div style={{ color: "var(--ink-muted)", marginBottom: "0.2rem", fontSize: "0.72rem" }}>
                                   {note.label}
                                 </div>
-                                <div style={{ color: "var(--ink-primary)", fontWeight: 600 }}>
+                                <div style={{ color: "var(--ink-primary)", fontWeight: 600, lineHeight: 1.45 }}>
                                   {note.value}
                                 </div>
                               </div>
@@ -590,6 +600,24 @@ export default function Projects() {
           .secondary-links-col {
             align-items: flex-start !important;
             flex-direction: row !important;
+            flex-wrap: wrap !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .onyxflow-banner-header {
+            padding: 1.25rem 1rem !important;
+          }
+          .onyxflow-specs-container {
+            padding: 1.25rem 1rem !important;
+          }
+          .onyxflow-tech-notes-grid {
+            grid-template-columns: 1fr !important;
+            padding: 0.75rem !important;
+          }
+          .onyxflow-tech-notes-grid > div {
+            min-width: 0 !important;
+            overflow-wrap: break-word !important;
+            word-break: break-word !important;
           }
         }
       `}</style>

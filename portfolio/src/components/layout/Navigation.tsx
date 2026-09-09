@@ -67,13 +67,10 @@ export default function Navigation() {
           position: "sticky",
           top: 0,
           zIndex: 900,
-          padding: scrolled ? "0.75rem 0" : "1.25rem 0",
-          background: scrolled
-            ? "color-mix(in srgb, var(--background) 94%, transparent)"
-            : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: scrolled ? "var(--border-thin)" : "none",
-          transition: "all var(--motion-normal) var(--ease-out)",
+          background: "var(--surface)",
+          borderBottom: "var(--border-thin)",
+          transition: "box-shadow var(--motion-normal)",
+          boxShadow: scrolled ? "0 4px 12px rgba(0, 0, 0, 0.08)" : "none",
         }}
       >
         <div
@@ -82,25 +79,17 @@ export default function Navigation() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            height: "3.75rem",
+            gap: "0.5rem",
           }}
         >
           {/* Logo / Identifier */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", minWidth: 0 }}>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="show-mobile-menu-btn"
+              className="show-mobile-menu-btn nav-square-btn"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
-              style={{
-                width: 34,
-                height: 34,
-                display: "none",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "var(--border-thin)",
-                background: "var(--surface)",
-                color: "var(--ink-primary)",
-              }}
             >
               {mobileOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
@@ -114,24 +103,26 @@ export default function Navigation() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "0.5rem",
+                gap: "0.4rem",
+                minWidth: 0,
               }}
             >
               <span
                 className="font-display"
                 style={{
-                  fontSize: "1rem",
+                  fontSize: "clamp(0.85rem, 3vw, 1rem)",
                   letterSpacing: "-0.02em",
                   color: "var(--ink-primary)",
                   fontWeight: 700,
+                  whiteSpace: "nowrap",
                 }}
               >
                 PRASHANT SINHA
               </span>
               <span
-                className="font-mono"
+                className="font-mono nav-archive-badge"
                 style={{
-                  fontSize: "0.65rem",
+                  fontSize: "0.62rem",
                   color: "var(--accent-primary)",
                   fontWeight: 600,
                   letterSpacing: "0.05em",
@@ -190,50 +181,24 @@ export default function Navigation() {
           </div>
 
           {/* Controls: Resume + Theme Toggle */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexShrink: 0 }}>
             <a
               href="/resume.pdf"
               download="Prashant_Sinha_Resume.pdf"
-              className="font-mono"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "0.4rem",
-                padding: "0.45rem 0.85rem",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                border: "var(--border-thin)",
-                background: "var(--surface)",
-                color: "var(--ink-primary)",
-                boxShadow: "2px 2px 0px var(--border)",
-                transition: "all var(--motion-fast) var(--ease-out)",
-              }}
-              onMouseDown={(e) => (e.currentTarget.style.transform = "translate(1px, 1px)")}
-              onMouseUp={(e) => (e.currentTarget.style.transform = "translate(0, 0)")}
+              className="font-mono nav-resume-btn"
+              title="Download Resume PDF"
+              aria-label="Download Resume"
             >
-              <Download size={13} />
+              <Download size={14} />
               <span className="hide-resume-text">RESUME</span>
             </a>
 
             <button
               onClick={toggleTheme}
+              className="nav-square-btn"
               aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-              style={{
-                width: 36,
-                height: 36,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "var(--border-thin)",
-                background: "var(--surface)",
-                color: "var(--ink-primary)",
-                boxShadow: "2px 2px 0px var(--border)",
-                transition: "all var(--motion-fast) var(--ease-out)",
-              }}
-              onMouseDown={(e) => (e.currentTarget.style.transform = "translate(1px, 1px)")}
-              onMouseUp={(e) => (e.currentTarget.style.transform = "translate(0, 0)")}
             >
-              {theme === "light" ? <Moon size={15} /> : <Sun size={15} />}
+              {theme === "light" ? <Moon size={16} /> : <Sun size={16} />}
             </button>
           </div>
         </div>
@@ -252,11 +217,13 @@ export default function Navigation() {
             bottom: 0,
             background: "var(--background)",
             zIndex: 899,
-            padding: "2rem",
+            padding: "2rem 1.5rem",
             borderTop: "var(--border-thin)",
             display: "flex",
             flexDirection: "column",
-            gap: "1.5rem",
+            gap: "1.25rem",
+            overflowY: "auto",
+            WebkitOverflowScrolling: "touch",
           }}
           className="font-mono"
         >
@@ -269,7 +236,7 @@ export default function Navigation() {
                 handleNavClick(link.href);
               }}
               style={{
-                fontSize: "1.2rem",
+                fontSize: "1.15rem",
                 color: "var(--ink-primary)",
                 fontWeight: 600,
                 padding: "0.5rem 0",
@@ -288,17 +255,66 @@ export default function Navigation() {
               textAlign: "center",
               background: "var(--ink-primary)",
               color: "var(--background)",
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: "0.85rem",
               boxShadow: "3px 3px 0 var(--border)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem",
+              minHeight: "44px",
             }}
           >
-            DOWNLOAD RESUME
+            <Download size={16} />
+            <span>DOWNLOAD RESUME</span>
           </a>
         </div>
       )}
 
       <style>{`
+        .nav-square-btn {
+          width: 40px;
+          height: 40px;
+          min-width: 40px;
+          min-height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: var(--border-thin);
+          background: var(--surface);
+          color: var(--ink-primary);
+          box-shadow: 2px 2px 0px var(--border);
+          transition: all var(--motion-fast) var(--ease-out);
+          box-sizing: border-box;
+          cursor: pointer;
+        }
+        .nav-square-btn:active {
+          transform: translate(1px, 1px);
+          box-shadow: 1px 1px 0px var(--border);
+        }
+        .nav-resume-btn {
+          height: 40px;
+          min-height: 40px;
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0 0.85rem;
+          font-size: 0.75rem;
+          font-weight: 600;
+          border: var(--border-thin);
+          background: var(--surface);
+          color: var(--ink-primary);
+          box-shadow: 2px 2px 0px var(--border);
+          transition: all var(--motion-fast) var(--ease-out);
+          box-sizing: border-box;
+        }
+        .nav-resume-btn:active {
+          transform: translate(1px, 1px);
+          box-shadow: 1px 1px 0px var(--border);
+        }
+        .show-mobile-menu-btn {
+          display: none;
+        }
         @media (max-width: 820px) {
           .hide-mobile-nav {
             display: none !important;
@@ -307,9 +323,20 @@ export default function Navigation() {
             display: flex !important;
           }
         }
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
+          .nav-resume-btn {
+            width: 40px !important;
+            min-width: 40px !important;
+            padding: 0 !important;
+            justify-content: center !important;
+          }
           .hide-resume-text {
-            display: none;
+            display: none !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .nav-archive-badge {
+            display: none !important;
           }
         }
       `}</style>

@@ -114,6 +114,7 @@ export default function Footer() {
 
             <button
               onClick={scrollToTop}
+              className="footer-top-btn"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -127,6 +128,7 @@ export default function Footer() {
                 boxShadow: "2px 2px 0 var(--border)",
                 cursor: "pointer",
                 transition: "all var(--motion-fast)",
+                boxSizing: "border-box",
               }}
               onMouseDown={(e) => (e.currentTarget.style.transform = "translate(1px, 1px)")}
               onMouseUp={(e) => (e.currentTarget.style.transform = "translate(0, 0)")}
@@ -142,12 +144,24 @@ export default function Footer() {
         @media (max-width: 768px) {
           .footer-grid {
             grid-template-columns: 1fr !important;
+            gap: 2rem !important;
           }
           .footer-right-col {
-            align-items: flex-start !important;
+            align-items: stretch !important;
+            width: 100% !important;
           }
           .footer-right-text {
             text-align: left !important;
+          }
+          .footer-top-btn {
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            min-height: 44px !important;
+            font-size: 0.82rem !important;
+            padding: 0.85rem 1rem !important;
           }
         }
       `}</style>

@@ -295,11 +295,12 @@ export default function Hero() {
             <h1
               className="font-display"
               style={{
-                fontSize: "clamp(3rem, 7.5vw, 5.5rem)",
+                fontSize: "clamp(2.35rem, 7.5vw, 5.5rem)",
                 color: "var(--ink-primary)",
                 letterSpacing: "-0.04em",
                 lineHeight: 0.95,
                 marginBottom: "1.25rem",
+                wordBreak: "break-word",
               }}
             >
               PRASHANT<br />SINHA
@@ -309,7 +310,7 @@ export default function Hero() {
             <div
               className="font-mono"
               style={{
-                fontSize: "clamp(0.95rem, 2.2vw, 1.3rem)",
+                fontSize: "clamp(0.88rem, 2.2vw, 1.3rem)",
                 color: "var(--accent-primary)",
                 marginBottom: "1.75rem",
                 letterSpacing: "-0.01em",
@@ -317,6 +318,7 @@ export default function Hero() {
                 minHeight: "2rem",
                 display: "flex",
                 alignItems: "center",
+                flexWrap: "wrap",
               }}
             >
               <span>{currentText}</span>
@@ -346,32 +348,19 @@ export default function Hero() {
             </p>
 
             {/* Action Buttons */}
-            <div
-              style={{
-                display: "flex",
-                gap: "1rem",
-                flexWrap: "wrap",
-                marginBottom: "2.5rem",
-              }}
-              className="font-mono"
-            >
+            <div className="font-mono hero-cta-grid">
               <a
                 href="#work"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
                 }}
+                className="hero-btn-explore"
                 style={{
-                  padding: "0.85rem 1.6rem",
                   background: "var(--ink-primary)",
                   color: "var(--background)",
                   border: "2px solid var(--ink-primary)",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
                   boxShadow: "3px 3px 0 var(--border)",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.6rem",
                   transition: "transform var(--motion-fast) var(--ease-out), box-shadow var(--motion-fast) var(--ease-out)",
                 }}
                 onMouseDown={(e) => {
@@ -393,17 +382,12 @@ export default function Hero() {
                   e.preventDefault();
                   document.getElementById("story")?.scrollIntoView({ behavior: "smooth" });
                 }}
+                className="hero-btn-story"
                 style={{
-                  padding: "0.85rem 1.5rem",
                   background: "var(--surface)",
                   color: "var(--ink-primary)",
                   border: "2px solid var(--border)",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
                   boxShadow: "3px 3px 0 var(--border)",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.6rem",
                   transition: "transform var(--motion-fast) var(--ease-out), box-shadow var(--motion-fast) var(--ease-out)",
                 }}
                 onMouseDown={(e) => {
@@ -422,25 +406,19 @@ export default function Hero() {
               <a
                 href={profile.resumeUrl}
                 download="Prashant_Sinha_Resume.pdf"
+                className="hero-btn-resume"
                 style={{
-                  padding: "0.85rem 1.25rem",
-                  background: "transparent",
-                  color: "var(--ink-secondary)",
+                  background: "var(--surface-alt)",
+                  color: "var(--ink-primary)",
                   border: "1px solid var(--border)",
-                  fontSize: "0.8rem",
-                  fontWeight: 600,
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
+                  boxShadow: "2px 2px 0 var(--border)",
                   transition: "background var(--motion-fast), color var(--motion-fast)",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "var(--surface)";
-                  e.currentTarget.style.color = "var(--ink-primary)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.color = "var(--ink-secondary)";
+                  e.currentTarget.style.background = "var(--surface-alt)";
                 }}
               >
                 <Download size={14} />
@@ -454,9 +432,10 @@ export default function Hero() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "1rem",
+                gap: "0.5rem 0.85rem",
                 fontSize: "0.75rem",
                 color: "var(--ink-muted)",
+                flexWrap: "wrap",
               }}
             >
               <span>CONNECT:</span>
@@ -633,6 +612,37 @@ export default function Hero() {
       </div>
 
       <style>{`
+        .hero-cta-grid {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          margin-bottom: 2.5rem;
+        }
+        .hero-btn-explore,
+        .hero-btn-story {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.6rem;
+          padding: 0.85rem 1.5rem;
+          font-size: 0.82rem;
+          font-weight: 600;
+          min-height: 44px;
+          box-sizing: border-box;
+          text-decoration: none;
+        }
+        .hero-btn-resume {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 0.85rem 1.25rem;
+          font-size: 0.82rem;
+          font-weight: 600;
+          min-height: 44px;
+          box-sizing: border-box;
+          text-decoration: none;
+        }
         @media (max-width: 900px) {
           .hero-main-grid {
             grid-template-columns: 1fr !important;
@@ -640,6 +650,34 @@ export default function Hero() {
           }
           .hero-index-card {
             max-width: 100% !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .hero-cta-grid {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr !important;
+            gap: 0.65rem !important;
+          }
+          .hero-btn-explore,
+          .hero-btn-story {
+            width: 100% !important;
+            padding: 0.85rem 0.4rem !important;
+            font-size: 0.76rem !important;
+            gap: 0.4rem !important;
+          }
+          .hero-btn-resume {
+            grid-column: 1 / -1 !important;
+            width: 100% !important;
+            justify-content: center !important;
+            font-size: 0.82rem !important;
+          }
+        }
+        @media (max-width: 360px) {
+          .hero-btn-explore,
+          .hero-btn-story {
+            font-size: 0.7rem !important;
+            gap: 0.3rem !important;
+            padding: 0.75rem 0.25rem !important;
           }
         }
       `}</style>

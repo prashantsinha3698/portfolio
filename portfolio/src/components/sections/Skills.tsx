@@ -191,10 +191,11 @@ export default function Skills() {
 
               {/* Capabilities Grid */}
               <div
+                className="skills-caps-grid"
                 style={{
                   padding: "1.5rem",
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 240px), 1fr))",
                   gap: "1rem",
                 }}
               >
@@ -247,6 +248,15 @@ export default function Skills() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .skills-caps-grid {
+            grid-template-columns: 1fr !important;
+            padding: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

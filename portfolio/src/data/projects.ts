@@ -148,7 +148,111 @@ export const onyxflowProject: SelectedProject = {
   disclaimer: "Historical performance and backtest figures represent simulated computer models, not guarantees of future returns. OnyxFlow is an independent technical engineering project under active development.",
 };
 
+export const quantfolioProject: SelectedProject = {
+  id: "quantfolio",
+  title: "Quantfolio",
+  tagline: "Institutional Portfolio Risk, Mathematical Optimization & Rebalancing Platform",
+  status: "DEPLOYED / ACTIVE",
+  category: "QUANTITATIVE FINANCE & FULL-STACK",
+  summary:
+    "A quantitative portfolio analytics platform that calculates historical risk, runs constrained Markowitz optimizations, and generates dollar-denominated rebalancing orders. Built with a decoupled FastAPI analytics engine and an interactive React/Plotly dashboard, backed by 22 automated unit and integration tests enforcing financial invariants.",
+  tags: [
+    "Python 3.14",
+    "FastAPI",
+    "SciPy (SLSQP)",
+    "NumPy & Pandas",
+    "React 19",
+    "TypeScript",
+    "Tailwind CSS",
+    "Plotly.js",
+    "Pytest",
+    "Parquet Cache",
+  ],
+  primaryMetrics: [
+    {
+      value: "22 / 22 PASS",
+      label: "MATHEMATICAL INVARIANTS",
+      note: "Pytest suite enforcing budget constraints, covariance positive semi-definiteness, percentage risk contributions summing to 100%, and CVaR ≥ VaR",
+    },
+    {
+      value: "4 ENGINES",
+      label: "DECOUPLED PIPELINE",
+      note: "Independent modules for returns and drawdowns, parametric/historical risk, SciPy SLSQP optimization, and target drift trade generation",
+    },
+    {
+      value: "PARQUET CACHE",
+      label: "INGESTION LAYER",
+      note: "SHA-256 keyed Arrow partitions to prevent redundant network calls and isolate analytics from yfinance rate limits",
+    },
+  ],
+  levels: [
+    {
+      level: 1,
+      title: "PERFORMANCE & DRAWDOWN ACCOUNTING",
+      subtitle: "Compounded returns and underwater loss cycles",
+      content: [
+        "Computes continuous daily returns, annualized arithmetic return, Compound Annual Growth Rate (CAGR), and risk-adjusted metrics including Sharpe ratio (at fixed 4.0% risk-free rate), Sortino ratio with downside semivariance, and Calmar ratio.",
+        "Tracks high-water mark equity curves, underwater drawdown depth, and historical peak-to-trough drawdown episodes with calendar recovery days.",
+      ],
+      techNotes: [
+        { label: "Return Formulas", value: "CAGR, Annualized Arithmetic Return, Daily Geometric Compounding" },
+        { label: "Downside Metrics", value: "Sortino (Downside Semivariance), Calmar (CAGR / |MDD|)" },
+        { label: "Benchmark Comp", value: "Alpha, Beta, and Tracking Error relative to SPY / QQQ" },
+      ],
+    },
+    {
+      level: 2,
+      title: "QUANTITATIVE RISK ENGINE",
+      subtitle: "Tail risk simulation, PSD covariance, and component volatility",
+      content: [
+        "Implements dual Value at Risk (VaR): non-parametric historical simulation at 95% and 99% confidence, alongside parametric Gaussian VaR. Computes Conditional Value at Risk (CVaR / Expected Shortfall) to measure average tail losses beyond the VaR cutoff.",
+        "Validates sample covariance matrices with eigenvalue checks for positive semi-definiteness (PSD) and diagonal shrinkage, decomposing total portfolio volatility into marginal and percentage component risk contributions.",
+      ],
+      techNotes: [
+        { label: "VaR / CVaR", value: "Historical 95/99% percentiles + Parametric Gaussian (strictly CVaR ≥ VaR)" },
+        { label: "Covariance Guard", value: "Eigenvalue inspection for PSD; Ledoit-Wolf diagonal shrinkage" },
+        { label: "Risk Decomposition", value: "Marginal (MRC) & Component (PRC) summing to 100%" },
+      ],
+    },
+    {
+      level: 3,
+      title: "MATHEMATICAL PORTFOLIO OPTIMIZATION",
+      subtitle: "Constrained SLSQP solver across the Markowitz frontier",
+      content: [
+        "Solves constrained mean-variance optimization via SciPy's Sequential Least Squares Programming (SLSQP) solver. Enforces full investment (sum of weights = 1.0) and long-only boundaries (min/max asset constraints).",
+        "Traces the Markowitz Efficient Frontier across discrete return targets, plotting the Minimum Volatility and Maximum Sharpe allocations directly against the user's current holdings.",
+      ],
+      techNotes: [
+        { label: "Numerical Solver", value: "SciPy SLSQP (Sequential Least Squares Programming)" },
+        { label: "Constraint Types", value: "Equality budget sum(w) = 1.0; Inequality individual bounds w_min ≤ w_i ≤ w_max" },
+        { label: "Frontier Plotting", value: "Pareto-optimal risk/return coordinates evaluated dynamically" },
+      ],
+    },
+    {
+      level: 4,
+      title: "ACTIONABLE REBALANCING & DRIFT DETECTION",
+      subtitle: "Delta trade generation with minimum transaction thresholds",
+      content: [
+        "Monitors target weight divergence (drift = current weight - target weight), categorizing positions into normal, warning, or action-required states.",
+        "Calculates exact dollar trade sizes, buys/sells, and estimated share orders, with execution filters to suppress sub-$1,000 noise trades and model simulated transaction cost drag.",
+      ],
+      techNotes: [
+        { label: "Drift Classification", value: "Normal, Warning, Action-Required based on configured tolerance" },
+        { label: "Execution Logic", value: "Dollar-denominated delta orders + share count estimation" },
+        { label: "Friction Modeling", value: "Transaction fee drag calculation and sub-threshold noise filtering" },
+      ],
+    },
+  ],
+  links: [
+    { label: "LIVE DEMO", url: "https://quantfolio-prashant-project.vercel.app/" },
+    { label: "SOURCE CODE", url: "https://github.com/prashantsinha3698/quantfolio" },
+  ],
+  disclaimer:
+    "All optimizations and risk metrics represent model-based estimates calculated from historical daily closes. They assume continuous liquidity, historical stationary covariance, and do not model live bid-ask spreads or personal tax liabilities. Past performance does not guarantee future results.",
+};
+
 export const secondaryProjects: SelectedProject[] = [
+  quantfolioProject,
   {
     id: "covid-tracker",
     title: "COVID-19 Tracker",

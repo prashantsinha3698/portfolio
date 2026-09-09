@@ -7,6 +7,11 @@ import { onyxflowProject, secondaryProjects } from "@/data/projects";
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
   const [openLevel, setOpenLevel] = useState<number | null>(1); // Level 1 open by default
+  const [expandedSecondaryId, setExpandedSecondaryId] = useState<string | null>(null);
+
+  const toggleSecondarySpec = (id: string) => {
+    setExpandedSecondaryId(expandedSecondaryId === id ? null : id);
+  };
 
   useEffect(() => {
     const els = sectionRef.current?.querySelectorAll<HTMLElement>(".reveal");
@@ -21,7 +26,7 @@ export default function Projects() {
       },
       { threshold: 0.15 }
     );
-    els.forEach((el) => observer.observe(el));
+    els.forEach((el: HTMLElement) => observer.observe(el));
     return () => observer.disconnect();
   }, []);
 
@@ -467,7 +472,7 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* SECONDARY CONFIRMED PROJECT: COVID-19 TRACKER */}
+        {/* DEPLOYED SYSTEMS & APPLICATIONS */}
         <div className="reveal">
           <div
             className="font-mono"
@@ -479,134 +484,368 @@ export default function Projects() {
               fontWeight: 600,
             }}
           >
-            SECONDARY APPLICATION / CONFIRMED REPOSITORY RECORD
+            DEPLOYED SYSTEMS & APPLICATIONS / CONFIRMED REPOSITORY RECORDS
           </div>
 
-          {secondaryProjects.map((project) => (
-            <div
-              key={project.id}
-              style={{
-                background: "var(--surface)",
-                border: "var(--border-thin)",
-                padding: "2rem",
-                boxShadow: "4px 4px 0 var(--border)",
-                display: "grid",
-                gridTemplateColumns: "1.5fr 1fr",
-                gap: "2rem",
-                alignItems: "center",
-              }}
-              className="secondary-project-card"
-            >
-              <div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+            {secondaryProjects.map((project) => {
+              const isSpecsOpen = expandedSecondaryId === project.id;
+              const hasDeepSpecs = project.levels && project.levels.length > 1;
+
+              return (
                 <div
-                  className="font-mono"
+                  key={project.id}
                   style={{
-                    fontSize: "0.7rem",
-                    color: "var(--ink-muted)",
-                    marginBottom: "0.4rem",
-                    letterSpacing: "0.05em",
+                    background: "var(--surface)",
+                    border: "var(--border-thin)",
+                    padding: "2rem",
+                    boxShadow: "4px 4px 0 var(--border)",
                   }}
+                  className="secondary-project-card"
                 >
-                  {project.category} · {project.status}
-                </div>
-                <h3
-                  className="font-display"
-                  style={{
-                    fontSize: "1.75rem",
-                    color: "var(--ink-primary)",
-                    letterSpacing: "-0.02em",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  {project.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "0.92rem",
-                    color: "var(--ink-secondary)",
-                    lineHeight: 1.6,
-                    maxWidth: "580px",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {project.summary}
-                </p>
-                <div className="font-mono" style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
-                  {project.tags.map((t) => (
-                    <span
-                      key={t}
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1.5fr 1fr",
+                      gap: "2rem",
+                      alignItems: "center",
+                    }}
+                    className="secondary-project-header-grid"
+                  >
+                    <div>
+                      <div
+                        className="font-mono"
+                        style={{
+                          fontSize: "0.7rem",
+                          color: "var(--ink-muted)",
+                          marginBottom: "0.4rem",
+                          letterSpacing: "0.05em",
+                        }}
+                      >
+                        {project.category} · {project.status}
+                      </div>
+                      <h3
+                        className="font-display"
+                        style={{
+                          fontSize: "1.75rem",
+                          color: "var(--ink-primary)",
+                          letterSpacing: "-0.02em",
+                          marginBottom: "0.4rem",
+                        }}
+                      >
+                        {project.title}
+                      </h3>
+                      {project.tagline && (
+                        <div
+                          className="font-mono"
+                          style={{
+                            fontSize: "0.82rem",
+                            color: "var(--accent-primary)",
+                            fontWeight: 600,
+                            marginBottom: "0.75rem",
+                          }}
+                        >
+                          {project.tagline}
+                        </div>
+                      )}
+                      <p
+                        style={{
+                          fontSize: "0.92rem",
+                          color: "var(--ink-secondary)",
+                          lineHeight: 1.6,
+                          maxWidth: "640px",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        {project.summary}
+                      </p>
+                      <div className="font-mono" style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                        {project.tags.map((t) => (
+                          <span
+                            key={t}
+                            style={{
+                              fontSize: "0.72rem",
+                              padding: "0.2rem 0.5rem",
+                              background: "var(--surface-alt)",
+                              border: "1px solid var(--border-light)",
+                              color: "var(--ink-primary)",
+                            }}
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div
+                      className="font-mono secondary-links-col"
                       style={{
-                        fontSize: "0.72rem",
-                        padding: "0.2rem 0.5rem",
-                        background: "var(--surface-alt)",
-                        border: "1px solid var(--border-light)",
-                        color: "var(--ink-primary)",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.75rem",
+                        alignItems: "stretch",
+                        marginLeft: "auto",
+                        width: "fit-content",
+                        minWidth: "150px",
                       }}
                     >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
+                      {project.links.map((link) => (
+                        <a
+                          key={link.label}
+                          href={link.url || "#"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="secondary-action-btn"
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            textAlign: "center",
+                            gap: "0.45rem",
+                            padding: "0.6rem 1.15rem",
+                            width: "100%",
+                            background: "var(--surface)",
+                            border: "var(--border-thin)",
+                            color: "var(--ink-primary)",
+                            fontWeight: 600,
+                            fontSize: "0.78rem",
+                            boxShadow: "2px 2px 0 var(--border)",
+                            transition: "all var(--motion-fast)",
+                            boxSizing: "border-box",
+                            whiteSpace: "nowrap",
+                          }}
+                          onMouseDown={(e) => (e.currentTarget.style.transform = "translate(1px, 1px)")}
+                          onMouseUp={(e) => (e.currentTarget.style.transform = "translate(0, 0)")}
+                        >
+                          {link.label.includes("DEMO") ? <ExternalLink size={13} /> : <Code2 size={13} />}
+                          <span>{link.label}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
 
-              <div
-                className="font-mono secondary-links-col"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.75rem",
-                  alignItems: "flex-end",
-                }}
-              >
-                {project.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.url || "#"}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="secondary-action-btn"
-                    style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "0.4rem",
-                      padding: "0.6rem 1.1rem",
-                      background: "var(--surface)",
-                      border: "var(--border-thin)",
-                      color: "var(--ink-primary)",
-                      fontWeight: 600,
-                      fontSize: "0.78rem",
-                      boxShadow: "2px 2px 0 var(--border)",
-                      transition: "all var(--motion-fast)",
-                      boxSizing: "border-box",
-                      whiteSpace: "nowrap",
-                    }}
-                    onMouseDown={(e) => (e.currentTarget.style.transform = "translate(1px, 1px)")}
-                    onMouseUp={(e) => (e.currentTarget.style.transform = "translate(0, 0)")}
-                  >
-                    {link.label === "LIVE DEMO" ? <ExternalLink size={13} /> : <Code2 size={13} />}
-                    <span>{link.label}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))}
+                  {/* Primary Metrics Strip (e.g. Quantfolio) */}
+                  {project.primaryMetrics && (
+                    <div
+                      className="quantfolio-metrics-grid"
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: `repeat(${project.primaryMetrics.length}, 1fr)`,
+                        gap: "1.25rem",
+                        borderTop: "1px solid var(--border-light)",
+                        marginTop: "1.5rem",
+                        paddingTop: "1.25rem",
+                      }}
+                    >
+                      {project.primaryMetrics.map((m) => (
+                        <div key={m.label}>
+                          <div
+                            className="font-display"
+                            style={{
+                              fontSize: "1.35rem",
+                              fontWeight: 700,
+                              color: "var(--ink-primary)",
+                              letterSpacing: "-0.02em",
+                              lineHeight: 1.1,
+                              marginBottom: "0.25rem",
+                            }}
+                          >
+                            {m.value}
+                          </div>
+                          <div
+                            className="font-mono"
+                            style={{
+                              fontSize: "0.68rem",
+                              color: "var(--accent-primary)",
+                              fontWeight: 600,
+                              letterSpacing: "0.04em",
+                              marginBottom: "0.25rem",
+                            }}
+                          >
+                            {m.label}
+                          </div>
+                          <div
+                            style={{
+                              fontSize: "0.76rem",
+                              color: "var(--ink-muted)",
+                              lineHeight: 1.4,
+                            }}
+                          >
+                            {m.note}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Expandable Module Breakdown (if deep specs present) */}
+                  {hasDeepSpecs && (
+                    <div style={{ marginTop: "1.5rem", borderTop: "1px solid var(--border-light)", paddingTop: "1.25rem" }}>
+                      <button
+                        onClick={() => toggleSecondarySpec(project.id)}
+                        aria-expanded={isSpecsOpen}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          width: "100%",
+                          padding: "0.75rem 1rem",
+                          background: isSpecsOpen ? "var(--surface-alt)" : "var(--surface)",
+                          border: "var(--border-thin)",
+                          cursor: "pointer",
+                          textAlign: "left",
+                          transition: "background var(--motion-fast)",
+                        }}
+                        className="font-mono"
+                      >
+                        <span style={{ fontSize: "0.74rem", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "0.05em" }}>
+                          {isSpecsOpen
+                            ? "HIDE QUANTITATIVE SPECIFICATIONS [-]"
+                            : `VIEW ARCHITECTURE & MATHEMATICAL SPECIFICATIONS (${project.levels.length} MODULES) [+]`}
+                        </span>
+                        <ChevronDown
+                          size={16}
+                          style={{
+                            transform: isSpecsOpen ? "rotate(180deg)" : "rotate(0deg)",
+                            transition: "transform var(--motion-normal) var(--ease-out)",
+                            color: "var(--ink-primary)",
+                            flexShrink: 0,
+                          }}
+                        />
+                      </button>
+
+                      {isSpecsOpen && (
+                        <div style={{ marginTop: "0.85rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                          {project.levels.map((lvl) => (
+                            <div
+                              key={lvl.level}
+                              style={{
+                                padding: "1rem 1.25rem",
+                                background: "var(--surface-alt)",
+                                border: "1px solid var(--border-light)",
+                              }}
+                            >
+                              <div style={{ display: "flex", alignItems: "center", gap: "0.65rem", marginBottom: "0.5rem", flexWrap: "wrap" }}>
+                                <span
+                                  className="font-mono"
+                                  style={{
+                                    fontSize: "0.7rem",
+                                    fontWeight: 700,
+                                    padding: "0.15rem 0.45rem",
+                                    background: "var(--ink-primary)",
+                                    color: "var(--background)",
+                                  }}
+                                >
+                                  MODULE 0{lvl.level}
+                                </span>
+                                <span className="font-mono" style={{ fontSize: "0.82rem", fontWeight: 700, color: "var(--ink-primary)" }}>
+                                  {lvl.title}
+                                </span>
+                                <span style={{ fontSize: "0.78rem", color: "var(--ink-muted)" }}>
+                                  · {lvl.subtitle}
+                                </span>
+                              </div>
+                              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "0.75rem" }}>
+                                {lvl.content.map((p, idx) => (
+                                  <p key={idx} style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.65 }}>
+                                    {p}
+                                  </p>
+                                ))}
+                              </div>
+                              {lvl.techNotes && (
+                                <div
+                                  className="font-mono"
+                                  style={{
+                                    display: "grid",
+                                    gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                                    gap: "0.6rem",
+                                    background: "var(--surface)",
+                                    padding: "0.75rem 1rem",
+                                    border: "1px solid var(--border-light)",
+                                    fontSize: "0.74rem",
+                                  }}
+                                >
+                                  {lvl.techNotes.map((note) => (
+                                    <div key={note.label}>
+                                      <div style={{ color: "var(--ink-muted)", fontSize: "0.68rem", marginBottom: "0.15rem" }}>{note.label}</div>
+                                      <div style={{ color: "var(--ink-primary)", fontWeight: 600, lineHeight: 1.4 }}>{note.value}</div>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ))}
+
+                          {project.disclaimer && (
+                            <div
+                              style={{
+                                padding: "0.85rem 1rem",
+                                border: "1px dashed var(--border)",
+                                background: "var(--surface)",
+                                display: "flex",
+                                alignItems: "flex-start",
+                                gap: "0.65rem",
+                                fontSize: "0.78rem",
+                                color: "var(--ink-secondary)",
+                                lineHeight: 1.5,
+                                marginTop: "0.35rem",
+                              }}
+                            >
+                              <AlertCircle size={15} style={{ color: "var(--accent-primary)", flexShrink: 0, marginTop: "2px" }} />
+                              <div>{project.disclaimer}</div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       <style>{`
+        @media (min-width: 841px) {
+          .secondary-links-col {
+            align-items: stretch !important;
+            margin-left: auto !important;
+            width: fit-content !important;
+            min-width: 150px !important;
+          }
+          .secondary-action-btn {
+            width: 100% !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+          }
+        }
         @media (max-width: 840px) {
-          .onyxflow-metrics {
+          .onyxflow-metrics,
+          .quantfolio-metrics-grid {
             grid-template-columns: 1fr !important;
             gap: 1.25rem !important;
           }
-          .secondary-project-card {
+          .secondary-project-header-grid {
             grid-template-columns: 1fr !important;
             gap: 1.5rem !important;
           }
           .secondary-links-col {
-            align-items: flex-start !important;
-            flex-direction: row !important;
-            flex-wrap: wrap !important;
+            align-items: stretch !important;
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+            width: 100% !important;
+            gap: 0.75rem !important;
+            margin-left: 0 !important;
+          }
+          .secondary-action-btn {
+            width: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
           }
         }
         @media (max-width: 640px) {

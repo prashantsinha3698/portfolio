@@ -1,46 +1,50 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
+import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import ScrollObserver from "@/components/ui/ScrollObserver";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
   display: "swap",
+  weight: ["500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
-const pressStart2P = Press_Start_2P({
-  variable: "--font-press-start",
-  weight: "400",
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   display: "swap",
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://prashantsinha.dev"),
   title: {
-    default: "Prashant Sinha | Salesforce Developer & Independent Builder",
+    default: "Prashant Sinha | Salesforce Developer",
     template: "%s | Prashant Sinha",
   },
   description:
-    "Prashant Sinha is a Salesforce Developer, Systems Thinker and Independent Builder based in Raipur, India. Builder of OnyxFlow, an algorithmic crypto futures trading platform.",
+    "Prashant Sinha is a Salesforce Developer based in Raipur, India. Experience with Salesforce development, automation, integrations and software projects.",
   keywords: [
     "Prashant Sinha",
     "Salesforce Developer",
-    "Systems Thinker",
-    "Independent Builder",
-    "Software Engineer",
-    "OnyxFlow",
-    "Raipur",
-    "India",
-    "Salesforce Administrator",
+    "Systems Engineer",
+    "Apex",
+    "LWC",
+    "SOQL",
+    "REST APIs",
     "Python",
-    "Algorithmic Trading",
+    "OnyxFlow",
+    "Quantfolio",
+    "Tata Consultancy Services",
+    "Enterprise Integration",
   ],
   authors: [{ name: "Prashant Sinha", url: "https://prashantsinha.dev" }],
   creator: "Prashant Sinha",
@@ -48,36 +52,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: "https://prashantsinha.dev",
-    title: "Prashant Sinha | Salesforce Developer & Independent Builder",
+    title: "Prashant Sinha | Salesforce Developer & Systems Engineer",
     description:
-      "Salesforce Developer, Systems Thinker and Independent Builder. Builder of OnyxFlow.",
+      "Enterprise Salesforce integrations at scale + independent quantitative and algorithmic systems.",
     siteName: "Prashant Sinha",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Prashant Sinha | Salesforce Developer & Independent Builder",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Prashant Sinha | Salesforce Developer & Independent Builder",
+    title: "Prashant Sinha | Salesforce Developer & Systems Engineer",
     description:
-      "Salesforce Developer, Systems Thinker and Independent Builder. Builder of OnyxFlow.",
-    images: ["/og-image.png"],
+      "Enterprise Salesforce integrations at scale + independent quantitative and algorithmic systems.",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
   icons: {
     icon: [{ url: "/picon.png", type: "image/png" }],
@@ -90,8 +78,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F3EBDD" },
-    { media: "(prefers-color-scheme: dark)", color: "#0E0E0D" },
+    { media: "(prefers-color-scheme: light)", color: "#F8F7F4" },
+    { media: "(prefers-color-scheme: dark)", color: "#0C0D0E" },
   ],
 };
 
@@ -110,9 +98,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Prashant Sinha",
-  jobTitle: "Salesforce Developer",
+  jobTitle: "Salesforce Developer & Systems Engineer",
   description:
-    "Salesforce Developer, Systems Thinker and Independent Builder based in Raipur, India.",
+    "Salesforce Developer and Systems Engineer. 3+ years enterprise Salesforce integrations at Tata Consultancy Services.",
   url: "https://prashantsinha.dev",
   email: "iam.prashantsinha@yahoo.com",
   address: {
@@ -133,8 +121,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
+        <link rel="icon" type="image/png" href="/picon.png" />
+        <link rel="shortcut icon" href="/picon.png" />
+        <link rel="apple-touch-icon" href="/picon.png" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
@@ -142,9 +140,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable}`}
+        className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
         suppressHydrationWarning
       >
+        <ScrollObserver />
         {children}
       </body>
     </html>

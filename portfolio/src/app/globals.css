@@ -1,112 +1,147 @@
 @import "tailwindcss";
 
+/* Typography classes mapped to Next.js font variables */
+.font-mono {
+  font-family: var(--font-ibm-plex-mono), "IBM Plex Mono", "Courier Prime", "Courier New", Courier, monospace;
+}
+.font-display {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+}
+.font-sans {
+  font-family: var(--font-ibm-plex-sans), "IBM Plex Sans", -apple-system, sans-serif;
+}
+
 /* ============================================================
-   DESIGN TOKENS — PRASHANT SINHA: SYSTEMS ARCHIVE
-   A thoughtful blend of editorial design, brutalist engineering,
-   and restrained retro computing.
+   DESIGN TOKENS — PRASHANT SINHA: EDITORIAL SYSTEMS ARCHIVE (2026)
+   A mature synthesis of tactile neo-brutalism, Swiss grid,
+   and technical documentation aesthetics.
    ============================================================ */
 
 :root {
-  /* LIGHT MODE (Warm Paper & Editorial Ink) */
-  --background: #F3EBDD;      /* Warm Paper */
-  --surface: #FFFDF9;         /* Clean elevated surface */
-  --surface-alt: #EBE3D3;     /* Warm Cream */
-  
-  --ink-primary: #151515;     /* Ink Black */
-  --ink-secondary: #524E48;   /* Editorial Grey */
-  --ink-muted: #8C867C;       /* Warm Mid-Grey */
-  
-  --accent-primary: #F05A28;  /* Heritage Orange */
-  --accent-secondary: #F2C94C;/* Warm Amber Yellow */
-  --accent-yellow: #F2C94C;
-  --accent-blue: #66B8D9;     /* Technical Blue */
-  --accent-mint: #B5D7C8;     /* Muted Mint */
-  --accent-pink: #E7B7C9;     /* Editorial Pink */
-  
-  --border: #151515;          /* Solid structural boundary */
-  --border-light: #D8D1C3;    /* Light warm grey divider */
-  
-  --status-online: #2E7D32;   /* Dark green */
-  --status-offline: #C62828;  /* Dark red */
-  
-  /* Focus */
-  --focus-ring: var(--accent-primary);
+  /* Proposed Core Editorial Palette — Harmonized with Pixel Character */
+  --bg-canvas: #F5F0E8;          /* Warm paper canvas */
+  --bg-surface: #FFFDF8;         /* Warm pure card surface */
+  --bg-surface-subtle: #E8E1D7;  /* Secondary warm surface */
 
-  /* Typography */
-  --font-sans: var(--font-geist-sans), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: var(--font-geist-mono), "IBM Plex Mono", "JetBrains Mono", "Courier New", monospace;
-  --font-pixel: var(--font-press-start), "Courier New", monospace;
+  --ink-primary: #17151A;        /* Very dark slightly warm black */
+  --ink-secondary: #524E48;      /* Secondary editorial text */
+  --ink-muted: #78726A;          /* Technical metadata, dates */
 
-  /* Font weights */
+  --accent-primary: #E65336;     /* Burnt red-orange — main action color */
+  --accent-subtle: rgba(230, 83, 54, 0.08);
+
+  /* Identity & Semantic Accents */
+  --accent-green: #2E6B5B;        /* Deep muted forest green (derived from pixel character shirt) */
+  --accent-green-surface: #DCE8E0;/* Very subtle light green surface */
+  --accent-yellow: #D5AC42;       /* Secondary yellow (used sparingly for achievements) */
+  --accent-lavender: #777080;     /* Muted cool lavender-gray (subtle technical annotations) */
+  --accent-blue: #2F6BFF;         /* Technical links */
+
+  --border-primary: #17151A;      /* 1px structural boundary */
+  --border-subtle: #CBC4B8;       /* Muted architectural border */
+
+  --status-active: var(--accent-green);
+  --status-testing: var(--accent-primary);
+  --status-pending: var(--accent-yellow);
+
+  /* Legacy variable aliases for seamless backward compatibility */
+  --bg: var(--bg-canvas);
+  --background: var(--bg-canvas);
+  --surface: var(--bg-surface);
+  --surface-alt: var(--bg-surface-subtle);
+  --text-primary: var(--ink-primary);
+  --text-secondary: var(--ink-secondary);
+  --text-tertiary: var(--ink-muted);
+  --accent: var(--accent-primary);
+  --pixel-border-accent: 1px solid var(--accent-primary);
+  --radius-button: 2px;
+  --duration-fast: 140ms;
+  --text-xs: 0.75rem;
+  --border: var(--border-primary);
+  --border-thin: 1px solid var(--border-primary);
+  --border-light: 1px solid var(--border-subtle);
+  --border-medium: 1px solid var(--border-primary);
+  --border-heavy: 2px solid var(--border-primary);
+
+  /* Typography — Space Grotesk (display), IBM Plex Sans (body), IBM Plex Mono (technical) */
+  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-sans: var(--font-ibm-plex-sans), "IBM Plex Sans", -apple-system, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), "IBM Plex Mono", monospace;
+
+  /* Aliases for components referencing previous font variables */
+  --font-geist-sans: var(--font-sans);
+  --font-geist-mono: var(--font-mono);
+
+  /* Font Weights */
   --weight-body: 400;
   --weight-medium: 500;
+  --weight-semibold: 600;
   --weight-display: 700;
 
-  /* Spacing Scale */
+  /* Spacing Scale (8px Architectural Grid) */
   --space-0: 0px;
   --space-1: 4px;
   --space-2: 8px;
-  --space-3: 16px;
-  --space-4: 24px;
-  --space-5: 32px;
-  --space-6: 48px;
-  --space-7: 64px;
-  --space-8: 96px;
-  --space-9: 128px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
 
-  /* Borders */
-  --border-thin: 1px solid var(--border);
-  --border-medium: 2px solid var(--border);
-  --border-heavy: 3px solid var(--border);
-
-  /* Border Radius */
+  /* Structural Geometry */
   --radius-0: 0px;
   --radius-1: 2px;
   --radius-2: 4px;
 
-  /* Hard Offset Shadows (Retro-Brutalist) */
-  --shadow-pixel: 4px 4px 0px var(--border);
-  --shadow-heavy: 6px 6px 0px var(--border);
-  --shadow-soft: 0px 4px 12px rgba(0, 0, 0, 0.06);
-  --shadow-none: none;
+  /* Tactile Physics (Hard 0-Blur Shadows) */
+  --shadow-tactile-sm: 2px 2px 0 var(--border-primary);
+  --shadow-tactile: 3px 3px 0 var(--border-primary);
+  --shadow-tactile-lg: 4px 4px 0 var(--border-primary);
+  --shadow-pixel: var(--shadow-tactile);
+  --shadow-heavy: var(--shadow-tactile-lg);
 
-  /* Motion */
-  --motion-instant: 0ms;
-  --motion-fast: 150ms;
-  --motion-normal: 260ms;
-  --motion-slow: 450ms;
-
-  --ease-in: cubic-bezier(0.4, 0, 0.6, 1);
+  /* Timing & Motion (Crisp & Mechanical: 100-200ms) */
+  --motion-instant: 80ms;
+  --motion-fast: 140ms;
+  --motion-normal: 220ms;
+  --ease-mechanical: cubic-bezier(0, 0, 0.2, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme="dark"] {
-  /* DARK MODE (Deep Charcoal & Warm Off-White) */
-  --background: #0E0E0D;      /* Deep warm charcoal */
-  --surface: #171715;         /* Elevated dark grey */
-  --surface-alt: #1F1F1D;     /* Mid charcoal */
-  
-  --ink-primary: #EAE7E0;     /* Warm off-white */
-  --ink-secondary: #9E9A92;   /* Muted warm cream */
-  --ink-muted: #6B6760;       /* Warm subtle grey */
-  
-  --accent-primary: #F05A28;  /* Heritage Orange */
-  --accent-secondary: #D5A03A;/* Muted Amber */
-  --accent-yellow: #D5A03A;
-  --accent-blue: #5B9BBE;     /* Technical Blue */
-  --accent-mint: #4A7A60;     /* Deep Mint */
-  --accent-pink: #C98BA0;     /* Muted Pink */
-  
-  --border: #333330;          /* Controlled dark boundary */
-  --border-light: #242422;    /* Dark divider */
-  
-  --status-online: #4CAF50;   /* Green */
-  --status-offline: #EF5350;  /* Red */
-  
-  --focus-ring: var(--accent-primary);
-  --shadow-pixel: 4px 4px 0px #000000;
-  --shadow-heavy: 6px 6px 0px #000000;
+  /* Dark Mode — Harmonious Obsidian & Forest Green Archive */
+  --bg-canvas: #0E1012;
+  --bg-surface: #16181C;
+  --bg-surface-subtle: #202328;
+
+  --ink-primary: #F0EEEA;
+  --ink-secondary: #A5A199;
+  --ink-muted: #6E6A63;
+
+  --accent-primary: #FF5E3D;
+  --accent-subtle: rgba(255, 94, 61, 0.12);
+
+  --accent-green: #3D8B77;
+  --accent-green-surface: rgba(61, 139, 119, 0.16);
+  --accent-yellow: #E5B93F;
+  --accent-lavender: #958DA3;
+  --accent-blue: #4A84FF;
+
+  --border-primary: #2B2F36;
+  --border-subtle: #1F2228;
+
+  --shadow-tactile-sm: 2px 2px 0 #000000;
+  --shadow-tactile: 3px 3px 0 #000000;
+  --shadow-tactile-lg: 4px 4px 0 #000000;
+  --shadow-pixel: var(--shadow-tactile);
+  --shadow-heavy: var(--shadow-tactile-lg);
+
+  --status-active: var(--accent-green);
+  --status-testing: var(--accent-primary);
+  --status-pending: var(--accent-yellow);
 }
 
 /* ============================================================
@@ -128,9 +163,10 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+/* Strict Reduced Motion Accordance */
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto !important;
   }
   *,
   *::before,
@@ -138,120 +174,131 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
 body {
   font-family: var(--font-sans);
   font-weight: var(--weight-body);
-  background-color: var(--background);
+  background-color: var(--bg-canvas);
   color: var(--ink-primary);
   line-height: 1.6;
-  transition: background-color var(--motion-normal) var(--ease-in-out),
-              color var(--motion-normal) var(--ease-in-out);
   overflow-x: hidden;
+  /* RESTORE NATIVE SYSTEM CURSORS — Accessible & Precise */
+  cursor: default;
 }
 
-/* Crisp Classic Macintosh Cursors with Exact Hotspots */
-html, body {
-  cursor: url("/cursors/mac-arrow.svg") 0 0, default;
-}
-
-a, button, [role="button"], input, select, textarea, summary, [style*="cursor: pointer"], [style*="cursor:pointer"] {
-  cursor: url("/cursors/mac-pointer.svg") 7 0, pointer !important;
-}
-
-/* SELECTION */
+/* Text Selection */
 ::selection {
   background: var(--accent-primary);
   color: #FFFFFF;
-  text-shadow: none;
 }
 ::-moz-selection {
   background: var(--accent-primary);
   color: #FFFFFF;
-  text-shadow: none;
 }
 
-/* SCROLLBAR */
+/* Interactive Elements Native Cursors */
+a,
+button,
+[role="button"],
+input,
+select,
+textarea,
+summary {
+  cursor: pointer;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--background);
-  border-left: var(--border-thin);
+  background: var(--bg-canvas);
+  border-left: 1px solid var(--border-subtle);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-primary);
-  border: var(--border-thin);
-  border-radius: var(--radius-1);
+  background: var(--border-subtle);
+  border: 1px solid var(--border-primary);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--ink-primary);
-}
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent-primary) var(--background);
+  background: var(--accent-primary);
 }
 
-/* INTERACTIVE & ACCESSIBILITY */
+/* Accessible Focus Ring */
 :focus-visible {
-  outline: 2px solid var(--focus-ring);
+  outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
-  border-radius: var(--radius-1);
 }
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
 button {
   border: none;
   background: none;
   font-family: inherit;
+  color: inherit;
 }
 
 /* ============================================================
-   TYPOGRAPHY CLASSES
+   TYPOGRAPHY CLASSES - RETRO TYPEWRITER & MONOSPACE ENFORCEMENT
    ============================================================ */
 
-.font-display {
-  font-family: var(--font-sans);
-  font-weight: var(--weight-display);
+.font-display, [class*="font-display"] {
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif !important;
+  letter-spacing: -0.03em;
 }
 
-.font-mono {
-  font-family: var(--font-mono);
+.font-sans, [class*="font-sans"] {
+  font-family: var(--font-ibm-plex-sans), "IBM Plex Sans", -apple-system, sans-serif !important;
 }
 
-.font-pixel {
-  font-family: var(--font-pixel);
+.font-mono, [class*="font-mono"], code, pre, kbd, samp, .mono-retro {
+  font-family: var(--font-ibm-plex-mono), "IBM Plex Mono", "Courier Prime", "Courier New", Courier, monospace !important;
+  font-feature-settings: "liga" 0, "calt" 0;
+  letter-spacing: -0.01em;
 }
 
-/* Layout Utilities */
+/* Layout Utilities - 100% Full Width Architecture */
 .container {
-  max-width: 1200px;
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 auto;
-  padding: 0 var(--space-5);
+  padding-inline: clamp(1.25rem, 4vw, 4.5rem) !important;
+}
+
+.container-wide {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4vw, 4.5rem) !important;
+}
+
+.container-reading {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4vw, 4.5rem) !important;
 }
 
 @media (max-width: 1024px) {
-  .container {
-    max-width: 960px;
-    padding: 0 var(--space-4);
+  .container,
+  .container-wide,
+  .container-reading {
+    padding-inline: 24px !important;
   }
 }
 
 @media (max-width: 640px) {
-  .container {
-    max-width: 100%;
-    padding: 0 1.25rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .container {
-    padding: 0 0.85rem;
+  .container-wide,
+  .container,
+  .container-reading {
+    padding-inline: 18px !important;
   }
 }
 
@@ -261,20 +308,226 @@ img, svg, canvas, video {
   height: auto;
 }
 
-/* Content visibility: reliable by default for robust accessibility, SEO and smooth render */
-.reveal {
+/* ============================================================
+   TACTILE MECHANICAL BUTTON SYSTEM
+   ============================================================ */
+
+.btn-tactile-primary {
+  background: var(--accent-primary);
+  color: #FFFFFF;
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-tactile);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  transition: transform var(--motion-fast) var(--ease-mechanical),
+              box-shadow var(--motion-fast) var(--ease-mechanical),
+              background var(--motion-fast);
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.btn-tactile-primary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--border-primary);
+}
+
+.btn-tactile-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--border-primary);
+}
+
+.btn-tactile-secondary {
+  background: var(--bg-surface);
+  color: var(--ink-primary);
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-tactile-sm);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  transition: transform var(--motion-fast) var(--ease-mechanical),
+              box-shadow var(--motion-fast) var(--ease-mechanical),
+              background var(--motion-fast);
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 44px;
+  box-sizing: border-box;
+}
+
+.btn-tactile-secondary:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--border-primary);
+  background: var(--bg-surface-subtle);
+}
+
+.btn-tactile-secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--border-primary);
+}
+
+/* Subtle Static Texture Overlay (CSS-only, Zero CPU overhead) */
+.bg-subtle-grid {
+  background-image: linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Hover Helpers */
+.hover-accent {
+  transition: color var(--motion-fast);
+}
+.hover-accent:hover {
+  color: var(--accent-primary) !important;
+}
+.hover-ink {
+  transition: color var(--motion-fast);
+}
+.hover-ink:hover {
+  color: var(--ink-primary) !important;
+}
+
+/* Retro Terminal Typewriter Cursor Animation */
+@keyframes retroCursorBlink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  margin-left: 3px;
+  animation: retroCursorBlink 750ms infinite;
+  color: var(--accent-primary);
+  font-weight: 800;
+  font-family: var(--font-mono);
+}
+
+/* Crisp Pixel-Art Character Rendering */
+.pixel-art {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Editorial Project Folder-Tab Motif */
+.project-folder-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.35rem;
+  border-top: 1px solid var(--border-subtle);
+  border-left: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-primary);
+  background: var(--bg-surface-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  outline: none;
+  transition: background var(--motion-fast), color var(--motion-fast), border-color var(--motion-fast);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.project-folder-tab:hover:not(.active) {
+  background: var(--bg-surface);
+  color: var(--ink-primary);
+  border-top-color: var(--border-primary);
+  border-left-color: var(--border-primary);
+  border-right-color: var(--border-primary);
+}
+
+.project-folder-tab.active {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-primary);
+  border-left: 1px solid var(--border-primary);
+  border-right: 1px solid var(--border-primary);
+  border-bottom: 1px solid var(--bg-surface);
+  color: var(--ink-primary);
+  z-index: 3;
+}
+
+@media (min-width: 769px) {
+  .desktop-projects-tabbed {
+    display: block !important;
+  }
+  .mobile-projects-stacked {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-projects-tabbed {
+    display: none !important;
+  }
+  .mobile-projects-stacked {
+    display: flex !important;
+  }
+}
+
+/* Apple-Grade Cinematic Scroll Reveal System */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.revealed {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity var(--motion-slow) var(--ease-out),
-              transform var(--motion-slow) var(--ease-out);
 }
 
-/* Blinking cursor for typewriter effect */
-@keyframes cursorBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
-.cursor-blink {
-  animation: cursorBlink 0.9s step-start infinite;
+/* Responsive Layout Safeguards for Mobile Viewports */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+  .container {
+    padding-left: clamp(0.75rem, 3.5vw, 1.25rem) !important;
+    padding-right: clamp(0.75rem, 3.5vw, 1.25rem) !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  main {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }
+
+
+

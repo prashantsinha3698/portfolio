@@ -73,3 +73,6 @@ desktop.ini
 *.njsproj
 *.sln
 *.sw?
+
+# Miscs
+portfolio\docs\*

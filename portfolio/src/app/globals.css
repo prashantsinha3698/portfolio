@@ -54,10 +54,10 @@ h1[style*="Jersey 25"], h2[style*="Jersey 25"], h3[style*="Jersey 25"], h4[style
 
   --ink-primary: #17151A;        /* Very dark slightly warm black */
   --ink-secondary: #524E48;      /* Secondary editorial text */
-  --ink-muted: #78726A;          /* Technical metadata, dates */
+  --ink-muted: #55514B;          /* Technical metadata, dates (WCAG AA Compliant 5.94:1+) */
 
-  --accent-primary: #E65336;     /* Burnt red-orange — main action color */
-  --accent-subtle: rgba(230, 83, 54, 0.08);
+  --accent-primary: #C0391E;     /* Rich Burnt Crimson — WCAG AA 4.78:1+ on canvas, 5.47:1+ with white */
+  --accent-subtle: rgba(192, 57, 30, 0.08);
 
   /* Identity & Semantic Accents */
   --accent-green: #2E6B5B;        /* Deep muted forest green (derived from pixel character shirt) */
@@ -159,7 +159,7 @@ h1[style*="Jersey 25"], h2[style*="Jersey 25"], h3[style*="Jersey 25"], h4[style
 
   --ink-primary: #F0EEEA;
   --ink-secondary: #A5A199;
-  --ink-muted: #6E6A63;
+  --ink-muted: #9E988F;          /* Technical metadata (WCAG AA Compliant 6.06:1+ in dark mode) */
 
   --accent-primary: #FF5E3D;
   --accent-subtle: rgba(255, 94, 61, 0.12);
@@ -340,7 +340,7 @@ img, svg, canvas, video {
   border: 1px solid var(--border-primary);
   box-shadow: var(--shadow-tactile);
   font-family: var(--font-mono);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.82rem;
   letter-spacing: 0.05em;
   padding: 0.75rem 1.4rem;
@@ -355,6 +355,11 @@ img, svg, canvas, video {
   text-decoration: none;
   min-height: 44px;
   box-sizing: border-box;
+}
+
+[data-theme="dark"] .btn-tactile-primary {
+  color: #0E1012;
+  font-weight: 700;
 }
 
 .btn-tactile-primary:hover {

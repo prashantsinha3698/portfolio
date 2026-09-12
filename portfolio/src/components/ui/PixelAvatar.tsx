@@ -100,16 +100,20 @@ export default function PixelAvatar({ className, style }: PixelAvatarProps) {
           <div style={{ position: "absolute", bottom: 2, left: 2, width: 4, height: 4, borderBottom: "1px solid var(--ink-muted)", borderLeft: "1px solid var(--ink-muted)" }} />
           <div style={{ position: "absolute", bottom: 2, right: 2, width: 4, height: 4, borderBottom: "1px solid var(--ink-muted)", borderRight: "1px solid var(--ink-muted)" }} />
 
-          <div style={{ position: "relative", width: "100%", height: "100%" }}>
+          <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Image
               src="/picon.png"
               alt="Prashant Sinha pixel portrait"
-              fill
-              sizes="74px"
-              priority
+              width={68}
+              height={68}
+              unoptimized
               className="pixel-art"
               style={{
                 objectFit: "contain",
+                width: "auto",
+                height: "auto",
+                maxWidth: "100%",
+                maxHeight: "100%",
               }}
             />
           </div>

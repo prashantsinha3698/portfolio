@@ -35,7 +35,7 @@ export default function FolderTab({
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className={`folder-trapezium-tab ${active ? "active" : ""} ${className}`}
+      className={`folder-trapezium-tab ${active ? "active" : ""} ${className ?? ""}`.trim()}
       style={{
         position: "relative",
         background: "transparent",

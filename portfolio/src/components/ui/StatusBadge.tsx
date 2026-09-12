@@ -4,7 +4,7 @@ interface StatusBadgeProps {
 }
 
 export default function StatusBadge({ status, label }: StatusBadgeProps) {
-  const display = (label || status).toUpperCase();
+  const display = (label ?? status ?? "").toUpperCase();
   const isLive = display.includes("LIVE") || display.includes("ACTIVE");
   return (
     <span
@@ -32,7 +32,7 @@ export default function StatusBadge({ status, label }: StatusBadgeProps) {
           display: "inline-block",
         }}
       />
-      <span>{status.toUpperCase()}</span>
+      <span>{(status ?? "").toUpperCase()}</span>
     </span>
   );
 }

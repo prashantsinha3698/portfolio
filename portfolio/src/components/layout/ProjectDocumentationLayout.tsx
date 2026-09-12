@@ -106,7 +106,7 @@ export default function ProjectDocumentationLayout({
     }
   };
 
-  const currentChapterObj = chapters.find((c) => c.id === activeChapter) || chapters[0];
+  const currentChapterObj = chapters.find((c) => c.id === activeChapter) ?? chapters[0] ?? { id: "", label: "" };
 
   return (
     <div style={{ minHeight: "100vh", width: "100%", display: "flex", flexDirection: "column", background: "var(--bg-canvas)", color: "var(--ink-primary)" }}>

@@ -17,7 +17,7 @@ export default function TechTag({ label }: TechTagProps) {
         letterSpacing: "0.04em",
       }}
     >
-      {label}
+      {label ?? ""}
     </span>
   );
 }

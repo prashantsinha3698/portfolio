@@ -17,9 +17,9 @@ export default function PageHeader({
   badge,
   category,
 }: PageHeaderProps) {
-  const displayNum = number || sectionNumber || "01";
-  const displaySubtitle = subtitle || description || "";
-  const displayBadge = badge || category;
+  const displayNum = number ?? sectionNumber ?? "01";
+  const displaySubtitle = subtitle ?? description ?? "";
+  const displayBadge = badge ?? category ?? "";
 
   return (
     <div
@@ -48,9 +48,9 @@ export default function PageHeader({
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
             <span style={{ width: 7, height: 7, background: "var(--accent-primary)", display: "inline-block" }} />
-            <span>{displayNum} / {title.toUpperCase()}</span>
+            <span>{displayNum} / {(title ?? "").toUpperCase()}</span>
           </div>
-          {displayBadge && (
+          {displayBadge ? (
             <span
               className="page-header-badge"
               style={{
@@ -64,7 +64,7 @@ export default function PageHeader({
             >
               {displayBadge}
             </span>
-          )}
+          ) : null}
         </div>
 
         <div
@@ -89,16 +89,18 @@ export default function PageHeader({
             {title}
           </h1>
 
-          <p
-            style={{
-              fontSize: "1.02rem",
-              color: "var(--ink-secondary)",
-              lineHeight: 1.65,
-              maxWidth: "520px",
-            }}
-          >
-            {displaySubtitle}
-          </p>
+          {displaySubtitle ? (
+            <p
+              style={{
+                fontSize: "1.02rem",
+                color: "var(--ink-secondary)",
+                lineHeight: 1.65,
+                maxWidth: "520px",
+              }}
+            >
+              {displaySubtitle}
+            </p>
+          ) : null}
         </div>
       </div>
 

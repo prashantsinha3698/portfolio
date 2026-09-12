@@ -8,6 +8,7 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   weight: ["500", "600", "700"],
+  preload: false,
 });
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -15,6 +16,7 @@ const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -22,6 +24,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 const vt323 = VT323({
@@ -29,6 +32,7 @@ const vt323 = VT323({
   subsets: ["latin"],
   variable: "--font-vt323",
   display: "swap",
+  preload: false,
 });
 
 const jersey25 = Jersey_25({
@@ -36,6 +40,7 @@ const jersey25 = Jersey_25({
   subsets: ["latin"],
   variable: "--font-jersey-25",
   display: "swap",
+  preload: false,
 });
 
 const siteUrl =
@@ -90,8 +95,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: [{ url: "/picon.png", type: "image/png" }],
-    shortcut: "/picon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/picon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
     apple: "/picon.png",
   },
 };
@@ -145,8 +153,9 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" href="/picon.png" />
-        <link rel="shortcut icon" href="/picon.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/picon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -159,6 +168,9 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} ${vt323.variable} ${jersey25.variable}`}
         suppressHydrationWarning
+        data-grammarly="false"
+        data-enable-grammarly="false"
+        spellCheck={false}
       >
         <ScrollObserver />
         {children}

@@ -212,7 +212,7 @@ export const STORY_CHAPTERS: StoryChapter[] = [
 
 export default function StoryTimeline() {
   const [activeIdx, setActiveIdx] = useState(0);
-  const currentChapter = STORY_CHAPTERS[activeIdx];
+  const currentChapter = STORY_CHAPTERS[activeIdx] ?? STORY_CHAPTERS[0];
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const isProgrammaticScroll = useRef(false);
 

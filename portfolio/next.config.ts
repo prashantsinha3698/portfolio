@@ -16,6 +16,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/onyxflow",
+        destination: "/projects/onyxflow",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

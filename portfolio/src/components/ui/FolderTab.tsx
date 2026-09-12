@@ -120,7 +120,7 @@ export default function FolderTab({
         }}
       >
         <span style={{ color: active ? "var(--accent-primary)" : "inherit" }}>{number}</span>
-        <span style={{ color: "var(--ink-muted)" }}>//</span>
+        <span style={{ color: "var(--ink-muted)" }}>{"//"}</span>
         <span>{title}</span>
       </span>
     </button>

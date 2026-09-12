@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Moon, Sun, Menu, X, Download, Mail, Copy, Check, ExternalLink, MapPin, Clock } from "lucide-react";
+import { Moon, Sun, Menu, X, Download, Mail, Copy, Check, MapPin, Clock } from "lucide-react";
 import { profile } from "@/data/profile";
 import { GitHubIcon, LinkedInIcon, CodewarsIcon } from "@/components/ui/SocialIcons";
 
@@ -91,8 +91,11 @@ export default function Navigation() {
       <header
         role="banner"
         style={{
-          position: "sticky",
+          position: "fixed",
           top: 0,
+          left: 0,
+          right: 0,
+          width: "100%",
           zIndex: 900,
           background: "var(--bg-canvas)",
           borderBottom: "1px solid var(--border-primary)",
@@ -259,6 +262,8 @@ export default function Navigation() {
           </div>
         </div>
       </header>
+      {/* Fixed Header Spacer */}
+      <div style={{ height: "3.75rem", width: "100%", flexShrink: 0 }} aria-hidden="true" />
 
       {/* Mobile Drawer */}
       {mobileOpen && (
@@ -600,15 +605,24 @@ export default function Navigation() {
           .show-mobile-btn {
             display: flex !important;
           }
+          .nav-resume-cta {
+            width: 38px !important;
+            height: 38px !important;
+            min-width: 38px !important;
+            min-height: 38px !important;
+            padding: 0 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 2px 2px 0 var(--border-primary) !important;
+            box-sizing: border-box !important;
+          }
+          .hide-resume-text {
+            display: none !important;
+          }
         }
         @media (max-width: 520px) {
           .hide-badge-mobile {
-            display: none !important;
-          }
-          .nav-resume-cta {
-            padding: 0 0.6rem !important;
-          }
-          .hide-resume-text {
             display: none !important;
           }
         }

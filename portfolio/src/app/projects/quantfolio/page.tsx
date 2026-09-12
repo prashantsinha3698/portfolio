@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+
 import { ExternalLink } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
 import ProjectDocumentationLayout, { ProjectChapter, ProjectMetric } from "@/components/layout/ProjectDocumentationLayout";
@@ -72,7 +72,7 @@ export default function QuantfolioCaseStudyPage() {
       {/* 01 / OVERVIEW */}
       <section id="overview" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="01" label="OVERVIEW" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1rem" }}>
           What I Wanted to Build
         </h2>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
@@ -86,7 +86,7 @@ export default function QuantfolioCaseStudyPage() {
       {/* 02 / PROBLEM */}
       <section id="problem" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="02" label="PROBLEM" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1rem" }}>
           Practical Edge Cases
         </h2>
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
@@ -105,7 +105,7 @@ export default function QuantfolioCaseStudyPage() {
             },
           ].map((item, i) => (
             <div key={i} style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface)", padding: "1.25rem" }}>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1rem", color: "var(--ink-primary)", marginBottom: "0.3rem" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)", marginBottom: "0.3rem" }}>
                 {item.title}
               </div>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.86rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
@@ -119,7 +119,7 @@ export default function QuantfolioCaseStudyPage() {
       {/* 03 / OPTIMIZATION MODEL */}
       <section id="math-model" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="03" label="OPTIMIZATION MODEL" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1rem" }}>
           Markowitz Mean-Variance Formulation
         </h2>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
@@ -150,7 +150,7 @@ export default function QuantfolioCaseStudyPage() {
       {/* 04 / ARCHITECTURE */}
       <section id="architecture" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="04" label="ARCHITECTURE" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1rem" }}>
           Decoupled Architecture
         </h2>
 
@@ -162,7 +162,7 @@ export default function QuantfolioCaseStudyPage() {
             { tier: "Tier 4: FastAPI and React Interface", desc: "FastAPI REST endpoints serving JSON data to a React frontend with Plotly charts." },
           ].map((t, i) => (
             <div key={i} style={{ padding: "1rem 1.25rem", background: "var(--bg-surface-subtle)", border: "1px solid var(--border-subtle)", borderLeft: "4px solid var(--accent-primary)" }}>
-              <div style={{ fontFamily: "var(--font-display)", fontSize: "0.95rem", fontWeight: 700, color: "var(--ink-primary)" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                 {t.tier}
               </div>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.84rem", color: "var(--ink-secondary)", marginTop: "0.2rem" }}>
@@ -176,7 +176,7 @@ export default function QuantfolioCaseStudyPage() {
       {/* 05 / INVARIANTS */}
       <section id="invariants" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="05" label="TEST INVARIANTS" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1rem" }}>
           Automated Verification Suite
         </h2>
         <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.7, marginBottom: "1.25rem" }}>
@@ -194,7 +194,7 @@ export default function QuantfolioCaseStudyPage() {
               <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 700 }}>
                 INVARIANT 0{i + 1}
               </div>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "0.95rem", color: "var(--ink-primary)", margin: "0.2rem 0" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.2rem", color: "var(--ink-primary)", margin: "0.2rem 0" }}>
                 {inv.test}
               </div>
               <div className="font-mono" style={{ fontSize: "0.78rem", color: "var(--ink-muted)" }}>
@@ -208,7 +208,7 @@ export default function QuantfolioCaseStudyPage() {
       {/* 06 / CHALLENGES */}
       <section id="challenges" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="06" label="CHALLENGES" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1rem" }}>
           What I Struggled With
         </h2>
         <div style={{ border: "1px solid var(--border-primary)", background: "var(--bg-surface)", padding: "1.75rem", boxShadow: "var(--shadow-tactile-sm)" }}>
@@ -224,7 +224,7 @@ export default function QuantfolioCaseStudyPage() {
       {/* 07 / LESSONS */}
       <section id="lessons" style={{ scrollMarginTop: 100, marginBottom: "2rem" }}>
         <SectionLabel number="07" label="WHAT I LEARNED" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1rem" }}>
           Takeaways
         </h2>
         <div style={{ border: "1px solid var(--border-primary)", background: "var(--bg-surface)", padding: "1.75rem", boxShadow: "var(--shadow-tactile-sm)" }}>

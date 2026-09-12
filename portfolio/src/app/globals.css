@@ -1,14 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jersey+25&family=Press+Start+2P&family=Space+Grotesk:wght@500;600;700&family=VT323&display=swap');
 @import "tailwindcss";
 
-/* Typography classes mapped to Next.js font variables */
-.font-mono {
-  font-family: var(--font-ibm-plex-mono), "IBM Plex Mono", "Courier Prime", "Courier New", Courier, monospace;
+/* Core Typography Utility Classes */
+.font-display,
+[class*="font-display"],
+[style*="--font-display"],
+[style*="Jersey 25"],
+.font-jersey {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
 }
-.font-display {
-  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+
+h1.font-display, h2.font-display, h3.font-display, h4.font-display,
+h1[style*="--font-display"], h2[style*="--font-display"], h3[style*="--font-display"], h4[style*="--font-display"],
+h1[style*="Jersey 25"], h2[style*="Jersey 25"], h3[style*="Jersey 25"], h4[style*="Jersey 25"] {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
 }
-.font-sans {
-  font-family: var(--font-ibm-plex-sans), "IBM Plex Sans", -apple-system, sans-serif;
+.font-sans, [class*="font-sans"] {
+  font-family: var(--font-sans) !important;
+}
+.font-body {
+  font-family: var(--font-body) !important;
+}
+.font-mono, [class*="font-mono"], code, pre, kbd, samp, .mono-retro {
+  font-family: var(--font-mono) !important;
+  font-feature-settings: "liga" 0, "calt" 0;
+  letter-spacing: -0.01em;
+}
+.font-terminal, .font-vt323 {
+  font-family: var(--font-terminal) !important;
+  letter-spacing: 0.04em;
+}
+.font-pixel {
+  font-family: var(--font-pixel) !important;
+  letter-spacing: 0.02em;
+  font-weight: 600;
 }
 
 /* ============================================================
@@ -63,12 +92,23 @@
   --border-medium: 1px solid var(--border-primary);
   --border-heavy: 2px solid var(--border-primary);
 
-  /* Typography — Space Grotesk (display), IBM Plex Sans (body), IBM Plex Mono (technical) */
-  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
-  --font-sans: var(--font-ibm-plex-sans), "IBM Plex Sans", -apple-system, sans-serif;
-  --font-mono: var(--font-ibm-plex-mono), "IBM Plex Mono", monospace;
+  /* Typography System — Direct Google Fonts & Next.js Fallbacks */
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+  --font-ibm-plex-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-ibm-plex-mono: "IBM Plex Mono", "Courier Prime", "Courier New", Courier, monospace;
+  --font-jersey-25: "Jersey 25", sans-serif;
+  --font-vt323: "VT323", monospace;
+  --font-press-start: "Press Start 2P", monospace;
 
-  /* Aliases for components referencing previous font variables */
+  /* Semantic Typography Mappings */
+  --font-display: "Jersey 25", sans-serif;
+  --font-pixel: "Space Grotesk", sans-serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier Prime", "Courier New", Courier, monospace;
+  --font-terminal: "VT323", monospace;
+
+  /* Backward Compatibility Aliases */
   --font-geist-sans: var(--font-sans);
   --font-geist-mono: var(--font-mono);
 
@@ -245,24 +285,6 @@ button {
   color: inherit;
 }
 
-/* ============================================================
-   TYPOGRAPHY CLASSES - RETRO TYPEWRITER & MONOSPACE ENFORCEMENT
-   ============================================================ */
-
-.font-display, [class*="font-display"] {
-  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif !important;
-  letter-spacing: -0.03em;
-}
-
-.font-sans, [class*="font-sans"] {
-  font-family: var(--font-ibm-plex-sans), "IBM Plex Sans", -apple-system, sans-serif !important;
-}
-
-.font-mono, [class*="font-mono"], code, pre, kbd, samp, .mono-retro {
-  font-family: var(--font-ibm-plex-mono), "IBM Plex Mono", "Courier Prime", "Courier New", Courier, monospace !important;
-  font-feature-settings: "liga" 0, "calt" 0;
-  letter-spacing: -0.01em;
-}
 
 /* Layout Utilities - 100% Full Width Architecture */
 .container {
@@ -379,26 +401,95 @@ img, svg, canvas, video {
   box-shadow: 1px 1px 0 var(--border-primary);
 }
 
-/* Subtle Static Texture Overlay (CSS-only, Zero CPU overhead) */
-.bg-subtle-grid {
-  background-image: linear-gradient(to right, var(--border-subtle) 1px, transparent 1px),
-                    linear-gradient(to bottom, var(--border-subtle) 1px, transparent 1px);
-  background-size: 48px 48px;
+/* ============================================================
+   RESPONSIVE BUTTON GROUPS SYSTEM (GOLDEN DIMENSION RULES)
+   ============================================================ */
+
+.btn-group {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
-/* Hover Helpers */
-.hover-accent {
-  transition: color var(--motion-fast);
+/* Desktop & Horizontal Tablet: Equal dimensions for adjacent buttons */
+@media (min-width: 641px) {
+  .btn-group {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.85rem;
+  }
+  .btn-group > * {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .btn-group-2 > * {
+    flex: 1 1 0px;
+    min-width: 140px;
+  }
+  .btn-group-3 > * {
+    flex: 1 1 0px;
+    min-width: 130px;
+  }
 }
-.hover-accent:hover {
-  color: var(--accent-primary) !important;
+
+/* Mobile: Smart Grid Share */
+@media (max-width: 640px) {
+  /* 2 Buttons: 50% / 50% in a single row */
+  .btn-group-2 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+    width: 100% !important;
+  }
+  .btn-group-2 > * {
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 0.65rem 0.4rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 0.76rem !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3 Buttons: Primary (Accent) View Project gets 100% width, other 2 share 50-50 in row below */
+  .btn-group-3 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+    width: 100% !important;
+  }
+  .btn-group-3 > *:first-child,
+  .btn-group-3 > .btn-full-mobile,
+  .btn-group-3 > .btn-tactile-primary {
+    grid-column: 1 / -1 !important;
+    width: 100% !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+  .btn-group-3 > *:not(:first-child):not(.btn-full-mobile) {
+    width: 100% !important;
+    min-height: 44px !important;
+    padding: 0.65rem 0.4rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    font-size: 0.76rem !important;
+    box-sizing: border-box !important;
+  }
 }
-.hover-ink {
-  transition: color var(--motion-fast);
-}
-.hover-ink:hover {
-  color: var(--ink-primary) !important;
-}
+
 
 /* Retro Terminal Typewriter Cursor Animation */
 @keyframes retroCursorBlink {
@@ -423,53 +514,6 @@ img, svg, canvas, video {
   image-rendering: crisp-edges;
 }
 
-/* Editorial Project Folder-Tab Motif */
-.project-folder-tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.35rem;
-  border-top: 1px solid var(--border-subtle);
-  border-left: 1px solid var(--border-subtle);
-  border-right: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-primary);
-  background: var(--bg-surface-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--ink-muted);
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  margin-bottom: -1px;
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-  outline: none;
-  transition: background var(--motion-fast), color var(--motion-fast), border-color var(--motion-fast);
-  appearance: none;
-  -webkit-appearance: none;
-}
-
-.project-folder-tab:hover:not(.active) {
-  background: var(--bg-surface);
-  color: var(--ink-primary);
-  border-top-color: var(--border-primary);
-  border-left-color: var(--border-primary);
-  border-right-color: var(--border-primary);
-}
-
-.project-folder-tab.active {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border-primary);
-  border-left: 1px solid var(--border-primary);
-  border-right: 1px solid var(--border-primary);
-  border-bottom: 1px solid var(--bg-surface);
-  color: var(--ink-primary);
-  z-index: 3;
-}
 
 @media (min-width: 769px) {
   .desktop-projects-tabbed {

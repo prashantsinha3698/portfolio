@@ -6,7 +6,7 @@ import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import SectionLabel from "@/components/ui/SectionLabel";
 import PageHeader from "@/components/ui/PageHeader";
-import { GraduationCap, Award, Cpu, BookOpen, Layers, CheckCircle2, ChevronRight, Trophy } from "lucide-react";
+import { Award, Cpu, BookOpen, Trophy } from "lucide-react";
 
 interface LabCourse {
   semester: number;
@@ -110,7 +110,7 @@ export default function EducationPage() {
               </span>
             </div>
 
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem, 3.5vw, 2.4rem)", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.4rem" }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 3.5vw, 2.6rem)", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)", marginBottom: "0.4rem" }}>
               Bachelor of Engineering in Electronics & Telecommunication
             </h2>
             <div style={{ fontFamily: "var(--font-sans)", fontSize: "1.1rem", color: "var(--accent-primary)", fontWeight: 600, marginBottom: "0.5rem" }}>
@@ -124,22 +124,22 @@ export default function EducationPage() {
             <div className="education-metrics-strip">
               <div>
                 <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--ink-muted)", textTransform: "uppercase" }}>FINAL CPI</div>
-                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.7rem", fontWeight: 700, color: "var(--ink-primary)" }}>7.62</div>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.9rem", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)" }}>7.62</div>
                 <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--accent-green)", fontWeight: 600 }}>FIRST DIVISION</div>
               </div>
               <div>
                 <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--ink-muted)", textTransform: "uppercase" }}>CUMULATIVE MARKS</div>
-                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.7rem", fontWeight: 700, color: "var(--ink-primary)" }}>4641 / 6800</div>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.9rem", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)" }}>4641 / 6800</div>
                 <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)" }}>68.25% Aggregate</div>
               </div>
               <div>
                 <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--ink-muted)", textTransform: "uppercase" }}>CSVTU CREDITS</div>
-                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.7rem", fontWeight: 700, color: "var(--ink-primary)" }}>247 Credits</div>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.9rem", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)" }}>247 Credits</div>
                 <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)" }}>8 Semesters Completed</div>
               </div>
               <div>
                 <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--ink-muted)", textTransform: "uppercase" }}>ECTS EQUIVALENCE</div>
-                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.7rem", fontWeight: 700, color: "var(--ink-primary)" }}>240.0 ECTS</div>
+                <div style={{ fontFamily: "var(--font-display)", fontSize: "1.9rem", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)" }}>240.0 ECTS</div>
                 <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)" }}>European Standard Match</div>
               </div>
             </div>
@@ -158,7 +158,7 @@ export default function EducationPage() {
               </span>
             </div>
 
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 3vw, 2.1rem)", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.4rem" }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem, 3vw, 2.3rem)", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)", marginBottom: "0.4rem" }}>
               Salesforce Certifications & Platform Credentials
             </h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.7, maxWidth: 960, marginBottom: "1.75rem" }}>
@@ -170,7 +170,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-primary)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                   <Award size={18} color="var(--accent-primary)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "var(--ink-primary)" }}>
+                  <span className="font-display" style={{ fontWeight: 400, fontSize: "1.25rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                     Salesforce Certified Administrator
                   </span>
                 </div>
@@ -185,7 +185,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-primary)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                   <Award size={18} color="var(--accent-primary)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "var(--ink-primary)" }}>
+                  <span className="font-display" style={{ fontWeight: 400, fontSize: "1.25rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                     Salesforce Certified Business Analyst
                   </span>
                 </div>
@@ -200,7 +200,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                   <Award size={18} color="var(--ink-muted)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.1rem", color: "var(--ink-primary)" }}>
+                  <span className="font-display" style={{ fontWeight: 400, fontSize: "1.25rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                     Salesforce Platform Developer I (PD1)
                   </span>
                 </div>
@@ -216,10 +216,11 @@ export default function EducationPage() {
 
             {/* Trailhead Ranger Subheading Badge Strip — kept with Salesforce certifications */}
             <div
+              className="trailhead-ranger-bar"
               style={{
                 border: "1px solid var(--border-primary)",
                 background: "var(--bg-surface)",
-                padding: "1.25rem 1.75rem",
+                padding: "1.25rem 1.5rem",
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
@@ -229,11 +230,14 @@ export default function EducationPage() {
                 width: "100%",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+              <div className="trailhead-ranger-left" style={{ display: "flex", alignItems: "center", gap: "0.85rem", flex: "1 1 260px" }}>
                 <div
                   style={{
-                    width: 36,
-                    height: 36,
+                    width: 40,
+                    height: 40,
+                    minWidth: 40,
+                    minHeight: 40,
+                    flexShrink: 0,
                     background: "var(--accent-yellow)",
                     color: "var(--ink-primary)",
                     display: "flex",
@@ -243,24 +247,24 @@ export default function EducationPage() {
                     fontWeight: 700,
                   }}
                 >
-                  <Award size={20} />
+                  <Award size={22} />
                 </div>
                 <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-                    <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.08rem", color: "var(--ink-primary)" }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap", marginBottom: "0.2rem" }}>
+                    <span className="font-display" style={{ fontWeight: 400, fontSize: "1.25rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                       Trailhead Ranger
                     </span>
-                    <span className="font-mono" style={{ fontSize: "0.7rem", background: "var(--bg-surface-subtle)", border: "1px solid var(--border-subtle)", padding: "0.15rem 0.45rem", fontWeight: 700, color: "var(--accent-primary)" }}>
+                    <span className="font-pixel" style={{ fontSize: "0.72rem", background: "var(--bg-surface-subtle)", border: "1px solid var(--border-subtle)", padding: "0.15rem 0.45rem", fontWeight: 700, color: "var(--accent-primary)" }}>
                       SALESFORCE PLATFORM RANK
                     </span>
                   </div>
-                  <div className="font-mono" style={{ fontSize: "0.76rem", color: "var(--ink-muted)", marginTop: "0.15rem" }}>
+                  <div className="font-mono" style={{ fontSize: "0.78rem", color: "var(--ink-muted)", lineHeight: 1.5 }}>
                     Official Salesforce Trailhead recognition earned through 100+ module completions, hands-on challenges, and superbadges.
                   </div>
                 </div>
               </div>
 
-              <div className="font-mono" style={{ fontSize: "0.76rem", color: "var(--accent-green)", fontWeight: 700, background: "var(--bg-surface-subtle)", padding: "0.35rem 0.75rem", border: "1px solid var(--border-subtle)" }}>
+              <div className="font-pixel trailhead-verified-badge" style={{ fontSize: "0.74rem", color: "var(--accent-green)", fontWeight: 700, background: "var(--bg-surface-subtle)", padding: "0.35rem 0.75rem", border: "1px solid var(--border-subtle)", whiteSpace: "nowrap" }}>
                 VERIFIED STATUS
               </div>
             </div>
@@ -272,7 +276,7 @@ export default function EducationPage() {
               <SectionLabel number="03" label="TECHNICAL TRAINING" />
             </div>
 
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem, 3vw, 2.3rem)", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
               Vocational & Industrial Technical Training
             </h2>
 
@@ -281,7 +285,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                   <Cpu size={18} color="var(--accent-primary)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.15rem", color: "var(--ink-primary)" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.3rem", color: "var(--ink-primary)" }}>
                     Certified IoT Professional
                   </span>
                 </div>
@@ -289,7 +293,7 @@ export default function EducationPage() {
                   TechnoScripts, Pune | ISO 9001:2015 Certified
                 </div>
                 <div className="font-mono" style={{ fontSize: "0.76rem", color: "var(--ink-muted)", marginBottom: "0.85rem" }}>
-                  July 2018 - August 2018 | 1-Month Intensive Internship Training (Rated 'Excellent')
+                  July 2018 - August 2018 | 1-Month Intensive Internship Training (Rated &apos;Excellent&apos;)
                 </div>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.9rem", color: "var(--ink-secondary)", lineHeight: 1.65 }}>
                   Selected through an internship process to work under senior engineers in the Embedded Development Department. Focused on microcontroller programming (ARM, Arduino), sensor integration, automated data acquisition, and IoT communication protocols including MQTT, HTTP, and WebSockets.
@@ -299,7 +303,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                   <BookOpen size={18} color="var(--accent-primary)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.15rem", color: "var(--ink-primary)" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.3rem", color: "var(--ink-primary)" }}>
                     VLSI Design (VHDL)
                   </span>
                 </div>
@@ -323,7 +327,7 @@ export default function EducationPage() {
               <SectionLabel number="04" label="CAMPUS RECOGNITION" />
             </div>
 
-            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.5rem" }}>
+            <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem, 3vw, 2.3rem)", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)", marginBottom: "0.5rem" }}>
               College Honors & Formal Recognition
             </h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.7, maxWidth: 960, marginBottom: "1.75rem" }}>
@@ -335,7 +339,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                   <Trophy size={18} color="var(--accent-yellow)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "var(--ink-primary)" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)" }}>
                     First-Ever GEC Alumni Meet
                   </span>
                 </div>
@@ -350,7 +354,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                   <Trophy size={18} color="var(--accent-yellow)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "var(--ink-primary)" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)" }}>
                     Aayam Cultural Fest
                   </span>
                 </div>
@@ -365,7 +369,7 @@ export default function EducationPage() {
               <div className="education-card" style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                   <Trophy size={18} color="var(--accent-yellow)" />
-                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "var(--ink-primary)" }}>
+                  <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)" }}>
                     Aavesh Tech Fest
                   </span>
                 </div>
@@ -385,7 +389,7 @@ export default function EducationPage() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "0.75rem" }}>
               <div>
                 <SectionLabel number="05" label="TRANSCRIPT RECORD" />
-                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700, color: "var(--ink-primary)", marginTop: "0.25rem", marginBottom: "0.4rem" }}>
+                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.75rem, 3vw, 2.3rem)", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)", marginTop: "0.25rem", marginBottom: "0.4rem" }}>
                   Practical Engineering Laboratory Coursework
                 </h2>
               </div>
@@ -443,13 +447,13 @@ export default function EducationPage() {
                   <div>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
                       <span className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 700 }}>
-                        SEM 0{lab.semester} // {lab.session}
+                        SEM 0{lab.semester} {"//"} {lab.session}
                       </span>
                       <span className="font-mono" style={{ fontSize: "0.7rem", color: "var(--ink-muted)", border: "1px solid var(--border-subtle)", padding: "0.15rem 0.4rem" }}>
                         {lab.code}
                       </span>
                     </div>
-                    <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", fontWeight: 700, color: "var(--ink-primary)", lineHeight: 1.35, marginBottom: "0.5rem" }}>
+                    <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)", lineHeight: 1.35, marginBottom: "0.5rem" }}>
                       {lab.name}
                     </h3>
                     <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
@@ -576,6 +580,19 @@ export default function EducationPage() {
           }
           .education-card {
             padding: 1.15rem 0.95rem !important;
+          }
+          .trailhead-ranger-bar {
+            padding: 1.15rem 1rem !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.85rem !important;
+          }
+          .trailhead-ranger-left {
+            width: 100% !important;
+            align-items: flex-start !important;
+          }
+          .trailhead-verified-badge {
+            align-self: flex-start !important;
           }
         }
 

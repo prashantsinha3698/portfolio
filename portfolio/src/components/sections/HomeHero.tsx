@@ -84,11 +84,11 @@ export default function HomeHero() {
             <h1
               className="font-display"
               style={{
-                fontSize: "clamp(2.5rem, 5vw, 4.4rem)",
+                fontSize: "clamp(3.4rem, 7vw, 5.6rem)",
                 color: "var(--ink-primary)",
-                letterSpacing: "-0.04em",
-                lineHeight: 0.98,
-                fontWeight: 700,
+                letterSpacing: "0.02em",
+                lineHeight: 0.92,
+                fontWeight: 400,
                 marginBottom: "0.85rem",
               }}
             >
@@ -96,7 +96,7 @@ export default function HomeHero() {
               SINHA
             </h1>
 
-            {/* Continuous Retro Typewriter Animated Role (2-word punchy taglines) */}
+            {/* Continuous Retro Typewriter Animated Role */}
             <div
               className="font-mono"
               style={{
@@ -114,10 +114,10 @@ export default function HomeHero() {
               <span className="typewriter-cursor">_</span>
             </div>
 
-            {/* Editorial Description (IBM Plex Sans 400) */}
+            {/* Editorial Description */}
             <p
               style={{
-                fontFamily: "var(--font-ibm-plex-sans), sans-serif",
+                fontFamily: "var(--font-sans), sans-serif",
                 fontSize: "0.98rem",
                 color: "var(--ink-secondary)",
                 lineHeight: 1.62,
@@ -128,15 +128,13 @@ export default function HomeHero() {
               I work mainly around Salesforce, automation and integrations. Outside work, I enjoy building small software projects to understand how systems work from the ground up.
             </p>
 
-            {/* Tactile Action Buttons */}
+            {/* Tactile Action Buttons (Golden Rule Dimension Group) */}
             <div
+              className="btn-group btn-group-2 hero-action-buttons"
               style={{
-                display: "flex",
-                gap: "1rem",
-                flexWrap: "wrap",
                 marginBottom: "1.65rem",
+                maxWidth: "460px",
               }}
-              className="hero-action-buttons"
             >
               <Link href="/projects" className="btn-tactile-primary">
                 <span>VIEW PROJECTS</span>

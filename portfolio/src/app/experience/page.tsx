@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionLabel from "@/components/ui/SectionLabel";
 import TechTag from "@/components/ui/TechTag";
-import { ArrowRight } from "lucide-react";
+
 
 export const metadata: Metadata = {
   title: "Experience",
@@ -56,7 +56,7 @@ export default function ExperiencePage() {
                 >
                   Jan 2022 - Dec 2022
                 </div>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "var(--ink-primary)" }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)" }}>
                   Tata Consultancy Services
                 </div>
                 <div className="font-mono" style={{ fontSize: "0.76rem", color: "var(--ink-muted)", marginTop: "0.25rem" }}>
@@ -69,7 +69,7 @@ export default function ExperiencePage() {
 
               {/* Right Column: Role Title, Context, Work, Tech */}
               <div>
-                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>
+                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 3vw, 1.85rem)", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
                   System Engineer / Salesforce Developer
                 </h2>
                 <div className="font-mono" style={{ fontSize: "0.82rem", color: "var(--accent-primary)", fontWeight: 600, marginBottom: "1.25rem" }}>
@@ -82,7 +82,7 @@ export default function ExperiencePage() {
 
                 {/* Key Deliverables */}
                 <div style={{ marginBottom: "1.75rem" }}>
-                  <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.75rem" }}>
+                  <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)", marginBottom: "0.75rem" }}>
                     Selected Work and Responsibilities
                   </h3>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -105,7 +105,7 @@ export default function ExperiencePage() {
                       },
                     ].map((item, i) => (
                       <div key={i} style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1rem 1.25rem" }}>
-                        <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "0.95rem", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
+                        <div style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.15rem", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
                           {item.title}
                         </div>
                         <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
@@ -159,7 +159,7 @@ export default function ExperiencePage() {
                 >
                   Jan 2020 - Dec 2021
                 </div>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "var(--ink-primary)" }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)" }}>
                   Tata Consultancy Services
                 </div>
                 <div className="font-mono" style={{ fontSize: "0.76rem", color: "var(--ink-muted)", marginTop: "0.25rem" }}>
@@ -172,7 +172,7 @@ export default function ExperiencePage() {
 
               {/* Right Column: Role Title, Context, Work, Tech */}
               <div>
-                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.5rem", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>
+                <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.5rem, 3vw, 1.85rem)", fontWeight: 400, letterSpacing: "0.02em", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
                   Assistant System Engineer / Salesforce Developer
                 </h2>
                 <div className="font-mono" style={{ fontSize: "0.82rem", color: "var(--accent-primary)", fontWeight: 600, marginBottom: "1.25rem" }}>
@@ -185,7 +185,7 @@ export default function ExperiencePage() {
 
                 {/* Key Deliverables */}
                 <div style={{ marginBottom: "1.75rem" }}>
-                  <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.75rem" }}>
+                  <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)", marginBottom: "0.75rem" }}>
                     Selected Work and Responsibilities
                   </h3>
                   <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
@@ -208,7 +208,7 @@ export default function ExperiencePage() {
                       },
                     ].map((item, i) => (
                       <div key={i} style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1rem 1.25rem", boxSizing: "border-box" }}>
-                        <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "0.95rem", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
+                        <div style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.15rem", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
                           {item.title}
                         </div>
                         <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>

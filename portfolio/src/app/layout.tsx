@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono, VT323, Jersey_25 } from "next/font/google";
 import ScrollObserver from "@/components/ui/ScrollObserver";
 import "./globals.css";
 
@@ -14,18 +14,40 @@ const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
+const vt323 = VT323({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-vt323",
+  display: "swap",
+});
+
+const jersey25 = Jersey_25({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-jersey-25",
+  display: "swap",
+});
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://iam-prashant-sinha-portfolio.vercel.app");
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://prashantsinha.dev"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Prashant Sinha | Salesforce Developer",
     template: "%s | Prashant Sinha",
@@ -46,12 +68,12 @@ export const metadata: Metadata = {
     "Tata Consultancy Services",
     "Enterprise Integration",
   ],
-  authors: [{ name: "Prashant Sinha", url: "https://prashantsinha.dev" }],
+  authors: [{ name: "Prashant Sinha", url: siteUrl }],
   creator: "Prashant Sinha",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://prashantsinha.dev",
+    url: siteUrl,
     title: "Prashant Sinha | Salesforce Developer & Systems Engineer",
     description:
       "Enterprise Salesforce integrations at scale + independent quantitative and algorithmic systems.",
@@ -101,7 +123,7 @@ const jsonLd = {
   jobTitle: "Salesforce Developer & Systems Engineer",
   description:
     "Salesforce Developer and Systems Engineer. 3+ years enterprise Salesforce integrations at Tata Consultancy Services.",
-  url: "https://prashantsinha.dev",
+  url: siteUrl,
   email: "iam.prashantsinha@yahoo.com",
   address: {
     "@type": "PostalAddress",
@@ -126,13 +148,8 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="/picon.png" />
         <link rel="shortcut icon" href="/picon.png" />
         <link rel="apple-touch-icon" href="/picon.png" />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-          crossOrigin="anonymous"
-          referrerPolicy="no-referrer"
-        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
@@ -140,7 +157,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable}`}
+        className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} ${ibmPlexMono.variable} ${vt323.variable} ${jersey25.variable}`}
         suppressHydrationWarning
       >
         <ScrollObserver />

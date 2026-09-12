@@ -4,7 +4,7 @@ import { useState } from "react";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import PageHeader from "@/components/ui/PageHeader";
-import SectionLabel from "@/components/ui/SectionLabel";
+
 import { Award } from "lucide-react";
 
 interface SkillItem {
@@ -150,7 +150,7 @@ export default function SkillsPage() {
               <div className="font-mono" style={{ fontSize: "0.75rem", color: "var(--accent-primary)", fontWeight: 700, letterSpacing: "0.08em", marginBottom: "0.35rem" }}>
                 05 // CAPABILITY MATRIX
               </div>
-              <h2 className="font-display" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", color: "var(--ink-primary)", letterSpacing: "-0.03em", lineHeight: 1.1, fontWeight: 700 }}>
+              <h2 className="font-display" style={{ fontSize: "clamp(2rem, 3.5vw, 2.6rem)", color: "var(--ink-primary)", letterSpacing: "0.02em", lineHeight: 1.1, fontWeight: 400 }}>
                 Skills & Certifications
               </h2>
             </div>
@@ -210,7 +210,7 @@ export default function SkillsPage() {
                   <span className="font-mono" style={{ fontSize: "0.7rem", padding: "0.2rem 0.45rem", background: "var(--accent-green)", color: "#FFFFFF", fontWeight: 700 }}>
                     VERIFIED
                   </span>
-                  <span className="font-display" style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "0.02em" }}>
+                  <span className="font-display" style={{ fontSize: "1.25rem", fontWeight: 400, color: "var(--ink-primary)", letterSpacing: "0.03em" }}>
                     SALESFORCE CERTIFICATIONS & TRAILHEAD RANK
                   </span>
                 </div>
@@ -233,7 +233,7 @@ export default function SkillsPage() {
                   <div style={{ border: "1px solid var(--border-primary)", background: "var(--bg-surface-subtle)", padding: "1.25rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.35rem" }}>
                       <Award size={17} color="var(--accent-primary)" />
-                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.02rem", color: "var(--ink-primary)" }}>
+                      <span className="font-display" style={{ fontWeight: 400, fontSize: "1.2rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                         Salesforce Certified Administrator
                       </span>
                     </div>
@@ -248,7 +248,7 @@ export default function SkillsPage() {
                   <div style={{ border: "1px solid var(--border-primary)", background: "var(--bg-surface-subtle)", padding: "1.25rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.35rem" }}>
                       <Award size={17} color="var(--accent-primary)" />
-                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.02rem", color: "var(--ink-primary)" }}>
+                      <span className="font-display" style={{ fontWeight: 400, fontSize: "1.2rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                         Salesforce Certified Business Analyst
                       </span>
                     </div>
@@ -263,7 +263,7 @@ export default function SkillsPage() {
                   <div style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface-subtle)", padding: "1.25rem" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.35rem" }}>
                       <Award size={17} color="var(--ink-muted)" />
-                      <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.02rem", color: "var(--ink-primary)" }}>
+                      <span className="font-display" style={{ fontWeight: 400, fontSize: "1.2rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                         Platform Developer I (PD1)
                       </span>
                     </div>
@@ -278,6 +278,7 @@ export default function SkillsPage() {
 
                 {/* Trailhead Ranger Badge Bar */}
                 <div
+                  className="trailhead-ranger-bar"
                   style={{
                     border: "1px solid var(--border-subtle)",
                     background: "var(--bg-surface)",
@@ -287,13 +288,18 @@ export default function SkillsPage() {
                     alignItems: "center",
                     flexWrap: "wrap",
                     gap: "0.75rem",
+                    width: "100%",
+                    boxSizing: "border-box",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <div className="trailhead-ranger-left" style={{ display: "flex", alignItems: "center", gap: "0.75rem", flex: "1 1 240px" }}>
                     <div
                       style={{
-                        width: 32,
-                        height: 32,
+                        width: 38,
+                        height: 38,
+                        minWidth: 38,
+                        minHeight: 38,
+                        flexShrink: 0,
                         background: "var(--accent-yellow)",
                         color: "var(--ink-primary)",
                         display: "flex",
@@ -303,24 +309,24 @@ export default function SkillsPage() {
                         fontWeight: 700,
                       }}
                     >
-                      <Award size={18} />
+                      <Award size={20} />
                     </div>
                     <div>
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap" }}>
-                        <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "0.98rem", color: "var(--ink-primary)" }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap", marginBottom: "0.15rem" }}>
+                        <span className="font-display" style={{ fontWeight: 400, fontSize: "1.2rem", letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                           Trailhead Ranger
                         </span>
-                        <span className="font-mono" style={{ fontSize: "0.68rem", background: "var(--bg-surface-subtle)", border: "1px solid var(--border-subtle)", padding: "0.1rem 0.4rem", fontWeight: 700, color: "var(--accent-primary)" }}>
+                        <span className="font-pixel" style={{ fontSize: "0.68rem", background: "var(--bg-surface-subtle)", border: "1px solid var(--border-subtle)", padding: "0.1rem 0.4rem", fontWeight: 700, color: "var(--accent-primary)" }}>
                           SALESFORCE PLATFORM RANK
                         </span>
                       </div>
-                      <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)", marginTop: "0.1rem" }}>
+                      <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)", lineHeight: 1.4 }}>
                         Earned through 100+ hands-on modules, platform trails, and superbadges.
                       </div>
                     </div>
                   </div>
 
-                  <span className="font-mono" style={{ fontSize: "0.74rem", color: "var(--accent-green)", fontWeight: 700 }}>
+                  <span className="font-pixel trailhead-verified-badge" style={{ fontSize: "0.72rem", color: "var(--accent-green)", fontWeight: 700, whiteSpace: "nowrap" }}>
                     100+ BADGES COMPLETED
                   </span>
                 </div>
@@ -357,7 +363,7 @@ export default function SkillsPage() {
                     <span className="font-mono" style={{ fontSize: "0.7rem", padding: "0.2rem 0.45rem", background: "var(--accent-primary)", color: "#FFFFFF", fontWeight: 700 }}>
                       {group.code}
                     </span>
-                    <span className="font-display" style={{ fontSize: "1.15rem", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "0.02em" }}>
+                    <span className="font-display" style={{ fontSize: "1.25rem", fontWeight: 400, color: "var(--ink-primary)", letterSpacing: "0.03em" }}>
                       {group.title}
                     </span>
                   </div>
@@ -426,6 +432,19 @@ export default function SkillsPage() {
           .skills-caps-grid {
             grid-template-columns: 1fr !important;
             padding: 0.85rem !important;
+          }
+          .trailhead-ranger-bar {
+            padding: 1.15rem 1rem !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 0.85rem !important;
+          }
+          .trailhead-ranger-left {
+            width: 100% !important;
+            align-items: flex-start !important;
+          }
+          .trailhead-verified-badge {
+            align-self: flex-start !important;
           }
         }
       `}</style>

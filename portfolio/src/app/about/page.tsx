@@ -165,17 +165,17 @@ export default function AboutPage() {
             </div>
           </section>
 
-          {/* Action Links */}
-          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", borderTop: "1px solid var(--border-primary)", paddingTop: "1.5rem" }}>
-            <Link href="/experience" className="btn-tactile-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+          {/* Action Links (Golden Rule 3-Button Responsive Layout) */}
+          <div className="btn-group btn-group-3" style={{ borderTop: "1px solid var(--border-primary)", paddingTop: "1.5rem" }}>
+            <Link href="/experience" className="btn-tactile-primary">
               <span>VIEW WORK EXPERIENCE</span>
               <ArrowRight size={14} />
             </Link>
-            <Link href="/projects" className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <Link href="/projects" className="btn-tactile-secondary">
               <span>VIEW PROJECTS</span>
               <ArrowRight size={14} />
             </Link>
-            <Link href="/contact" className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <Link href="/contact" className="btn-tactile-secondary">
               <span>GET IN TOUCH</span>
               <ArrowRight size={14} />
             </Link>

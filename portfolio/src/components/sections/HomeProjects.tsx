@@ -122,7 +122,7 @@ function OnyxFlowCardContent() {
           </div>
 
           {/* Action Buttons */}
-          <div style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap" }}>
+          <div className="btn-group btn-group-2" style={{ marginTop: "1rem" }}>
             <Link href="/projects/onyxflow" className="btn-tactile-primary">
               <FileText size={14} />
               <span>VIEW PROJECT</span>
@@ -321,7 +321,7 @@ function QuantfolioCardContent() {
           </div>
 
           {/* Action Buttons */}
-          <div style={{ display: "flex", gap: "0.85rem", flexWrap: "wrap" }}>
+          <div className="btn-group btn-group-3" style={{ marginTop: "1rem" }}>
             <Link href="/projects/quantfolio" className="btn-tactile-primary">
               <FileText size={14} />
               <span>VIEW PROJECT</span>

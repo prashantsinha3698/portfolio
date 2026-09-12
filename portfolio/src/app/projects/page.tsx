@@ -6,7 +6,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import StatusBadge from "@/components/ui/StatusBadge";
 import TechTag from "@/components/ui/TechTag";
 import FolderTab from "@/components/ui/FolderTab";
-import { ArrowRight, ExternalLink, FileText, CheckCircle2, Sliders, ShieldCheck } from "lucide-react";
+import { ArrowRight, ExternalLink, FileText } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
 
 export const metadata: Metadata = {
@@ -53,10 +53,10 @@ export default function ProjectsPage() {
           <h2
             className="font-display"
             style={{
-              fontSize: "clamp(1.25rem, 2.5vw, 1.65rem)",
-              fontWeight: 700,
+              fontSize: "clamp(1.5rem, 2.5vw, 1.95rem)",
+              fontWeight: 400,
               color: "var(--ink-primary)",
-              letterSpacing: "-0.02em",
+              letterSpacing: "0.02em",
               marginBottom: "1rem",
             }}
           >
@@ -79,15 +79,13 @@ export default function ProjectsPage() {
           <div
             className="font-mono projects-compare-grid"
             style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
               border: "1px solid var(--border-subtle)",
               background: "var(--bg-surface-subtle)",
             }}
           >
-            <div style={{ padding: "1.25rem", borderRight: "1px solid var(--border-subtle)" }}>
-              <div style={{ fontSize: "0.74rem", color: "var(--accent-primary)", fontWeight: 700 }}>PROJECT 01: ONYXFLOW</div>
-              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink-primary)", margin: "0.25rem 0" }}>Market Data and Risk</div>
+            <div className="projects-compare-col-1">
+              <div style={{ fontSize: "0.74rem", color: "var(--accent-primary)", fontWeight: 700, letterSpacing: "0.05em" }}>PROJECT 01: ONYXFLOW</div>
+              <div className="font-display" style={{ fontSize: "1.2rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)", margin: "0.35rem 0" }}>Market Data and Risk</div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.4rem", fontSize: "0.82rem", color: "var(--ink-secondary)", marginTop: "0.5rem" }}>
                 <li>• Real time market data processing via WebSockets</li>
                 <li>• Vectorized technical signal calculation cache</li>
@@ -96,9 +94,9 @@ export default function ProjectsPage() {
               </ul>
             </div>
 
-            <div style={{ padding: "1.25rem" }}>
-              <div style={{ fontSize: "0.74rem", color: "var(--accent-primary)", fontWeight: 700 }}>PROJECT 02: QUANTFOLIO</div>
-              <div style={{ fontSize: "1.05rem", fontWeight: 700, color: "var(--ink-primary)", margin: "0.25rem 0" }}>Portfolio Optimization</div>
+            <div className="projects-compare-col-2">
+              <div style={{ fontSize: "0.74rem", color: "var(--accent-primary)", fontWeight: 700, letterSpacing: "0.05em" }}>PROJECT 02: QUANTFOLIO</div>
+              <div className="font-display" style={{ fontSize: "1.2rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)", margin: "0.35rem 0" }}>Portfolio Optimization</div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.4rem", fontSize: "0.82rem", color: "var(--ink-secondary)", marginTop: "0.5rem" }}>
                 <li>• Markowitz mean-variance optimization model</li>
                 <li>• SciPy numerical solver for weight allocations</li>
@@ -136,7 +134,7 @@ export default function ProjectsPage() {
                   <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--accent-primary)", fontWeight: 700, marginBottom: "0.25rem" }}>
                     01 // PERSONAL PROJECT
                   </div>
-                  <h3 className="font-display" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "-0.02em" }}>
+                  <h3 className="font-display" style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", fontWeight: 400, color: "var(--ink-primary)", letterSpacing: "0.02em" }}>
                     OnyxFlow
                   </h3>
                   <div className="font-mono" style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", fontWeight: 500, marginTop: "0.2rem" }}>
@@ -174,8 +172,8 @@ export default function ProjectsPage() {
                 <TechTag label="REST APIs" />
               </div>
 
-              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
-                <Link href="/projects/onyxflow" className="btn-tactile-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+              <div className="btn-group btn-group-2" style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
+                <Link href="/projects/onyxflow" className="btn-tactile-primary">
                   <FileText size={14} />
                   <span>VIEW PROJECT DETAILS</span>
                   <ArrowRight size={14} />
@@ -186,7 +184,6 @@ export default function ProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-tactile-secondary"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                 >
                   <GitHubIcon size={14} />
                   <span>GITHUB REPOSITORY</span>
@@ -219,7 +216,7 @@ export default function ProjectsPage() {
                   <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--accent-primary)", fontWeight: 700, marginBottom: "0.25rem" }}>
                     02 // PERSONAL PROJECT
                   </div>
-                  <h3 className="font-display" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "-0.02em" }}>
+                  <h3 className="font-display" style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", fontWeight: 400, color: "var(--ink-primary)", letterSpacing: "0.02em" }}>
                     Quantfolio
                   </h3>
                   <div className="font-mono" style={{ fontSize: "0.88rem", color: "var(--ink-secondary)", fontWeight: 500, marginTop: "0.2rem" }}>
@@ -257,8 +254,8 @@ export default function ProjectsPage() {
                 <TechTag label="Tailwind CSS" />
               </div>
 
-              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
-                <Link href="/projects/quantfolio" className="btn-tactile-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
+              <div className="btn-group btn-group-3" style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
+                <Link href="/projects/quantfolio" className="btn-tactile-primary">
                   <FileText size={14} />
                   <span>VIEW PROJECT DETAILS</span>
                   <ArrowRight size={14} />
@@ -269,7 +266,6 @@ export default function ProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-tactile-secondary"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                 >
                   <ExternalLink size={14} />
                   <span>LIVE DEMO</span>
@@ -280,7 +276,6 @@ export default function ProjectsPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-tactile-secondary"
-                  style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
                 >
                   <GitHubIcon size={14} />
                   <span>GITHUB REPO</span>
@@ -333,6 +328,33 @@ export default function ProjectsPage() {
           </div>
         </div>
       </main>
+
+      <style>{`
+        .projects-compare-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+        .projects-compare-col-1 {
+          padding: 1.5rem;
+          border-right: 1px solid var(--border-subtle);
+        }
+        .projects-compare-col-2 {
+          padding: 1.5rem;
+        }
+        @media (max-width: 768px) {
+          .projects-compare-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .projects-compare-col-1 {
+            border-right: none !important;
+            border-bottom: 1px solid var(--border-subtle) !important;
+            padding: 1.25rem 1rem !important;
+          }
+          .projects-compare-col-2 {
+            padding: 1.25rem 1rem !important;
+          }
+        }
+      `}</style>
 
       <Footer />
     </div>

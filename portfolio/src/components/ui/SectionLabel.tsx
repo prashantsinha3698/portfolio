@@ -23,7 +23,7 @@ export default function SectionLabel({ number, label, title }: SectionLabelProps
     >
       <span style={{ width: 7, height: 7, background: "var(--accent-primary)", display: "inline-block" }} />
       <span>
-        {number} // {text}
+        {number} {"//"} {text}
       </span>
     </div>
   );

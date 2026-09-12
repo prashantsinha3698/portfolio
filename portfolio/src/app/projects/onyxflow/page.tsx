@@ -1,7 +1,6 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowUpRight, ArrowLeft, Code } from "lucide-react";
+import { Code } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
 import ProjectDocumentationLayout, { ProjectChapter, ProjectMetric } from "@/components/layout/ProjectDocumentationLayout";
 import SectionLabel from "@/components/ui/SectionLabel";
@@ -71,7 +70,7 @@ export default function OnyxFlowDocPage() {
       {/* 01 / OVERVIEW */}
       <section id="overview" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="01" label="OVERVIEW" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           Why I Built This System
         </h2>
 
@@ -88,7 +87,7 @@ export default function OnyxFlowDocPage() {
       {/* 02 / PROBLEM */}
       <section id="problem" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="02" label="PROBLEM" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           The Core Technical Challenges
         </h2>
 
@@ -112,7 +111,7 @@ export default function OnyxFlowDocPage() {
             },
           ].map((p, i) => (
             <div key={i} style={{ border: "1px solid var(--border-subtle)", background: "var(--bg-surface)", padding: "1.5rem" }}>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.05rem", color: "var(--ink-primary)", marginBottom: "0.4rem" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)", marginBottom: "0.4rem" }}>
                 {p.title}
               </div>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.86rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
@@ -126,7 +125,7 @@ export default function OnyxFlowDocPage() {
       {/* 03 / ARCHITECTURE */}
       <section id="architecture" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="03" label="ARCHITECTURE" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           5-Layer Decoupled Design
         </h2>
 
@@ -162,7 +161,7 @@ export default function OnyxFlowDocPage() {
                 borderLeft: "4px solid var(--accent-primary)",
               }}
             >
-              <div style={{ fontFamily: "var(--font-display)", fontSize: "1rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
+              <div style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
                 {l.layer}
               </div>
               <div style={{ fontFamily: "var(--font-sans)", fontSize: "0.86rem", color: "var(--ink-secondary)", lineHeight: 1.5 }}>
@@ -176,7 +175,7 @@ export default function OnyxFlowDocPage() {
       {/* 04 / CORE MODULES */}
       <section id="modules" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="04" label="CORE MODULES" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           Implementation Details
         </h2>
 
@@ -217,7 +216,7 @@ export default function OnyxFlowDocPage() {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.5rem", flexWrap: "wrap", gap: "0.5rem" }}>
-                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.15rem", fontWeight: 700, color: "var(--ink-primary)" }}>
+                <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.35rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)" }}>
                   {m.mod}
                 </h3>
                 <code style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--accent-primary)", background: "var(--bg-surface-subtle)", padding: "0.2rem 0.5rem", border: "1px solid var(--border-subtle)" }}>
@@ -238,7 +237,7 @@ export default function OnyxFlowDocPage() {
       {/* 05 / STRATEGY */}
       <section id="strategy" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="05" label="STRATEGY LOGIC" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           Multi-Timeframe Structure
         </h2>
 
@@ -264,7 +263,7 @@ export default function OnyxFlowDocPage() {
               <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 700, marginBottom: "0.4rem" }}>
                 {s.tf}
               </div>
-              <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.05rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.35rem" }}>
+              <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--ink-primary)", marginBottom: "0.35rem" }}>
                 {s.role}
               </h3>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.85rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
@@ -278,7 +277,7 @@ export default function OnyxFlowDocPage() {
       {/* 06 / CHALLENGES */}
       <section id="challenges" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="06" label="CHALLENGES" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           What Was Difficult and How I Solved It
         </h2>
 
@@ -301,7 +300,7 @@ export default function OnyxFlowDocPage() {
             },
           ].map((item, i) => (
             <div key={i} style={{ background: "var(--bg-surface)", border: "1px solid var(--border-primary)", padding: "1.5rem", boxShadow: "var(--shadow-tactile-sm)" }}>
-              <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.1rem", fontWeight: 700, color: "var(--accent-primary)", marginBottom: "0.5rem" }}>
+              <h3 style={{ fontFamily: "var(--font-display)", fontSize: "1.3rem", fontWeight: 400, letterSpacing: "0.03em", color: "var(--accent-primary)", marginBottom: "0.5rem" }}>
                 {item.problem}
               </h3>
               <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.6, marginBottom: "0.75rem" }}>
@@ -318,7 +317,7 @@ export default function OnyxFlowDocPage() {
       {/* 07 / LESSONS */}
       <section id="lessons" style={{ scrollMarginTop: 100, marginBottom: "3.5rem" }}>
         <SectionLabel number="07" label="WHAT I LEARNED" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           Key Takeaways
         </h2>
 
@@ -341,7 +340,7 @@ export default function OnyxFlowDocPage() {
       {/* 08 / CODEBASE LAYOUT */}
       <section id="codebase" style={{ scrollMarginTop: 100, marginBottom: "2rem" }}>
         <SectionLabel number="08" label="CODEBASE LAYOUT" />
-        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.6rem", fontWeight: 700, letterSpacing: "-0.02em", margin: "0.5rem 0 1.25rem" }}>
+        <h2 style={{ fontFamily: "var(--font-display)", fontSize: "1.85rem", fontWeight: 400, letterSpacing: "0.02em", margin: "0.5rem 0 1.25rem" }}>
           Project Directory Tree
         </h2>
 

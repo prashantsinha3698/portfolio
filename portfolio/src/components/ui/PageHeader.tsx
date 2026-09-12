@@ -79,11 +79,11 @@ export default function PageHeader({
           <h1
             className="font-display"
             style={{
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              fontSize: "clamp(2.8rem, 6.5vw, 4.8rem)",
               color: "var(--ink-primary)",
-              letterSpacing: "-0.04em",
+              letterSpacing: "0.02em",
               lineHeight: 1,
-              fontWeight: 700,
+              fontWeight: 400,
             }}
           >
             {title}

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import SectionLabel from "@/components/ui/SectionLabel";
 import TechTag from "@/components/ui/TechTag";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function HomeExperience() {
   return (
@@ -33,10 +33,10 @@ export default function HomeExperience() {
             <h2
               className="font-display"
               style={{
-                fontSize: "clamp(2rem, 4.5vw, 3rem)",
+                fontSize: "clamp(2.2rem, 4.5vw, 3.2rem)",
                 color: "var(--ink-primary)",
-                letterSpacing: "-0.03em",
-                fontWeight: 700,
+                letterSpacing: "0.02em",
+                fontWeight: 400,
                 lineHeight: 1.1,
               }}
             >
@@ -95,10 +95,10 @@ export default function HomeExperience() {
               <h3
                 className="font-display"
                 style={{
-                  fontSize: "clamp(1.35rem, 3vw, 1.75rem)",
-                  fontWeight: 700,
+                  fontSize: "clamp(1.5rem, 3vw, 1.85rem)",
+                  fontWeight: 400,
                   color: "var(--ink-primary)",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "0.03em",
                   marginBottom: "0.35rem",
                 }}
               >

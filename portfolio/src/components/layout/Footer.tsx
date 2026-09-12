@@ -41,9 +41,9 @@ export default function Footer() {
               className="font-display footer-title"
               style={{
                 color: "var(--ink-primary)",
-                fontWeight: 700,
-                fontSize: "1.1rem",
-                letterSpacing: "-0.01em",
+                fontWeight: 400,
+                fontSize: "1.25rem",
+                letterSpacing: "0.03em",
                 marginBottom: "0.35rem",
                 display: "inline-flex",
                 alignItems: "center",

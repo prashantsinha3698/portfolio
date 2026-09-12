@@ -122,7 +122,7 @@ function OnyxFlowCardContent() {
           </div>
 
           {/* Action Buttons */}
-          <div className="btn-group btn-group-2" style={{ marginTop: "1rem" }}>
+          <div className="btn-group project-btn-group btn-group-2" style={{ marginTop: "1rem" }}>
             <Link href="/projects/onyxflow" className="btn-tactile-primary">
               <FileText size={14} />
               <span>VIEW PROJECT</span>
@@ -135,7 +135,7 @@ function OnyxFlowCardContent() {
               className="btn-tactile-secondary"
             >
               <GitHubIcon size={14} />
-              <span>GITHUB CODE</span>
+              <span>GITHUB REPO</span>
             </a>
           </div>
         </div>
@@ -321,14 +321,14 @@ function QuantfolioCardContent() {
           </div>
 
           {/* Action Buttons */}
-          <div className="btn-group btn-group-3" style={{ marginTop: "1rem" }}>
+          <div className="btn-group project-btn-group btn-group-3" style={{ marginTop: "1rem" }}>
             <Link href="/projects/quantfolio" className="btn-tactile-primary">
               <FileText size={14} />
               <span>VIEW PROJECT</span>
             </Link>
 
             <a
-              href="https://quantfolio-nine.vercel.app"
+              href="https://quantfolio-prashant-project.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-tactile-secondary"
@@ -344,7 +344,7 @@ function QuantfolioCardContent() {
               className="btn-tactile-secondary"
             >
               <GitHubIcon size={14} />
-              <span>GITHUB CODE</span>
+              <span>GITHUB REPO</span>
             </a>
           </div>
         </div>

@@ -49,13 +49,13 @@ export default function QuantfolioCaseStudyPage() {
       actions={
         <>
           <a
-            href="https://quantfolio-nine.vercel.app"
+            href="https://quantfolio-prashant-project.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-tactile-primary"
             style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
           >
-            <ExternalLink size={15} /> <span>LAUNCH LIVE APPLICATION</span>
+            <ExternalLink size={15} /> <span>LIVE DEMO</span>
           </a>
           <a
             href="https://github.com/prashantsinha3698/quantfolio"
@@ -64,7 +64,7 @@ export default function QuantfolioCaseStudyPage() {
             className="btn-tactile-secondary"
             style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
           >
-            <GitHubIcon size={15} /> <span>VIEW GITHUB REPO</span>
+            <GitHubIcon size={15} /> <span>GITHUB REPO</span>
           </a>
         </>
       }

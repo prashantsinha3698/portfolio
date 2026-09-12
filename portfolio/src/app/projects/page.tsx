@@ -172,10 +172,10 @@ export default function ProjectsPage() {
                 <TechTag label="REST APIs" />
               </div>
 
-              <div className="btn-group btn-group-2" style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
+              <div className="btn-group project-btn-group btn-group-2" style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
                 <Link href="/projects/onyxflow" className="btn-tactile-primary">
                   <FileText size={14} />
-                  <span>VIEW PROJECT DETAILS</span>
+                  <span>DETAILS</span>
                   <ArrowRight size={14} />
                 </Link>
 
@@ -186,7 +186,7 @@ export default function ProjectsPage() {
                   className="btn-tactile-secondary"
                 >
                   <GitHubIcon size={14} />
-                  <span>GITHUB REPOSITORY</span>
+                  <span>GITHUB REPO</span>
                 </a>
               </div>
             </div>
@@ -254,15 +254,15 @@ export default function ProjectsPage() {
                 <TechTag label="Tailwind CSS" />
               </div>
 
-              <div className="btn-group btn-group-3" style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
+              <div className="btn-group project-btn-group btn-group-3" style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
                 <Link href="/projects/quantfolio" className="btn-tactile-primary">
                   <FileText size={14} />
-                  <span>VIEW PROJECT DETAILS</span>
+                  <span>DETAILS</span>
                   <ArrowRight size={14} />
                 </Link>
 
                 <a
-                  href="https://quantfolio-nine.vercel.app"
+                  href="https://quantfolio-prashant-project.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-tactile-secondary"
@@ -322,7 +322,7 @@ export default function ProjectsPage() {
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", fontSize: "0.78rem" }}
               >
                 <GitHubIcon size={13} />
-                <span>SOURCE CODE</span>
+                <span>GITHUB REPO</span>
               </a>
             </div>
           </div>

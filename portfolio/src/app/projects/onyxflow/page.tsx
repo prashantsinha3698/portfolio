@@ -55,14 +55,14 @@ export default function OnyxFlowDocPage() {
             className="btn-tactile-primary"
             style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
           >
-            <GitHubIcon size={15} /> <span>GITHUB REPOSITORY</span>
+            <GitHubIcon size={15} /> <span>GITHUB REPO</span>
           </a>
           <a
             href="#architecture"
             className="btn-tactile-secondary"
             style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
           >
-            <Code size={15} /> <span>VIEW ARCHITECTURE</span>
+            <Code size={15} /> <span>ARCHITECTURE</span>
           </a>
         </>
       }

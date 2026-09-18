@@ -96,7 +96,7 @@ export default function HomeEducation({ locale }: HomeEducationProps) {
               {isDe ? "B.E. in Elektronik & Telekommunikation" : "B.E. in Electronics & Telecom"}
             </h3>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "0.75rem" }}>
-              Government College of Engineering, Raipur
+              New Government Engineering College, Raipur
             </div>
             <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.82rem", color: "var(--ink-muted)", lineHeight: 1.5 }}>
               {isDe

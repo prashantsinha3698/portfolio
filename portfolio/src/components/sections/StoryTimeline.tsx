@@ -17,10 +17,10 @@ export const STORY_CHAPTERS: StoryChapter[] = [
     period: "2015–19",
     category: "EDUCATION",
     badgeSubtitle: "FOUNDATION · B.E. ET&T · CGPA 7.62",
-    title: "Government College of Engineering, Raipur",
+    title: "New Government Engineering College, Raipur",
     teaser: "Four years studying Electronics & Telecommunications Engineering.",
     paragraphs: [
-      "I completed my Bachelor of Engineering in Electronics and Telecommunications at Government College of Engineering, Raipur. My coursework focused on signals, circuits, microprocessors, and digital logic.",
+      "I completed my Bachelor of Engineering in Electronics and Telecommunications at New Government Engineering College, Raipur. My coursework focused on signals, circuits, microprocessors, and digital logic.",
       "The degree gave me a solid technical grounding. Working with hardware constraints and low-level communication protocols taught me how machines actually execute instructions before I shifted my attention toward modern software systems.",
     ],
     whatILearned: "Engineering taught me to respect hardware constraints, structured logic, and how low-level systems function under real load.",

@@ -314,8 +314,8 @@ export default function EducationView({ locale }: EducationViewProps) {
             </h2>
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.7, maxWidth: 960, marginBottom: "1.75rem" }}>
               {isDe
-                ? "Offizielle Anerkennungsschreiben und Führungsmeilensteine während des Studiums am Government Engineering College, Raipur."
-                : "Formal letters of appreciation and student leadership service milestones awarded during engineering tenure at Government Engineering College, Raipur."}
+                ? "Offizielle Anerkennungsschreiben und Führungsmeilensteine während des Studiums am New Government Engineering College, Raipur."
+                : "Formal letters of appreciation and student leadership service milestones awarded during engineering tenure at New Government Engineering College, Raipur."}
             </p>
 
             <div className="education-honors-grid">
@@ -332,8 +332,8 @@ export default function EducationView({ locale }: EducationViewProps) {
                 </div>
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
                   {isDe
-                    ? "Anerkennungsschreiben der Hochschulleitung für die Leitung des studentischen Organisationsteams beim ersten Alumni-Treffen des Government Engineering College Raipur."
-                    : "Letter of Appreciation for leading the student organizing team for the first-ever Government Engineering College Raipur Alumni Meet."}
+                    ? "Anerkennungsschreiben der Hochschulleitung für die Leitung des studentischen Organisationsteams beim ersten Alumni-Treffen des New Government Engineering College Raipur."
+                    : "Letter of Appreciation for leading the student organizing team for the first-ever New Government Engineering College Raipur Alumni Meet."}
                 </p>
               </div>
 
@@ -390,8 +390,8 @@ export default function EducationView({ locale }: EducationViewProps) {
 
             <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.7, maxWidth: 960, marginBottom: "2rem" }}>
               {isDe
-                ? "Verifizierte Labor- und Praktikumskurse nach Semestern geordnet, abgeschlossen am Government Engineering College Raipur (CSVTU). Beinhaltet exakte Kursnummern, erzielte Prüfungsnoten, Notenwerte und akademische Leistungspunkte."
-                : "Verified semester-by-semester laboratory courses completed at Government Engineering College, Raipur under CSVTU. Includes exact course codes, practical marks obtained, grades, and academic credits."}
+                ? "Verifizierte Labor- und Praktikumskurse nach Semestern geordnet, abgeschlossen am New Government Engineering College Raipur (CSVTU). Beinhaltet exakte Kursnummern, erzielte Prüfungsnoten, Notenwerte und akademische Leistungspunkte."
+                : "Verified semester-by-semester laboratory courses completed at New Government Engineering College, Raipur under CSVTU. Includes exact course codes, practical marks obtained, grades, and academic credits."}
             </p>
 
             {/* Category Filter Buttons */}

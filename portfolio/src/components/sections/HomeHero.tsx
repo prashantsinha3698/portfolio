@@ -2,26 +2,40 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { profile } from "@/data/profile";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, CodewarsIcon } from "@/components/ui/SocialIcons";
 import SectionLabel from "@/components/ui/SectionLabel";
 import PixelAvatar from "@/components/ui/PixelAvatar";
 import HeroNetwork from "@/components/ui/HeroNetwork";
+import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
 
-const TYPEWRITER_PHRASES = [
-  "Salesforce Developer",
-  "System Thinker",
-  "Independent Builder",
-];
+interface HomeHeroProps {
+  locale?: Locale;
+}
 
-export default function HomeHero() {
+export default function HomeHero({ locale }: HomeHeroProps) {
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const t = getTranslation(activeLocale);
+  const h = t.hero;
+  const isDe = activeLocale === "de";
+
+  const typewriterPhrases = h.typewriterPhrases;
+
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentPhrase = TYPEWRITER_PHRASES[phraseIndex];
+    setPhraseIndex(0);
+    setDisplayText("");
+    setIsDeleting(false);
+  }, [activeLocale]);
+
+  useEffect(() => {
+    const currentPhrase = typewriterPhrases[phraseIndex] || typewriterPhrases[0];
     let timer: NodeJS.Timeout;
 
     if (!isDeleting) {
@@ -41,12 +55,14 @@ export default function HomeHero() {
         }, 28);
       } else {
         setIsDeleting(false);
-        setPhraseIndex((prev) => (prev + 1) % TYPEWRITER_PHRASES.length);
+        setPhraseIndex((prev) => (prev + 1) % typewriterPhrases.length);
       }
     }
 
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, phraseIndex]);
+  }, [displayText, isDeleting, phraseIndex, typewriterPhrases]);
+
+  const projectsUrl = isDe ? "/de/projects" : "/projects";
 
   return (
     <section
@@ -67,7 +83,7 @@ export default function HomeHero() {
       <HeroNetwork />
 
       <div className="container" style={{ position: "relative", zIndex: 2, width: "100%" }}>
-        <SectionLabel number="01" label="HELLO" />
+        <SectionLabel number="01" label={isDe ? "HALLO" : "HELLO"} />
 
         {/* 12-Column Responsive Grid with 7:5 Asymmetry */}
         <div
@@ -125,10 +141,10 @@ export default function HomeHero() {
                 marginBottom: "1.65rem",
               }}
             >
-              I work mainly around Salesforce, automation and integrations. Outside work, I enjoy building small software projects to understand how systems work from the ground up.
+              {h.leadBio}
             </p>
 
-            {/* Tactile Action Buttons (Golden Rule Dimension Group) */}
+            {/* Tactile Action Buttons */}
             <div
               className="btn-group btn-group-2 hero-action-buttons"
               style={{
@@ -136,8 +152,8 @@ export default function HomeHero() {
                 maxWidth: "460px",
               }}
             >
-              <Link href="/projects" className="btn-tactile-primary">
-                <span>VIEW PROJECTS</span>
+              <Link href={projectsUrl} className="btn-tactile-primary">
+                <span>{isDe ? "PROJEKTE ANSEHEN" : "VIEW PROJECTS"}</span>
                 <ArrowRight size={14} />
               </Link>
 
@@ -147,7 +163,7 @@ export default function HomeHero() {
                 className="btn-tactile-secondary"
               >
                 <Download size={14} />
-                <span>DOWNLOAD RESUME</span>
+                <span>{isDe ? "LEBENSLAUF HERUNTERLADEN" : "DOWNLOAD RESUME"}</span>
               </a>
             </div>
 
@@ -165,7 +181,7 @@ export default function HomeHero() {
                 paddingTop: "1.1rem",
               }}
             >
-              <span style={{ fontWeight: 600 }}>CHANNELS:</span>
+              <span style={{ fontWeight: 600 }}>{isDe ? "KANÄLE:" : "CHANNELS:"}</span>
               <a
                 href={profile.github}
                 target="_blank"
@@ -237,7 +253,7 @@ export default function HomeHero() {
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--ink-secondary)")}
               >
                 <Mail size={14} />
-                <span>Email</span>
+                <span>{isDe ? "E-Mail" : "Email"}</span>
               </a>
             </div>
           </div>
@@ -258,7 +274,7 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <style>{`
+      <style suppressHydrationWarning>{`
         @media (max-width: 900px) {
           .hero-section {
             min-height: auto !important;

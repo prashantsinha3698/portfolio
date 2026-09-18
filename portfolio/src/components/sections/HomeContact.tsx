@@ -1,13 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { profile } from "@/data/profile";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { Mail, Copy, Check, ArrowUpRight, Download } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, CodewarsIcon } from "@/components/ui/SocialIcons";
+import { getLocaleFromPathname, Locale } from "@/locales";
 
-export default function HomeContact() {
+interface HomeContactProps {
+  locale?: Locale;
+}
+
+export default function HomeContact({ locale }: HomeContactProps) {
   const [copied, setCopied] = useState(false);
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const isDe = activeLocale === "de";
 
   const copyEmail = async () => {
     try {
@@ -15,7 +24,6 @@ export default function HomeContact() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
@@ -32,7 +40,7 @@ export default function HomeContact() {
       }}
     >
       <div className="container">
-        <SectionLabel number="06" label="CONTACT" />
+        <SectionLabel number="06" label={isDe ? "KONTAKT" : "CONTACT"} />
 
         {/* Poster Layout */}
         <div
@@ -61,7 +69,9 @@ export default function HomeContact() {
                 marginBottom: "1.5rem",
               }}
             >
-              Have a role, project or idea worth discussing?
+              {isDe
+                ? "Haben Sie eine Rolle, ein Projekt oder eine Idee, die ein Gespräch wert ist?"
+                : "Have a role, project or idea worth discussing?"}
             </h2>
 
             <p
@@ -74,10 +84,12 @@ export default function HomeContact() {
                 marginBottom: "2rem",
               }}
             >
-              I am open to Salesforce developer opportunities, contract work, and engineering collaborations. Based in Raipur, India, and comfortable coordinating across global time zones.
+              {isDe
+                ? "Ich bin offen für Salesforce-Entwicklerpositionen, projektbezogene Aufträge und ingenieurwissenschaftliche Kooperationen. Ansässig in Raipur, Indien – gewohnt an die effiziente Zusammenarbeit über internationale Zeitzonen hinweg."
+                : "I am open to Salesforce developer opportunities, contract work, and engineering collaborations. Based in Raipur, India, and comfortable coordinating across global time zones."}
             </p>
 
-            {/* Desktop Horizontal Email Copy Bar (Image 4) */}
+            {/* Desktop Horizontal Email Copy Bar */}
             <div className="contact-email-desktop font-mono">
               <a
                 href={`mailto:${profile.email}`}
@@ -130,12 +142,14 @@ export default function HomeContact() {
                 {copied ? (
                   <>
                     <Check size={14} style={{ color: "var(--accent-green)" }} />
-                    <span style={{ color: "var(--accent-green)" }}>COPIED TO CLIPBOARD</span>
+                    <span style={{ color: "var(--accent-green)" }}>
+                      {isDe ? "IN ZWISCHENABLAGE KOPIERT" : "COPIED TO CLIPBOARD"}
+                    </span>
                   </>
                 ) : (
                   <>
                     <Copy size={14} />
-                    <span>COPY EMAIL</span>
+                    <span>{isDe ? "E-MAIL KOPIEREN" : "COPY EMAIL"}</span>
                   </>
                 )}
               </button>
@@ -152,7 +166,7 @@ export default function HomeContact() {
               width: "100%",
             }}
           >
-            {/* Mobile Vertical 2-Tier Email Box (Image 3) */}
+            {/* Mobile Vertical 2-Tier Email Box */}
             <div className="contact-email-mobile">
               <a
                 href={`mailto:${profile.email}`}
@@ -206,12 +220,14 @@ export default function HomeContact() {
                 {copied ? (
                   <>
                     <Check size={14} style={{ color: "var(--accent-green)" }} />
-                    <span style={{ color: "var(--accent-green)" }}>COPIED TO CLIPBOARD</span>
+                    <span style={{ color: "var(--accent-green)" }}>
+                      {isDe ? "IN ZWISCHENABLAGE KOPIERT" : "COPIED TO CLIPBOARD"}
+                    </span>
                   </>
                 ) : (
                   <>
                     <Copy size={14} />
-                    <span>COPY EMAIL</span>
+                    <span>{isDe ? "E-MAIL KOPIEREN" : "COPY EMAIL"}</span>
                   </>
                 )}
               </button>
@@ -227,7 +243,7 @@ export default function HomeContact() {
                 marginTop: "0.25rem",
               }}
             >
-              DIRECT CHANNELS & PROFILES
+              {isDe ? "DIREKTE KANÄLE & PROFILE" : "DIRECT CHANNELS & PROFILES"}
             </div>
 
             {/* Profile Action Buttons Stack */}
@@ -321,7 +337,7 @@ export default function HomeContact() {
               >
                 <span style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
                   <Download size={15} />
-                  <span>DOWNLOAD RESUME (PDF)</span>
+                  <span>{isDe ? "LEBENSLAUF HERUNTERLADEN (PDF)" : "DOWNLOAD RESUME (PDF)"}</span>
                 </span>
                 <ArrowUpRight size={15} />
               </a>
@@ -330,7 +346,7 @@ export default function HomeContact() {
         </div>
       </div>
 
-      <style>{`
+      <style suppressHydrationWarning>{`
         .contact-resume-btn:hover {
           transform: translate(-1px, -1px);
           box-shadow: var(--shadow-tactile-lg);
@@ -339,7 +355,6 @@ export default function HomeContact() {
           transform: translate(2px, 2px);
           box-shadow: 1px 1px 0 var(--border-primary);
         }
-        /* Desktop: Horizontal email card at bottom left (Image 4) */
         @media (min-width: 901px) {
           .contact-email-desktop {
             display: inline-flex !important;
@@ -351,8 +366,6 @@ export default function HomeContact() {
             display: none !important;
           }
         }
-
-        /* Mobile: 2-tier stacked email card on top of channels (Image 3) */
         @media (max-width: 900px) {
           .contact-poster-grid {
             grid-template-columns: 1fr !important;

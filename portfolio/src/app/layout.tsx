@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono, VT323, Jersey_25 } from "next/font/google";
 import ScrollObserver from "@/components/ui/ScrollObserver";
+import LocaleHtmlLangSync from "@/components/ui/LocaleHtmlLangSync";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -113,6 +114,19 @@ export const viewport: Viewport = {
   ],
 };
 
+const localeScript = `
+  (function() {
+    try {
+      var p = window.location.pathname || '';
+      if (p === '/de' || p.indexOf('/de/') === 0) {
+        document.documentElement.lang = 'de';
+      } else {
+        document.documentElement.lang = 'en';
+      }
+    } catch(e) {}
+  })();
+`;
+
 const themeScript = `
   (function() {
     try {
@@ -159,6 +173,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/picon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script dangerouslySetInnerHTML={{ __html: localeScript }} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
@@ -172,6 +187,7 @@ export default function RootLayout({
         data-enable-grammarly="false"
         spellCheck={false}
       >
+        <LocaleHtmlLangSync />
         <ScrollObserver />
         {children}
       </body>

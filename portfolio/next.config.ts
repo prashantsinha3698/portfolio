@@ -23,6 +23,21 @@ const nextConfig: NextConfig = {
         destination: "/projects/onyxflow",
         permanent: true,
       },
+      {
+        source: "/de/onyxflow",
+        destination: "/de/projects/onyxflow",
+        permanent: true,
+      },
+      {
+        source: "/en",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/en/:path*",
+        destination: "/:path*",
+        permanent: false,
+      },
     ];
   },
 };

@@ -1,10 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { ArrowRight, GraduationCap, Award, Cpu, BookOpen } from "lucide-react";
+import { getLocaleFromPathname, Locale } from "@/locales";
 
-export default function HomeEducation() {
+interface HomeEducationProps {
+  locale?: Locale;
+}
+
+export default function HomeEducation({ locale }: HomeEducationProps) {
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const isDe = activeLocale === "de";
+
   return (
     <section
       id="education"
@@ -28,7 +38,7 @@ export default function HomeEducation() {
           }}
         >
           <div>
-            <SectionLabel number="04" label="EDUCATION" />
+            <SectionLabel number="04" label={isDe ? "AUSBILDUNG" : "EDUCATION"} />
             <h2
               className="font-display"
               style={{
@@ -39,7 +49,7 @@ export default function HomeEducation() {
                 lineHeight: 1.1,
               }}
             >
-              Education & Credentials
+              {isDe ? "Ausbildung & Qualifikationen" : "Education & Credentials"}
             </h2>
           </div>
 
@@ -52,7 +62,9 @@ export default function HomeEducation() {
               lineHeight: 1.6,
             }}
           >
-            Formal engineering degree, vocational embedded systems training, and verified Salesforce credentials.
+            {isDe
+              ? "Ingenieurwissenschaftliches Studium, fachspezifische Weiterbildung in eingebetteten Systemen und verifizierte Salesforce-Zertifizierung."
+              : "Formal engineering degree, vocational embedded systems training, and verified Salesforce credentials."}
           </p>
         </div>
 
@@ -81,13 +93,15 @@ export default function HomeEducation() {
               </span>
             </div>
             <h3 style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "1.1rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.35rem" }}>
-              B.E. in Electronics & Telecom
+              {isDe ? "B.E. in Elektronik & Telekommunikation" : "B.E. in Electronics & Telecom"}
             </h3>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "0.75rem" }}>
               Government College of Engineering, Raipur
             </div>
             <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.82rem", color: "var(--ink-muted)", lineHeight: 1.5 }}>
-              Core mathematics, digital electronics, microprocessors, and communications theory.
+              {isDe
+                ? "Mathematische Grundlagen, Digitalelektronik, Mikroprozessoren und nachrichtentechnische Signaltheorie."
+                : "Core mathematics, digital electronics, microprocessors, and communications theory."}
             </p>
           </div>
 
@@ -103,17 +117,19 @@ export default function HomeEducation() {
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
               <Cpu size={18} color="var(--accent-primary)" />
               <span className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600 }}>
-                VOCATIONAL
+                {isDe ? "BERUFLICHE WEITERBILDUNG" : "VOCATIONAL"}
               </span>
             </div>
             <h3 style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "1.1rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.35rem" }}>
-              Embedded Systems & IoT
+              {isDe ? "Eingebettete Systeme & IoT" : "Embedded Systems & IoT"}
             </h3>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "0.75rem" }}>
               TechnoScripts Pune (ISO 9001:2015)
             </div>
             <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.82rem", color: "var(--ink-muted)", lineHeight: 1.5 }}>
-              Hands on training in embedded C, ARM microcontroller architecture, and sensors.
+              {isDe
+                ? "Praxisorientierte Ausbildung in Embedded C, ARM-Mikrocontroller-Architektur und Sensortechnik."
+                : "Hands on training in embedded C, ARM microcontroller architecture, and sensors."}
             </p>
           </div>
 
@@ -129,17 +145,19 @@ export default function HomeEducation() {
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
               <BookOpen size={18} color="var(--accent-primary)" />
               <span className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600 }}>
-                ACADEMIC LABS
+                {isDe ? "AKADEMISCHE LABORE" : "ACADEMIC LABS"}
               </span>
             </div>
             <h3 style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "1.1rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.35rem" }}>
-              Hardware Lab Exposure
+              {isDe ? "Praktische Laborerfahrung" : "Hardware Lab Exposure"}
             </h3>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.85rem", color: "var(--ink-secondary)", marginBottom: "0.75rem" }}>
-              Practical laboratory work
+              {isDe ? "28 Praktika im Vollzeitstudium" : "Practical laboratory work"}
             </div>
             <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.82rem", color: "var(--ink-muted)", lineHeight: 1.5 }}>
-              Prototyping on microcontrollers (8051, PIC, ARM), oscilloscopes, and logic circuits.
+              {isDe
+                ? "Prototyping auf Mikrocontrollern (8051, PIC, ARM), Oszilloskopen und Logikschaltungen."
+                : "Prototyping on microcontrollers (8051, PIC, ARM), oscilloscopes, and logic circuits."}
             </p>
           </div>
 
@@ -155,7 +173,7 @@ export default function HomeEducation() {
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
               <Award size={18} color="var(--accent-primary)" />
               <span className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600 }}>
-                VERIFIED CREDENTIAL
+                {isDe ? "OFFIZIELLES ZERTIFIKAT" : "VERIFIED CREDENTIAL"}
               </span>
             </div>
             <h3 style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "1.1rem", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "0.35rem" }}>
@@ -165,15 +183,17 @@ export default function HomeEducation() {
               Salesforce Certified Administrator
             </div>
             <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.82rem", color: "var(--ink-muted)", lineHeight: 1.5 }}>
-              Platform configuration, security models, user management, and Flow automation.
+              {isDe
+                ? "Plattform-Konfiguration, Sicherheitsarchitektur, Benutzerverwaltung und Flow-Automatisierung."
+                : "Platform configuration, security models, user management, and Flow automation."}
             </p>
           </div>
         </div>
 
         {/* Section Footer Link */}
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link href="/education" className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-            <span>VIEW COMPLETE EDUCATION DETAILS</span>
+          <Link href={isDe ? "/de/education" : "/education"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <span>{isDe ? "VOLLSTÄNDIGE AUSBILDUNGSDETAILS ANSEHEN" : "VIEW COMPLETE EDUCATION DETAILS"}</span>
             <ArrowRight size={14} />
           </Link>
         </div>

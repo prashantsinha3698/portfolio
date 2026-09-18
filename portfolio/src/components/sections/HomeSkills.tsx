@@ -1,33 +1,66 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { ArrowRight } from "lucide-react";
+import { getLocaleFromPathname, Locale } from "@/locales";
 
-const SKILL_GROUPS = [
-  {
-    title: "Salesforce",
-    summary: "Professional core capability",
-    items: ["Apex Classes & Triggers", "Batch & Scheduled Jobs", "SOQL Queries", "Flow Automation", "Platform Administration", "Security & Sharing"],
-  },
-  {
-    title: "Integration & APIs",
-    summary: "Data exchange & connectivity",
-    items: ["REST API Endpoints", "XML Data Pipelines", "Webhooks", "JSON Serialization", "System Synchronization", "Postman Testing"],
-  },
-  {
-    title: "Development Tools",
-    summary: "Workflows & version control",
-    items: ["Git Version Control", "GitHub Workflows", "Bash & Terminal", "Docker (Basic)", "CI and CD Pipelines"],
-  },
-  {
-    title: "Programming",
-    summary: "Personal projects & scripts",
-    items: ["Python (Working knowledge)", "JavaScript (Working knowledge)", "Automation Scripts", "Data Handling"],
-  },
-];
+interface HomeSkillsProps {
+  locale?: Locale;
+}
 
-export default function HomeSkills() {
+export default function HomeSkills({ locale }: HomeSkillsProps) {
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const isDe = activeLocale === "de";
+
+  const skillGroups = isDe
+    ? [
+        {
+          title: "Salesforce",
+          summary: "Professionelle Kernkompetenz",
+          items: ["Apex-Klassen & Trigger", "Batch- & Scheduled-Jobs", "SOQL-Abfragen", "Flow-Automatisierung", "Plattform-Administration", "Sicherheits- & Freigabekonzepte"],
+        },
+        {
+          title: "Integration & Schnittstellen",
+          summary: "Datenaustausch & Systemanbindung",
+          items: ["REST-API-Endpunkte", "XML-Daten-Pipelines", "Webhooks", "JSON-Serialisierung", "Systemsynchronisation", "Postman API-Tests"],
+        },
+        {
+          title: "Entwicklungswerkzeuge",
+          summary: "Workflows & Versionskontrolle",
+          items: ["Git-Versionskontrolle", "GitHub-Workflows", "Bash & Terminal", "Docker (Grundkenntnisse)", "CI/CD-Pipelines"],
+        },
+        {
+          title: "Programmierung & Systeme",
+          summary: "Eigene Projekte & Datenverarbeitung",
+          items: ["Python (Anwendungssicher)", "JavaScript (Anwendungssicher)", "Automatisierungsskripte", "Datenverarbeitung & Caching"],
+        },
+      ]
+    : [
+        {
+          title: "Salesforce",
+          summary: "Professional core capability",
+          items: ["Apex Classes & Triggers", "Batch & Scheduled Jobs", "SOQL Queries", "Flow Automation", "Platform Administration", "Security & Sharing"],
+        },
+        {
+          title: "Integration & APIs",
+          summary: "Data exchange & connectivity",
+          items: ["REST API Endpoints", "XML Data Pipelines", "Webhooks", "JSON Serialization", "System Synchronization", "Postman Testing"],
+        },
+        {
+          title: "Development Tools",
+          summary: "Workflows & version control",
+          items: ["Git Version Control", "GitHub Workflows", "Bash & Terminal", "Docker (Basic)", "CI and CD Pipelines"],
+        },
+        {
+          title: "Programming",
+          summary: "Personal projects & scripts",
+          items: ["Python (Working knowledge)", "JavaScript (Working knowledge)", "Automation Scripts", "Data Handling"],
+        },
+      ];
+
   return (
     <section
       id="skills"
@@ -51,7 +84,7 @@ export default function HomeSkills() {
           }}
         >
           <div>
-            <SectionLabel number="03" label="SKILLS" />
+            <SectionLabel number="03" label={isDe ? "KENNTNISSE" : "SKILLS"} />
             <h2
               className="font-display"
               style={{
@@ -62,7 +95,7 @@ export default function HomeSkills() {
                 lineHeight: 1.1,
               }}
             >
-              Practical Skills
+              {isDe ? "Praktische Kenntnisse" : "Practical Skills"}
             </h2>
           </div>
 
@@ -75,7 +108,9 @@ export default function HomeSkills() {
               lineHeight: 1.6,
             }}
           >
-            Technologies I have worked with professionally and tools I use in personal software projects.
+            {isDe
+              ? "Technologien, mit denen ich beruflich gearbeitet habe, sowie Werkzeuge meiner eigenständigen Softwareprojekte."
+              : "Technologies I have worked with professionally and tools I use in personal software projects."}
           </p>
         </div>
 
@@ -88,7 +123,7 @@ export default function HomeSkills() {
             marginBottom: "3rem",
           }}
         >
-          {SKILL_GROUPS.map((group) => (
+          {skillGroups.map((group) => (
             <div
               key={group.title}
               style={{
@@ -148,8 +183,8 @@ export default function HomeSkills() {
 
         {/* Section Footer Link */}
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link href="/skills" className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-            <span>VIEW FULL SKILLS BREAKDOWN</span>
+          <Link href={isDe ? "/de/skills" : "/skills"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <span>{isDe ? "VOLLSTÄNDIGE KOMPETENZÜBERSICHT ANSEHEN" : "VIEW DETAILED SKILLS BREAKDOWN"}</span>
             <ArrowRight size={14} />
           </Link>
         </div>

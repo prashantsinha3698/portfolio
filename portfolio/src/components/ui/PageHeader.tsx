@@ -104,7 +104,7 @@ export default function PageHeader({
         </div>
       </div>
 
-      <style>{`
+      <style suppressHydrationWarning>{`
         @media (max-width: 800px) {
           .page-header-grid {
             grid-template-columns: 1fr !important;

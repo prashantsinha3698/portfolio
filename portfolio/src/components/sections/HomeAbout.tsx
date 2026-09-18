@@ -1,10 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { ArrowRight } from "lucide-react";
+import { getLocaleFromPathname, Locale } from "@/locales";
 
-export default function HomeAbout() {
+interface HomeAboutProps {
+  locale?: Locale;
+}
+
+export default function HomeAbout({ locale }: HomeAboutProps) {
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const isDe = activeLocale === "de";
+
   return (
     <section
       id="about"
@@ -28,7 +38,7 @@ export default function HomeAbout() {
           }}
         >
           <div>
-            <SectionLabel number="05" label="ABOUT" />
+            <SectionLabel number="05" label={isDe ? "ÜBER MICH" : "ABOUT"} />
             <h2
               className="font-display"
               style={{
@@ -39,7 +49,7 @@ export default function HomeAbout() {
                 lineHeight: 1.1,
               }}
             >
-              About Me
+              {isDe ? "Über mich" : "About Me"}
             </h2>
           </div>
 
@@ -52,7 +62,9 @@ export default function HomeAbout() {
               lineHeight: 1.6,
             }}
           >
-            A quick introduction to who I am, how I approach software, and what drives my work.
+            {isDe
+              ? "Ein kurzer Einblick in meine Person, meine Herangehensweise an Software und was meine Arbeit antreibt."
+              : "A quick introduction to who I am, how I approach software, and what drives my work."}
           </p>
         </div>
 
@@ -80,7 +92,9 @@ export default function HomeAbout() {
                 marginBottom: "1.25rem",
               }}
             >
-              I like understanding how things work, building small systems to learn, and turning complicated workflows into something easier to use.
+              {isDe
+                ? "Ich verstehe gerne, wie Dinge funktionieren, baue kompakte Systeme zum Lernen und verwandle komplexe Abläufe in verständliche Software."
+                : "I like understanding how things work, building small systems to learn, and turning complicated workflows into something easier to use."}
             </h3>
 
             <p
@@ -92,7 +106,9 @@ export default function HomeAbout() {
                 marginBottom: "1.25rem",
               }}
             >
-              My background connects formal electronics engineering with hands on software development at Tata Consultancy Services. In my day to day work, I help enterprise teams automate processes and integrate Salesforce with external applications.
+              {isDe
+                ? "Mein Profil verbindet ein ingenieurwissenschaftliches Studium der Elektronik mit praktischer Softwareentwicklung bei Tata Consultancy Services. Im Berufsalltag unterstütze ich Unternehmensteams bei der Prozessautomatisierung und der Integration von Salesforce mit externen Systemen."
+                : "My background connects formal electronics engineering with hands on software development at Tata Consultancy Services. In my day to day work, I help enterprise teams automate processes and integrate Salesforce with external applications."}
             </p>
 
             <p
@@ -103,7 +119,9 @@ export default function HomeAbout() {
                 lineHeight: 1.7,
               }}
             >
-              Outside work, I build independent software projects like OnyxFlow and Quantfolio. Working on these personal projects gives me practical space to explore data pipelines, math models, and software design from the ground up.
+              {isDe
+                ? "Außerhalb des Berufs entwickle ich eigenständige Softwareprojekte wie OnyxFlow und Quantfolio. Diese Projekte bieten mir einen praxisnahen Raum, um Daten-Pipelines, mathematische Modelle und Softwarearchitektur von Grund auf zu vertiefen."
+                : "Outside work, I build independent software projects like OnyxFlow and Quantfolio. Working on these personal projects gives me practical space to explore data pipelines, math models, and software design from the ground up."}
             </p>
           </div>
 
@@ -128,15 +146,17 @@ export default function HomeAbout() {
                 letterSpacing: "0.08em",
               }}
             >
-              HOW I WORK
+              {isDe ? "MEINE ARBEITSWEISE" : "HOW I WORK"}
             </div>
 
             <div>
               <div style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 700, fontSize: "0.95rem", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
-                Understand before coding
+                {isDe ? "Verstehen vor dem Programmieren" : "Understand before coding"}
               </div>
               <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.84rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
-                Taking time to clearly map the requirements and data flow prevents rewriting fragile code later.
+                {isDe
+                  ? "Anforderungen und Datenflüsse vorab präzise zu analysieren, verhindert das spätere Umschreiben instabilen Codes."
+                  : "Taking time to clearly map the requirements and data flow prevents rewriting fragile code later."}
               </p>
             </div>
 
@@ -144,10 +164,12 @@ export default function HomeAbout() {
 
             <div>
               <div style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 700, fontSize: "0.95rem", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
-                Keep systems straightforward
+                {isDe ? "Systeme verständlich halten" : "Keep systems straightforward"}
               </div>
               <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.84rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
-                Software that is easy to reason about is much easier to debug, test, and maintain over time.
+                {isDe
+                  ? "Software, deren Ablauf sich klar nachvollziehen lässt, ist wesentlich leichter zu testen, zu debuggen und langfristig zu warten."
+                  : "Software that is easy to reason about is much easier to debug, test, and maintain over time."}
               </p>
             </div>
 
@@ -155,10 +177,12 @@ export default function HomeAbout() {
 
             <div>
               <div style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontWeight: 700, fontSize: "0.95rem", color: "var(--ink-primary)", marginBottom: "0.25rem" }}>
-                Learn by building
+                {isDe ? "Lernen durch praktisches Bauen" : "Learn by building"}
               </div>
               <p style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.84rem", color: "var(--ink-secondary)", lineHeight: 1.55 }}>
-                Building real projects and wrestling with practical edge cases is the fastest way to truly learn.
+                {isDe
+                  ? "Echte Projekte zu bauen und sich realen Randfällen zu stellen, ist der schnellste Weg zu echtem technischen Verständnis."
+                  : "Building real projects and wrestling with practical edge cases is the fastest way to truly learn."}
               </p>
             </div>
           </div>
@@ -166,14 +190,14 @@ export default function HomeAbout() {
 
         {/* Section Footer Link */}
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link href="/about" className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-            <span>MORE ABOUT ME AND MY JOURNEY</span>
+          <Link href={isDe ? "/de/about" : "/about"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <span>{isDe ? "MEHR ÜBER MICH UND MEINEN WERDEGANG" : "MORE ABOUT ME AND MY JOURNEY"}</span>
             <ArrowRight size={14} />
           </Link>
         </div>
       </div>
 
-      <style>{`
+      <style suppressHydrationWarning>{`
         @media (max-width: 900px) {
           .about-home-grid {
             grid-template-columns: 1fr !important;

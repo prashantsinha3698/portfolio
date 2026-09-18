@@ -1,23 +1,15 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { ChevronLeft, ChevronRight, Lightbulb } from "lucide-react";
+import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
+import { StoryChapter } from "@/locales/types";
 
-export interface StoryChapter {
-  id: string;
-  number: number;
-  period: string;
-  category: string;
-  badgeSubtitle?: string;
-  title: string;
-  teaser: string;
-  paragraphs: string[];
-  whatILearned: string;
-  recordTitle: string;
-  recordItems: string[];
-}
+export type { StoryChapter };
 
+// Fallback / default export of English chapters
 export const STORY_CHAPTERS: StoryChapter[] = [
   {
     id: "education",
@@ -210,11 +202,22 @@ export const STORY_CHAPTERS: StoryChapter[] = [
   },
 ];
 
-export default function StoryTimeline() {
+interface StoryTimelineProps {
+  locale?: Locale;
+}
+
+export default function StoryTimeline({ locale }: StoryTimelineProps) {
   const [activeIdx, setActiveIdx] = useState(0);
-  const currentChapter = STORY_CHAPTERS[activeIdx] ?? STORY_CHAPTERS[0];
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const isProgrammaticScroll = useRef(false);
+
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const isDe = activeLocale === "de";
+  const t = getTranslation(activeLocale);
+  const chapters = t.aboutPage?.timelineChapters || STORY_CHAPTERS;
+
+  const currentChapter = chapters[activeIdx] ?? chapters[0];
 
   // Desktop scroll tracking: sync the active chapter as user scrolls the page
   useEffect(() => {
@@ -276,7 +279,7 @@ export default function StoryTimeline() {
   };
 
   const handleNext = () => {
-    if (activeIdx < STORY_CHAPTERS.length - 1) {
+    if (activeIdx < chapters.length - 1) {
       const nextIdx = activeIdx + 1;
       setActiveIdx(nextIdx);
       scrollToChapter(nextIdx);
@@ -297,7 +300,7 @@ export default function StoryTimeline() {
         }}
       >
         <div>
-          <SectionLabel number="02" label="CHRONOLOGY" />
+          <SectionLabel number="02" label={isDe ? "CHRONOLOGIE" : "CHRONOLOGY"} />
           <h2
             className="font-display"
             style={{
@@ -309,7 +312,7 @@ export default function StoryTimeline() {
               marginTop: "0.25rem",
             }}
           >
-            The Story
+            {isDe ? "Der Werdegang" : "The Story"}
           </h2>
         </div>
         <div
@@ -321,7 +324,9 @@ export default function StoryTimeline() {
             lineHeight: 1.5,
           }}
         >
-          An honest chronology of engineering foundations, business ventures, public examinations, retail operations, and system building.
+          {isDe
+            ? "Eine ehrliche Chronologie aus ingenieurwissenschaftlichem Fundament, unternehmerischen Initiativen, Staatsprüfung, Gastronomie und Systementwicklung."
+            : "An honest chronology of engineering foundations, business ventures, public examinations, retail operations, and system building."}
         </div>
       </div>
 
@@ -343,7 +348,7 @@ export default function StoryTimeline() {
             }}
           />
 
-          {STORY_CHAPTERS.map((ch, idx) => {
+          {chapters.map((ch, idx) => {
             const isActive = activeIdx === idx;
             return (
               <button
@@ -353,48 +358,52 @@ export default function StoryTimeline() {
                   itemRefs.current[idx] = el;
                 }}
                 onClick={() => handleSelectChapter(idx)}
+                className={`story-rail-card ${isActive ? "active" : ""}`}
+                aria-pressed={isActive}
                 style={{
+                  textAlign: "left",
+                  background: "var(--bg-surface)",
+                  border: isActive ? "2px solid var(--accent-primary)" : "1px solid var(--border-primary)",
+                  padding: "1.25rem 1.35rem 1.25rem 3.25rem",
                   position: "relative",
-                  zIndex: 1,
-                  padding: "1.15rem 1.25rem 1.15rem 3.25rem",
-                  background: isActive ? "var(--bg-surface)" : "var(--bg-surface-subtle)",
-                  border: isActive ? "2px solid var(--accent-primary)" : "1px solid var(--border-subtle)",
                   boxShadow: isActive ? "var(--shadow-tactile)" : "none",
                   cursor: "pointer",
-                  textAlign: "left",
-                  transition: "all var(--motion-fast) var(--ease-mechanical)",
-                  display: "block",
-                  width: "100%",
-                  boxSizing: "border-box",
+                  transition: "all var(--motion-fast)",
+                  outline: "none",
+                  zIndex: isActive ? 2 : 1,
                 }}
-                className="timeline-index-btn"
-                aria-pressed={isActive}
               >
-                {/* Numbered Node Circle */}
+                {/* Node Pill / Dot on Rail */}
                 <div
                   style={{
                     position: "absolute",
                     left: "10px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
+                    top: "1.35rem",
                     width: "20px",
                     height: "20px",
+                    borderRadius: "2px",
+                    border: "2px solid var(--border-primary)",
                     background: isActive ? "var(--accent-primary)" : "var(--bg-surface)",
-                    border: isActive ? "2px solid var(--border-primary)" : "2px solid var(--border-subtle)",
-                    color: isActive ? "#FFFFFF" : "var(--ink-muted)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "0.62rem",
-                    fontWeight: 700,
-                    fontFamily: "var(--font-mono)",
-                    transition: "all var(--motion-fast)",
+                    transition: "background var(--motion-fast)",
+                    zIndex: 2,
                   }}
                 >
-                  {ch.number}
+                  <span
+                    className="font-mono"
+                    style={{
+                      fontSize: "0.62rem",
+                      fontWeight: 700,
+                      color: isActive ? "#FFFFFF" : "var(--ink-secondary)",
+                    }}
+                  >
+                    {ch.number}
+                  </span>
                 </div>
 
-                {/* Chapter Meta */}
+                {/* Subtitle / Period Tag */}
                 <div
                   className="font-mono"
                   style={{
@@ -480,7 +489,7 @@ export default function StoryTimeline() {
                   letterSpacing: "0.05em",
                 }}
               >
-                CHAPTER {String(currentChapter.number).padStart(2, "0")} / {String(STORY_CHAPTERS.length).padStart(2, "0")}
+                {isDe ? "KAPITEL" : "CHAPTER"} {String(currentChapter.number).padStart(2, "0")} / {String(chapters.length).padStart(2, "0")}
               </span>
             </div>
 
@@ -490,7 +499,7 @@ export default function StoryTimeline() {
                 type="button"
                 onClick={handlePrev}
                 disabled={activeIdx === 0}
-                aria-label="Previous chapter"
+                aria-label={isDe ? "Vorheriges Kapitel" : "Previous chapter"}
                 className="btn-tactile-secondary font-mono"
                 style={{
                   padding: "0.25rem 0.65rem",
@@ -501,23 +510,23 @@ export default function StoryTimeline() {
                 }}
               >
                 <ChevronLeft size={13} />
-                <span>PREV</span>
+                <span>{isDe ? "ZURÜCK" : "PREV"}</span>
               </button>
               <button
                 type="button"
                 onClick={handleNext}
-                disabled={activeIdx === STORY_CHAPTERS.length - 1}
-                aria-label="Next chapter"
+                disabled={activeIdx === chapters.length - 1}
+                aria-label={isDe ? "Nächstes Kapitel" : "Next chapter"}
                 className="btn-tactile-secondary font-mono"
                 style={{
                   padding: "0.25rem 0.65rem",
                   fontSize: "0.72rem",
                   minHeight: "30px",
-                  opacity: activeIdx === STORY_CHAPTERS.length - 1 ? 0.35 : 1,
-                  cursor: activeIdx === STORY_CHAPTERS.length - 1 ? "not-allowed" : "pointer",
+                  opacity: activeIdx === chapters.length - 1 ? 0.35 : 1,
+                  cursor: activeIdx === chapters.length - 1 ? "not-allowed" : "pointer",
                 }}
               >
-                <span>NEXT</span>
+                <span>{isDe ? "WEITER" : "NEXT"}</span>
                 <ChevronRight size={13} />
               </button>
             </div>
@@ -529,7 +538,7 @@ export default function StoryTimeline() {
               style={{
                 height: "100%",
                 background: "var(--accent-primary)",
-                width: `${((activeIdx + 1) / STORY_CHAPTERS.length) * 100}%`,
+                width: `${((activeIdx + 1) / chapters.length) * 100}%`,
                 transition: "width var(--motion-normal) var(--ease-mechanical)",
               }}
             />
@@ -619,7 +628,7 @@ export default function StoryTimeline() {
                 }}
               >
                 <Lightbulb size={14} />
-                <span>WHAT I LEARNED</span>
+                <span>{isDe ? "WAS ICH DARAUS GELERNT HABE" : "WHAT I LEARNED"}</span>
               </div>
               <div
                 style={{
@@ -659,7 +668,7 @@ export default function StoryTimeline() {
 
       {/* Mobile Sequential Stack (<= 960px) */}
       <div className="story-mobile-stack">
-        {STORY_CHAPTERS.map((ch) => (
+        {chapters.map((ch) => (
           <div
             key={ch.id}
             className="story-mobile-card"
@@ -753,19 +762,27 @@ export default function StoryTimeline() {
               <div
                 className="font-mono"
                 style={{
-                  fontSize: "0.7rem",
+                  fontSize: "0.72rem",
                   color: "var(--accent-primary)",
                   fontWeight: 700,
-                  marginBottom: "0.25rem",
+                  letterSpacing: "0.06em",
+                  marginBottom: "0.3rem",
                   display: "flex",
                   alignItems: "center",
-                  gap: "0.35rem",
+                  gap: "0.45rem",
                 }}
               >
                 <Lightbulb size={13} />
-                <span>WHAT I LEARNED</span>
+                <span>{isDe ? "WAS ICH DARAUS GELERNT HABE" : "WHAT I LEARNED"}</span>
               </div>
-              <div style={{ fontSize: "0.84rem", color: "var(--ink-primary)", lineHeight: 1.5, fontWeight: 500 }}>
+              <div
+                style={{
+                  fontSize: "0.85rem",
+                  color: "var(--ink-primary)",
+                  lineHeight: 1.5,
+                  fontWeight: 500,
+                }}
+              >
                 {ch.whatILearned}
               </div>
             </div>
@@ -773,13 +790,14 @@ export default function StoryTimeline() {
             <div
               className="font-mono"
               style={{
-                padding: "0.75rem 0.95rem",
+                padding: "0.75rem 0.9rem",
                 border: "1px solid var(--border-subtle)",
-                background: "var(--bg-surface-subtle)",
+                background: "var(--bg-surface)",
                 fontSize: "0.72rem",
+                wordBreak: "break-word",
               }}
             >
-              <div style={{ color: "var(--ink-muted)", fontWeight: 700, marginBottom: "0.3rem" }}>
+              <div style={{ color: "var(--ink-muted)", fontWeight: 700, marginBottom: "0.35rem" }}>
                 {ch.recordTitle}
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem", color: "var(--ink-secondary)" }}>
@@ -792,79 +810,61 @@ export default function StoryTimeline() {
         ))}
       </div>
 
-      <style jsx>{`
-        .about-timeline-section {
+      <style suppressHydrationWarning>{`
+        .story-desktop-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3.5rem;
+          align-items: start;
+        }
+
+        .sticky-story-panel {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 5.5rem;
           background: var(--bg-surface);
           border: 1px solid var(--border-primary);
           box-shadow: var(--shadow-tactile);
-          padding: 2.5rem 2.25rem;
-          box-sizing: border-box;
-          width: 100%;
-        }
-        .story-desktop-grid {
-          display: grid;
-          grid-template-columns: 1fr 1.25fr;
-          gap: 2.5rem;
-          align-items: start;
-          position: relative;
-        }
-        .sticky-story-panel {
-          position: sticky;
-          top: 5.25rem;
-          background: var(--bg-surface);
-          border: 2px solid var(--border-primary);
-          box-shadow: var(--shadow-tactile);
-          max-height: calc(100vh - 6.75rem);
+          height: calc(100vh - 7rem);
+          max-height: 800px;
           display: flex;
           flex-direction: column;
-          overflow: hidden;
+          z-index: 10;
+        }
+
+        .story-panel-scrollable {
+          padding: 1.75rem 2rem 2.25rem;
+          overflow-y: auto;
+          flex: 1;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .story-rail-card {
+          width: 100%;
           box-sizing: border-box;
         }
-        .story-panel-scrollable {
-          padding: 1.5rem 1.75rem 2rem;
-          overflow-y: auto;
-          flex: 1 1 0%;
-          animation: storyContentFade 240ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          scrollbar-width: thin;
-          scrollbar-color: var(--border-subtle) transparent;
+
+        .story-rail-card:hover {
+          border-color: var(--accent-primary) !important;
+          transform: translateX(4px);
         }
-        .story-panel-scrollable::-webkit-scrollbar {
-          width: 5px;
+
+        .story-rail-card.active {
+          border-color: var(--accent-primary) !important;
+          background: var(--bg-surface) !important;
         }
-        .story-panel-scrollable::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .story-panel-scrollable::-webkit-scrollbar-thumb {
-          background: var(--border-subtle);
-          border-radius: 2px;
-        }
-        .story-panel-scrollable::-webkit-scrollbar-thumb:hover {
-          background: var(--accent-primary);
-        }
-        @keyframes storyContentFade {
-          from {
-            opacity: 0;
-            transform: translateY(6px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+
         .story-mobile-stack {
           display: none;
         }
+
         @media (max-width: 960px) {
           .story-desktop-grid {
             display: none !important;
           }
           .story-mobile-stack {
             display: block !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .about-timeline-section {
-            padding: 1.35rem 0.95rem !important;
+            width: 100% !important;
           }
         }
       `}</style>

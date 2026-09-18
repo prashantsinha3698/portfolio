@@ -1,13 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Navigation from "@/components/layout/Navigation";
 import Footer from "@/components/layout/Footer";
 import SectionLabel from "@/components/ui/SectionLabel";
 import StatusBadge from "@/components/ui/StatusBadge";
 import TechTag from "@/components/ui/TechTag";
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { getLocaleFromPathname, getLocalizedPath, Locale } from "@/locales";
 
 export interface ProjectChapter {
   id: string;
@@ -21,6 +23,7 @@ export interface ProjectMetric {
 }
 
 export interface ProjectDocumentationLayoutProps {
+  locale?: Locale;
   projectNumber: string;
   title: string;
   tagline: string;
@@ -37,6 +40,7 @@ export interface ProjectDocumentationLayoutProps {
 }
 
 export default function ProjectDocumentationLayout({
+  locale,
   projectNumber,
   title,
   tagline,
@@ -54,6 +58,11 @@ export default function ProjectDocumentationLayout({
   const [activeChapter, setActiveChapter] = useState<string>(chapters[0]?.id || "");
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [scrollY, setScrollY] = useState<number>(0);
+
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const isDe = activeLocale === "de";
+  const projectsUrl = isDe ? "/de/projects" : "/projects";
 
   // Parallax scroll listener
   useEffect(() => {
@@ -110,7 +119,7 @@ export default function ProjectDocumentationLayout({
 
   return (
     <div style={{ minHeight: "100vh", width: "100%", display: "flex", flexDirection: "column", background: "var(--bg-canvas)", color: "var(--ink-primary)" }}>
-      <Navigation />
+      <Navigation locale={activeLocale} />
 
       <main id="main-content" style={{ flex: 1, width: "100%", paddingBottom: "6rem" }}>
         {/* Full Width Top Band with Parallax Depth */}
@@ -146,8 +155,8 @@ export default function ProjectDocumentationLayout({
           <div style={{ width: "100%", paddingInline: "clamp(1.25rem, 4vw, 4.5rem)", position: "relative", zIndex: 2 }}>
             {/* Breadcrumb */}
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--ink-muted)", marginBottom: "1.5rem" }}>
-              <Link href="/projects" style={{ color: "var(--ink-secondary)", textDecoration: "none" }}>
-                Projects
+              <Link href={projectsUrl} style={{ color: "var(--ink-secondary)", textDecoration: "none" }}>
+                {isDe ? "Projekte" : "Projects"}
               </Link>
               <span>/</span>
               <span style={{ color: "var(--accent-primary)", fontWeight: 700 }}>{title}</span>
@@ -164,7 +173,7 @@ export default function ProjectDocumentationLayout({
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "1rem", marginBottom: "1rem" }}>
-                <SectionLabel number={projectNumber} label="PERSONAL PROJECT" />
+                <SectionLabel number={projectNumber} label={isDe ? "EIGENES PROJEKT" : "PERSONAL PROJECT"} />
                 <StatusBadge status={status} />
               </div>
 
@@ -210,7 +219,7 @@ export default function ProjectDocumentationLayout({
               {/* Technologies Used In This Project */}
               <div style={{ marginBottom: "1.75rem" }}>
                 <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)", marginBottom: "0.5rem", fontWeight: 700, letterSpacing: "0.06em" }}>
-                  TECHNOLOGIES USED IN THIS PROJECT:
+                  {isDe ? "IN DIESEM PROJEKT VERWENDETE TECHNOLOGIEN:" : "TECHNOLOGIES USED IN THIS PROJECT:"}
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
                   {technologies.map((tech) => (
@@ -289,7 +298,7 @@ export default function ProjectDocumentationLayout({
               }}
             >
               <span style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-                <span style={{ color: "var(--accent-primary)" }}>SECTION:</span>
+                <span style={{ color: "var(--accent-primary)" }}>{isDe ? "ABSCHNITT:" : "SECTION:"}</span>
                 <span>{currentChapterObj.label}</span>
               </span>
               {mobileMenuOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -352,7 +361,7 @@ export default function ProjectDocumentationLayout({
                 }}
               >
                 <div style={{ fontSize: "0.74rem", color: "var(--ink-muted)", letterSpacing: "0.08em", marginBottom: "0.6rem", fontWeight: 700 }}>
-                  DOCUMENT CHAPTERS
+                  {isDe ? "KAPITELÜBERSICHT" : "DOCUMENT CHAPTERS"}
                 </div>
                 {chapters.map((s) => (
                   <button
@@ -395,31 +404,31 @@ export default function ProjectDocumentationLayout({
               >
                 {prevProject ? (
                   <Link
-                    href={prevProject.href}
+                    href={getLocalizedPath(prevProject.href, activeLocale)}
                     className="btn-tactile-secondary font-mono"
                     style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
                   >
-                    <ArrowLeft size={15} /> <span>PREVIOUS: {prevProject.label}</span>
+                    <ArrowLeft size={15} /> <span>{isDe ? "VORHERIGES:" : "PREVIOUS:"} {prevProject.label}</span>
                   </Link>
                 ) : (
                   <div />
                 )}
 
                 <Link
-                  href="/projects"
+                  href={projectsUrl}
                   className="font-mono"
                   style={{ fontSize: "0.84rem", color: "var(--ink-secondary)", textDecoration: "underline" }}
                 >
-                  All Projects Index
+                  {isDe ? "Alle Projekte Übersicht" : "All Projects Index"}
                 </Link>
 
                 {nextProject ? (
                   <Link
-                    href={nextProject.href}
+                    href={getLocalizedPath(nextProject.href, activeLocale)}
                     className="btn-tactile-primary font-mono"
                     style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}
                   >
-                    <span>NEXT: {nextProject.label}</span> <ArrowRight size={15} />
+                    <span>{isDe ? "NÄCHSTES:" : "NEXT:"} {nextProject.label}</span> <ArrowRight size={15} />
                   </Link>
                 ) : (
                   <div />
@@ -430,9 +439,9 @@ export default function ProjectDocumentationLayout({
         </div>
       </main>
 
-      <Footer />
+      <Footer locale={activeLocale} />
 
-      <style>{`
+      <style suppressHydrationWarning>{`
         .doc-layout-grid {
           display: grid;
           grid-template-columns: 280px minmax(0, 1fr);

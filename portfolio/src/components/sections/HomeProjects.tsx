@@ -2,14 +2,24 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import SectionLabel from "@/components/ui/SectionLabel";
 import StatusBadge from "@/components/ui/StatusBadge";
 import TechTag from "@/components/ui/TechTag";
 import FolderTab from "@/components/ui/FolderTab";
 import { ArrowRight, ExternalLink, FileText } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
+import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
 
-function OnyxFlowCardContent() {
+interface CardContentProps {
+  locale: Locale;
+}
+
+function OnyxFlowCardContent({ locale }: CardContentProps) {
+  const t = getTranslation(locale);
+  const hp = t.homeProjects;
+  const isDe = locale === "de";
+
   return (
     <>
       {/* Header Strip */}
@@ -37,11 +47,11 @@ function OnyxFlowCardContent() {
           >
             PROJECT 01
           </span>
-          <StatusBadge status="Personal Project" />
+          <StatusBadge status={isDe ? "Eigenes Projekt" : "Personal Project"} />
         </div>
 
         <span className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)" }}>
-          MARKET DATA & RISK EXPLORATION
+          {hp.onyxflow.categoryTag}
         </span>
       </div>
 
@@ -81,7 +91,7 @@ function OnyxFlowCardContent() {
               marginBottom: "1rem",
             }}
           >
-            Algorithmic trading and risk engine exploration
+            {hp.onyxflow.tagline}
           </div>
 
           <p
@@ -93,7 +103,7 @@ function OnyxFlowCardContent() {
               marginBottom: "1.25rem",
             }}
           >
-            I built OnyxFlow to explore how a small trading system could handle market data feeds, indicator calculations, risk controls and process recovery without becoming fragile. It connects to exchange WebSocket feeds, parses candle intervals, calculates technical signals, and records execution states in a local database.
+            {hp.onyxflow.description}
           </p>
 
           {/* AI Assistance disclosure */}
@@ -108,7 +118,9 @@ function OnyxFlowCardContent() {
               border: "1px solid var(--border-subtle)",
             }}
           >
-            Development: Designed and iterated with AI coding assistance using Codex and Claude Code.
+            {isDe
+              ? "Entwicklung: Konzipiert und iteriert mit KI-Programmierunterstützung (Codex, Claude Code)."
+              : "Development: Designed and iterated with AI coding assistance using Codex and Claude Code."}
           </div>
 
           {/* Tech Tags */}
@@ -123,9 +135,9 @@ function OnyxFlowCardContent() {
 
           {/* Action Buttons */}
           <div className="btn-group project-btn-group btn-group-2" style={{ marginTop: "1rem" }}>
-            <Link href="/projects/onyxflow" className="btn-tactile-primary">
+            <Link href={isDe ? "/de/projects/onyxflow" : "/projects/onyxflow"} className="btn-tactile-primary">
               <FileText size={14} />
-              <span>VIEW PROJECT</span>
+              <span>{isDe ? "PROJEKT ANSEHEN" : "VIEW PROJECT"}</span>
             </Link>
 
             <a
@@ -160,7 +172,7 @@ function OnyxFlowCardContent() {
               fontWeight: 600,
             }}
           >
-            SYSTEM HIGHLIGHTS
+            {isDe ? "SYSTEM-HIGHLIGHTS" : "SYSTEM HIGHLIGHTS"}
           </div>
 
           <div>
@@ -168,10 +180,12 @@ function OnyxFlowCardContent() {
               &lt; 20 ms
             </div>
             <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600, marginTop: "3px" }}>
-              SIGNAL LATENCY TARGET
+              {isDe ? "ZIEL-SIGNALLATENZ" : "SIGNAL LATENCY TARGET"}
             </div>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.8rem", color: "var(--ink-muted)", marginTop: "3px", lineHeight: 1.4 }}>
-              Vectorized calculation cache to avoid re-evaluating static historical bars.
+              {isDe
+                ? "Vektorisierter Berechnungscache vermeidet die Neuberechnung statischer historischer Balken."
+                : "Vectorized calculation cache to avoid re-evaluating static historical bars."}
             </div>
           </div>
 
@@ -182,10 +196,12 @@ function OnyxFlowCardContent() {
               30 MIN
             </div>
             <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600, marginTop: "3px" }}>
-              CLOSED-CANDLE EVALUATION
+              {isDe ? "KERZENABSCHLUSS-BEWERTUNG" : "CLOSED-CANDLE EVALUATION"}
             </div>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.8rem", color: "var(--ink-muted)", marginTop: "3px", lineHeight: 1.4 }}>
-              Evaluates entry signals strictly on candle closure to prevent repainting.
+              {isDe
+                ? "Bewertet Einstiegssignale strikt bei Kerzenabschluss zur Vermeidung von Repainting."
+                : "Evaluates entry signals strictly on candle closure to prevent repainting."}
             </div>
           </div>
 
@@ -196,10 +212,12 @@ function OnyxFlowCardContent() {
               5 TIERS
             </div>
             <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600, marginTop: "3px" }}>
-              DECOUPLED ARCHITECTURE
+              {isDe ? "ENTKOPPELTE ARCHITEKTUR" : "DECOUPLED ARCHITECTURE"}
             </div>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.8rem", color: "var(--ink-muted)", marginTop: "3px", lineHeight: 1.4 }}>
-              Separates data ingestion, caching, strategy rules, risk, and execution.
+              {isDe
+                ? "Trennt Datenaufnahme, Caching, Strategieregeln, Risiko und Börsenausführung."
+                : "Separates data ingestion, caching, strategy rules, risk, and execution."}
             </div>
           </div>
         </div>
@@ -208,7 +226,11 @@ function OnyxFlowCardContent() {
   );
 }
 
-function QuantfolioCardContent() {
+function QuantfolioCardContent({ locale }: CardContentProps) {
+  const t = getTranslation(locale);
+  const hp = t.homeProjects;
+  const isDe = locale === "de";
+
   return (
     <>
       {/* Header Strip */}
@@ -236,11 +258,11 @@ function QuantfolioCardContent() {
           >
             PROJECT 02
           </span>
-          <StatusBadge status="Personal Project" />
+          <StatusBadge status={isDe ? "Eigenes Projekt" : "Personal Project"} />
         </div>
 
         <span className="font-mono" style={{ fontSize: "0.74rem", color: "var(--ink-muted)" }}>
-          PORTFOLIO OPTIMIZATION EXPLORATION
+          {hp.quantfolio.categoryTag}
         </span>
       </div>
 
@@ -280,7 +302,7 @@ function QuantfolioCardContent() {
               marginBottom: "1rem",
             }}
           >
-            Portfolio analytics and optimization tool
+            {hp.quantfolio.tagline}
           </div>
 
           <p
@@ -292,7 +314,7 @@ function QuantfolioCardContent() {
               marginBottom: "1.25rem",
             }}
           >
-            A personal project I built to understand portfolio risk, optimization and rebalancing. It ingests historical price data, calculates risk-return profiles, runs optimization using SciPy to find efficient frontiers, and provides an interactive web interface to inspect asset weights.
+            {hp.quantfolio.description}
           </p>
 
           {/* AI Assistance disclosure */}
@@ -307,7 +329,9 @@ function QuantfolioCardContent() {
               border: "1px solid var(--border-subtle)",
             }}
           >
-            Development: Designed and iterated with AI coding assistance using Codex and Claude Code.
+            {isDe
+              ? "Entwicklung: Konzipiert und iteriert mit KI-Programmierunterstützung (Codex, Claude Code)."
+              : "Development: Designed and iterated with AI coding assistance using Codex and Claude Code."}
           </div>
 
           {/* Tech Tags */}
@@ -322,9 +346,9 @@ function QuantfolioCardContent() {
 
           {/* Action Buttons */}
           <div className="btn-group project-btn-group btn-group-3" style={{ marginTop: "1rem" }}>
-            <Link href="/projects/quantfolio" className="btn-tactile-primary">
+            <Link href={isDe ? "/de/projects/quantfolio" : "/projects/quantfolio"} className="btn-tactile-primary">
               <FileText size={14} />
-              <span>VIEW PROJECT</span>
+              <span>{isDe ? "PROJEKT ANSEHEN" : "VIEW PROJECT"}</span>
             </Link>
 
             <a
@@ -369,7 +393,7 @@ function QuantfolioCardContent() {
               fontWeight: 600,
             }}
           >
-            SYSTEM HIGHLIGHTS
+            {isDe ? "SYSTEM-HIGHLIGHTS" : "SYSTEM HIGHLIGHTS"}
           </div>
 
           <div>
@@ -377,10 +401,12 @@ function QuantfolioCardContent() {
               22 / 22
             </div>
             <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600, marginTop: "3px" }}>
-              UNIT TEST SUITE
+              {isDe ? "TEST-SUITE (INVARIANTEN)" : "UNIT TEST SUITE"}
             </div>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.8rem", color: "var(--ink-muted)", marginTop: "3px", lineHeight: 1.4 }}>
-              Automated tests covering mathematical edge cases and weight sum constraints.
+              {isDe
+                ? "Automatisierte Tests für mathematische Randfälle und Summenrestriktionen der Gewichte."
+                : "Automated tests covering mathematical edge cases and weight sum constraints."}
             </div>
           </div>
 
@@ -391,10 +417,12 @@ function QuantfolioCardContent() {
               SLSQP
             </div>
             <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600, marginTop: "3px" }}>
-              OPTIMIZATION SOLVER
+              {isDe ? "NUMERISCHER SOLVER" : "OPTIMIZATION SOLVER"}
             </div>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.8rem", color: "var(--ink-muted)", marginTop: "3px", lineHeight: 1.4 }}>
-              Uses SciPy sequential least squares to maximize Sharpe ratio under allocation bounds.
+              {isDe
+                ? "Nutzt SciPy Sequential Least Squares zur Maximierung der Sharpe-Ratio unter Allokationsgrenzen."
+                : "Uses SciPy sequential least squares to maximize Sharpe ratio under allocation bounds."}
             </div>
           </div>
 
@@ -405,10 +433,12 @@ function QuantfolioCardContent() {
               4 TIERS
             </div>
             <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--accent-primary)", fontWeight: 600, marginTop: "3px" }}>
-              DECOUPLED STACK
+              {isDe ? "ENTKOPPELTER STACK" : "DECOUPLED STACK"}
             </div>
             <div style={{ fontFamily: "var(--font-ibm-plex-sans), sans-serif", fontSize: "0.8rem", color: "var(--ink-muted)", marginTop: "3px", lineHeight: 1.4 }}>
-              Data ingestion, mathematical calculations, FastAPI backend, and React UI.
+              {isDe
+                ? "Datenaufnahme, mathematische Berechnungen, FastAPI-Backend und React-Frontend."
+                : "Data ingestion, mathematical calculations, FastAPI backend, and React UI."}
             </div>
           </div>
         </div>
@@ -417,8 +447,17 @@ function QuantfolioCardContent() {
   );
 }
 
-export default function HomeProjects() {
+interface HomeProjectsProps {
+  locale?: Locale;
+}
+
+export default function HomeProjects({ locale }: HomeProjectsProps) {
   const [activeTab, setActiveTab] = useState<0 | 1>(0);
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const t = getTranslation(activeLocale);
+  const hp = t.homeProjects;
+  const isDe = activeLocale === "de";
 
   return (
     <section
@@ -442,7 +481,7 @@ export default function HomeProjects() {
           }}
         >
           <div>
-            <SectionLabel number="01" label="PROJECTS" />
+            <SectionLabel number="01" label={isDe ? "PROJEKTE" : "PROJECTS"} />
             <h2
               className="font-display"
               style={{
@@ -453,7 +492,7 @@ export default function HomeProjects() {
                 lineHeight: 1.1,
               }}
             >
-              Selected Projects
+              {hp.title}
             </h2>
           </div>
 
@@ -466,15 +505,12 @@ export default function HomeProjects() {
               lineHeight: 1.6,
             }}
           >
-            Personal software projects built to explore technical systems, data processing and architecture beyond daily client work.
+            {hp.subtitle}
           </p>
         </div>
 
-        {/* ============================================================ */}
-        {/* DESKTOP & HORIZONTAL TABLET: Interactive Folder Tabs        */}
-        {/* ============================================================ */}
+        {/* Desktop & Horizontal Tablet: Interactive Folder Tabs */}
         <div className="desktop-projects-tabbed scroll-reveal" style={{ position: "relative", marginBottom: "3rem" }}>
-          {/* Side-by-side folder tabs */}
           <div
             role="tablist"
             aria-label="Projects tab navigation"
@@ -499,7 +535,6 @@ export default function HomeProjects() {
             />
           </div>
 
-          {/* Active Project Folder Card */}
           <div
             role="tabpanel"
             id={`project-panel-${activeTab}`}
@@ -512,13 +547,11 @@ export default function HomeProjects() {
               zIndex: 2,
             }}
           >
-            {activeTab === 0 ? <OnyxFlowCardContent /> : <QuantfolioCardContent />}
+            {activeTab === 0 ? <OnyxFlowCardContent locale={activeLocale} /> : <QuantfolioCardContent locale={activeLocale} />}
           </div>
         </div>
 
-        {/* ============================================================ */}
-        {/* MOBILE: Sequential Stacked One-by-One                       */}
-        {/* ============================================================ */}
+        {/* Mobile: Sequential Stacked One-by-One */}
         <div className="mobile-projects-stacked" style={{ display: "flex", flexDirection: "column", gap: "3.5rem", marginBottom: "3rem" }}>
           {/* Project 01: OnyxFlow */}
           <div className="scroll-reveal" style={{ position: "relative" }}>
@@ -538,7 +571,7 @@ export default function HomeProjects() {
                 zIndex: 2,
               }}
             >
-              <OnyxFlowCardContent />
+              <OnyxFlowCardContent locale={activeLocale} />
             </div>
           </div>
 
@@ -560,21 +593,21 @@ export default function HomeProjects() {
                 zIndex: 2,
               }}
             >
-              <QuantfolioCardContent />
+              <QuantfolioCardContent locale={activeLocale} />
             </div>
           </div>
         </div>
 
         {/* Section Footer Link */}
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link href="/projects" className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-            <span>VIEW ALL PROJECTS</span>
+          <Link href={isDe ? "/de/projects" : "/projects"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+            <span>{isDe ? "ALLE 2 PROJEKTE ANSEHEN" : "VIEW ALL PROJECTS"}</span>
             <ArrowRight size={14} />
           </Link>
         </div>
       </div>
 
-      <style>{`
+      <style suppressHydrationWarning>{`
         @media (max-width: 900px) {
           .project-home-grid {
             grid-template-columns: 1fr !important;

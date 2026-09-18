@@ -1,13 +1,23 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { profile } from "@/data/profile";
 import { ArrowUp } from "lucide-react";
+import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
 
 const BASH_SPINNER = ["/", "\\", "|", "—"];
 
-export default function Footer() {
+interface FooterProps {
+  locale?: Locale;
+}
+
+export default function Footer({ locale }: FooterProps) {
   const [spinnerIdx, setSpinnerIdx] = useState(0);
+  const pathname = usePathname();
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const t = getTranslation(activeLocale);
+  const f = t.footer;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -75,7 +85,7 @@ export default function Footer() {
                 marginBottom: "0.35rem",
               }}
             >
-              Salesforce Developer · Systems Thinker · Independent Builder
+              {f.roleTitle}
             </div>
 
             <div
@@ -85,7 +95,7 @@ export default function Footer() {
                 marginBottom: "1.75rem",
               }}
             >
-              Built with Next.js, React, TypeScript and Vanilla CSS tokens.
+              {f.builtWith}
             </div>
 
             {/* Social Channels [ GITHUB ] [ LINKEDIN ] [ CODEWARS ] [ EMAIL ] */}
@@ -137,7 +147,7 @@ export default function Footer() {
                   marginBottom: "0.25rem",
                 }}
               >
-                LOCATION BASE
+                {f.locationBaseTag}
               </div>
               <div
                 style={{
@@ -146,7 +156,7 @@ export default function Footer() {
                   fontWeight: 700,
                 }}
               >
-                Raipur, Chhattisgarh, India
+                {f.locationValue}
               </div>
             </div>
 
@@ -157,7 +167,7 @@ export default function Footer() {
               aria-label="Return to top of page"
             >
               <ArrowUp size={15} />
-              <span>RETURN TO TOP</span>
+              <span>{f.returnToTop}</span>
             </button>
           </div>
         </div>
@@ -173,12 +183,12 @@ export default function Footer() {
             marginTop: "2.5rem",
           }}
         >
-          © 2026 Prashant Sinha · All rights reserved
+          {f.copyright}
         </div>
       </div>
 
-      <style>{`
-        /* Desktop & Horizontal Tablet (> 768px): Left & Right Columns (Image 1) */
+      <style suppressHydrationWarning>{`
+        /* Desktop & Horizontal Tablet (> 768px): Left & Right Columns */
         @media (min-width: 769px) {
           .footer-layout {
             display: flex;
@@ -224,7 +234,7 @@ export default function Footer() {
           }
         }
 
-        /* Mobile & Portrait Tablet (<= 768px): Centered Stack (Image 2) */
+        /* Mobile & Portrait Tablet (<= 768px): Centered Stack */
         @media (max-width: 768px) {
           .footer-layout {
             display: flex;

@@ -1,29 +1,43 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Moon, Sun, Menu, X, Download, Mail, Copy, Check, MapPin, Clock } from "lucide-react";
 import { profile } from "@/data/profile";
 import { GitHubIcon, LinkedInIcon, CodewarsIcon } from "@/components/ui/SocialIcons";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
 
-const NAV_LINKS = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Experience" },
-  { href: "/skills", label: "Skills" },
-  { href: "/education", label: "Education" },
-  { href: "/about", label: "About" },
-  { href: "/#contact", label: "Contact", isContact: true },
-];
+interface NavigationProps {
+  locale?: Locale;
+}
 
-export default function Navigation() {
+export default function Navigation({ locale }: NavigationProps) {
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const pathname = usePathname();
+
+  const activeLocale = locale || getLocaleFromPathname(pathname);
+  const t = getTranslation(activeLocale);
+  const nav = t.nav;
+
+  const isDe = activeLocale === "de";
+  const basePrefix = isDe ? "/de" : "";
+  const homePath = isDe ? "/de" : "/";
+
+  const navLinks = [
+    { href: homePath, label: nav.home },
+    { href: `${basePrefix}/projects`, label: nav.projects },
+    { href: `${basePrefix}/experience`, label: nav.experience },
+    { href: `${basePrefix}/skills`, label: nav.skills },
+    { href: `${basePrefix}/education`, label: nav.education },
+    { href: `${basePrefix}/about`, label: nav.about },
+    { href: `${basePrefix}/#contact`, label: nav.contact, isContact: true },
+  ];
 
   const copyEmail = () => {
     navigator.clipboard.writeText(profile.email);
@@ -53,11 +67,15 @@ export default function Navigation() {
     const nextTheme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
     document.documentElement.setAttribute("data-theme", nextTheme);
-    localStorage.setItem("theme", nextTheme);
+    try {
+      localStorage.setItem("theme", nextTheme);
+    } catch {
+      // ignore
+    }
   };
 
   const isLinkActive = (href: string) => {
-    if (href === "/") return pathname === "/";
+    if (href === "/" || href === "/de") return pathname === href;
     return pathname.startsWith(href);
   };
 
@@ -73,7 +91,7 @@ export default function Navigation() {
   }, []);
 
   const handleContactClick = (e: React.MouseEvent) => {
-    if (pathname === "/") {
+    if (pathname === "/" || pathname === "/de") {
       e.preventDefault();
       const el = document.getElementById("contact");
       if (el) {
@@ -110,11 +128,11 @@ export default function Navigation() {
             alignItems: "center",
             justifyContent: "space-between",
             height: "3.75rem",
-            gap: "1rem",
+            gap: "0.75rem",
           }}
         >
           {/* Brand Identity / Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", minWidth: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", minWidth: 0 }}>
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="show-mobile-btn nav-square-btn"
@@ -125,7 +143,7 @@ export default function Navigation() {
             </button>
 
             <Link
-              href="/"
+              href={homePath}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -157,13 +175,13 @@ export default function Navigation() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "1.75rem",
+              gap: "1.25rem",
               fontSize: "0.82rem",
               fontWeight: 500,
               letterSpacing: "0.02em",
             }}
           >
-            {NAV_LINKS.map((link) => {
+            {navLinks.map((link) => {
               const isContact = link.href.includes("contact");
               const active = isLinkActive(link.href);
 
@@ -207,6 +225,7 @@ export default function Navigation() {
                     position: "relative",
                     padding: "0.25rem 0",
                     transition: "color var(--motion-fast)",
+                    whiteSpace: "nowrap",
                   }}
                   onMouseEnter={(e) => {
                     if (!active) e.currentTarget.style.color = "var(--ink-primary)";
@@ -233,23 +252,25 @@ export default function Navigation() {
             })}
           </nav>
 
-          {/* Utility Controls: Resume CTA + Theme Toggle */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexShrink: 0 }}>
+          {/* Utility Controls: Language Switcher + Resume CTA + Theme Toggle */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexShrink: 0 }}>
+            <LanguageSwitcher />
+
             <a
               href="/resume.pdf"
               download="Prashant_Sinha_Resume.pdf"
               className="btn-tactile-primary nav-resume-cta"
               title="Download Verified Curriculum Vitae (PDF)"
-              aria-label="Download Resume"
+              aria-label={nav.resume}
               style={{
                 height: "38px",
                 minHeight: "38px",
-                padding: "0 0.9rem",
+                padding: "0 0.85rem",
                 fontSize: "0.76rem",
               }}
             >
               <Download size={13} />
-              <span className="hide-resume-text">Resume</span>
+              <span className="hide-resume-text">{nav.resume}</span>
             </a>
 
             <button
@@ -262,6 +283,7 @@ export default function Navigation() {
           </div>
         </div>
       </header>
+
       {/* Fixed Header Spacer */}
       <div style={{ height: "3.75rem", width: "100%", flexShrink: 0 }} aria-hidden="true" />
 
@@ -285,13 +307,29 @@ export default function Navigation() {
             borderTop: "1px solid var(--border-primary)",
             display: "flex",
             flexDirection: "column",
-            gap: "0.75rem",
+            gap: "0.6rem",
             overflowY: "auto",
             overflowX: "hidden",
           }}
           className="font-mono"
         >
-          {NAV_LINKS.map((link) => {
+          {/* Mobile Language Switcher */}
+          <div style={{ marginBottom: "0.5rem" }}>
+            <div
+              style={{
+                fontSize: "0.72rem",
+                color: "var(--ink-muted)",
+                letterSpacing: "0.06em",
+                marginBottom: "0.4rem",
+                fontWeight: 700,
+              }}
+            >
+              LANGUAGE / SPRACHE
+            </div>
+            <LanguageSwitcher isMobile />
+          </div>
+
+          {navLinks.map((link) => {
             const isContact = link.href.includes("contact");
             const active = isLinkActive(link.href);
 
@@ -330,7 +368,7 @@ export default function Navigation() {
                       flexShrink: 0,
                     }}
                   >
-                    [REACH OUT]
+                    {nav.reachOutBadge}
                   </span>
                 </button>
               );
@@ -367,7 +405,7 @@ export default function Navigation() {
                       flexShrink: 0,
                     }}
                   >
-                    [ACTIVE]
+                    {nav.activeBadge}
                   </span>
                 )}
               </Link>
@@ -379,14 +417,15 @@ export default function Navigation() {
             download="Prashant_Sinha_Resume.pdf"
             className="btn-tactile-primary"
             style={{
-              marginTop: "1.25rem",
+              marginTop: "1rem",
               width: "100%",
               justifyContent: "center",
-              fontSize: "0.88rem",
+              fontSize: "0.85rem",
+              minHeight: "44px",
             }}
           >
             <Download size={16} />
-            <span>DOWNLOAD RESUME (PDF)</span>
+            <span>{nav.downloadResume}</span>
           </a>
         </div>
       )}
@@ -396,7 +435,7 @@ export default function Navigation() {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label="Direct Contact Details"
+          aria-label={nav.contactModal.title}
           style={{
             position: "fixed",
             inset: 0,
@@ -426,16 +465,16 @@ export default function Navigation() {
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.25rem" }}>
               <div>
                 <div className="font-mono" style={{ fontSize: "0.74rem", color: "var(--accent-primary)", fontWeight: 700, letterSpacing: "0.08em", marginBottom: "0.25rem" }}>
-                  06 // DIRECT CONTACT
+                  {nav.contactModal.sectionTag}
                 </div>
                 <h2 className="font-display" style={{ fontSize: "1.6rem", fontWeight: 700, color: "var(--ink-primary)", letterSpacing: "-0.02em" }}>
-                  Get In Touch
+                  {nav.contactModal.title}
                 </h2>
               </div>
               <button
                 onClick={() => setContactOpen(false)}
                 className="nav-square-btn"
-                aria-label="Close contact dialog"
+                aria-label={nav.contactModal.closeDialogAria}
                 style={{ width: 34, height: 34, minWidth: 34, minHeight: 34 }}
               >
                 <X size={16} />
@@ -457,7 +496,7 @@ export default function Navigation() {
               className="font-mono"
             >
               <span style={{ width: 8, height: 8, background: "var(--accent-green)", borderRadius: "50%", display: "inline-block", flexShrink: 0 }} />
-              <span style={{ color: "var(--ink-primary)", fontWeight: 600 }}>Available for Salesforce Developer roles & enterprise contracts</span>
+              <span style={{ color: "var(--ink-primary)", fontWeight: 600 }}>{nav.contactModal.availabilityStatus}</span>
             </div>
 
             {/* Email Action Card */}
@@ -470,7 +509,7 @@ export default function Navigation() {
               }}
             >
               <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--ink-muted)", marginBottom: "0.35rem", textTransform: "uppercase" }}>
-                PRIMARY DIRECT EMAIL
+                {nav.contactModal.primaryEmailTag}
               </div>
               <div style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(0.95rem, 2.5vw, 1.15rem)", fontWeight: 700, color: "var(--ink-primary)", marginBottom: "1rem", wordBreak: "break-all" }}>
                 {profile.email}
@@ -482,7 +521,7 @@ export default function Navigation() {
                   style={{ fontSize: "0.78rem", padding: "0.55rem 1rem" }}
                 >
                   {copied ? <Check size={14} /> : <Copy size={14} />}
-                  <span>{copied ? "COPIED TO CLIPBOARD" : "COPY EMAIL"}</span>
+                  <span>{copied ? nav.contactModal.copiedEmail : nav.contactModal.copyEmail}</span>
                 </button>
                 <a
                   href={`mailto:${profile.email}`}
@@ -490,7 +529,7 @@ export default function Navigation() {
                   style={{ fontSize: "0.78rem", padding: "0.55rem 1rem" }}
                 >
                   <Mail size={14} />
-                  <span>OPEN EMAIL CLIENT</span>
+                  <span>{nav.contactModal.openEmailClient}</span>
                 </a>
               </div>
             </div>
@@ -510,7 +549,7 @@ export default function Navigation() {
             >
               <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "var(--ink-secondary)" }}>
                 <MapPin size={13} color="var(--accent-primary)" />
-                <span>Raipur, India (Open to Remote)</span>
+                <span>{nav.contactModal.locationNote}</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", color: "var(--ink-secondary)" }}>
                 <Clock size={13} color="var(--accent-primary)" />
@@ -521,7 +560,7 @@ export default function Navigation() {
             {/* Social Network Profiles */}
             <div style={{ marginBottom: "1.5rem" }}>
               <div className="font-mono" style={{ fontSize: "0.72rem", color: "var(--ink-muted)", marginBottom: "0.5rem", textTransform: "uppercase" }}>
-                VERIFIED SOCIAL & CODE PROFILES
+                {nav.contactModal.verifiedProfilesTag}
               </div>
               <div style={{ display: "flex", gap: "0.6rem", flexWrap: "wrap" }}>
                 <a
@@ -560,22 +599,22 @@ export default function Navigation() {
             {/* Footer link to homepage contact section */}
             <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
               <Link
-                href="/#contact"
+                href={`${homePath}#contact`}
                 onClick={() => setContactOpen(false)}
                 className="font-mono"
                 style={{ fontSize: "0.78rem", color: "var(--accent-primary)", textDecoration: "underline", fontWeight: 600 }}
               >
-                Go to full homepage contact section ↘
+                {nav.contactModal.homepageContactLink}
               </Link>
               <span className="font-mono" style={{ fontSize: "0.7rem", color: "var(--ink-muted)" }}>
-                [ESC TO CLOSE]
+                {nav.contactModal.escHint}
               </span>
             </div>
           </div>
         </div>
       )}
 
-      <style>{`
+      <style suppressHydrationWarning>{`
         .nav-square-btn {
           width: 38px;
           height: 38px;
@@ -598,13 +637,15 @@ export default function Navigation() {
         .show-mobile-btn {
           display: none;
         }
-        @media (max-width: 860px) {
+        @media (max-width: 960px) {
           .hide-mobile-nav {
             display: none !important;
           }
           .show-mobile-btn {
             display: flex !important;
           }
+        }
+        @media (max-width: 600px) {
           .nav-resume-cta {
             width: 38px !important;
             height: 38px !important;
@@ -620,9 +661,7 @@ export default function Navigation() {
           .hide-resume-text {
             display: none !important;
           }
-        }
-        @media (max-width: 520px) {
-          .hide-badge-mobile {
+          .lang-switcher-desktop {
             display: none !important;
           }
         }

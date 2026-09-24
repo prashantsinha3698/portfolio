@@ -10,6 +10,7 @@ interface PixelAvatarProps {
 export default function PixelAvatar({ className, style }: PixelAvatarProps) {
   return (
     <div
+      id="hero-profile-card"
       className={`pixel-avatar-artifact ${className ?? ""}`}
       style={{
         background: "var(--bg-surface)",
@@ -80,6 +81,8 @@ export default function PixelAvatar({ className, style }: PixelAvatarProps) {
       >
         {/* Shrunk Pixel Character Frame with Architectural Corner Marks */}
         <div
+          id="hero-avatar-frame"
+          data-avatar-frame="true"
           style={{
             position: "relative",
             width: "74px",

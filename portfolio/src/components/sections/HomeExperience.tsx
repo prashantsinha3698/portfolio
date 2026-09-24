@@ -6,6 +6,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import TechTag from "@/components/ui/TechTag";
 import { ArrowRight } from "lucide-react";
 import { getLocaleFromPathname, Locale } from "@/locales";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 interface HomeExperienceProps {
   locale?: Locale;
@@ -61,53 +62,55 @@ export default function HomeExperience({ locale }: HomeExperienceProps) {
       style={{
         padding: "4.5rem 0 5rem",
         borderBottom: "1px solid var(--border-primary)",
-        background: "var(--bg-surface-subtle)",
+        background: "transparent",
       }}
     >
       <div className="container">
         {/* Section Header */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            flexWrap: "wrap",
-            gap: "1.5rem",
-            marginBottom: "3rem",
-          }}
-        >
-          <div>
-            <SectionLabel number="02" label={isDe ? "ERFAHRUNG" : "EXPERIENCE"} />
-            <h2
-              className="font-display"
-              style={{
-                fontSize: "clamp(2.2rem, 4.5vw, 3.2rem)",
-                color: "var(--ink-primary)",
-                letterSpacing: "0.02em",
-                fontWeight: 400,
-                lineHeight: 1.1,
-              }}
-            >
-              {isDe ? "Berufserfahrung" : "Work Experience"}
-            </h2>
-          </div>
-
-          <p
+        <ScrollReveal variant="fade-up" style={{ marginBottom: "3rem" }}>
+          <div
             style={{
-              fontFamily: "var(--font-ibm-plex-sans), sans-serif",
-              fontSize: "0.95rem",
-              color: "var(--ink-secondary)",
-              maxWidth: "460px",
-              lineHeight: 1.6,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "1.5rem",
             }}
           >
-            {isDe
-              ? "Praktische Softwareentwicklung und Support für Enterprise-Salesforce-Systeme bei Tata Consultancy Services."
-              : "Practical software development and support on enterprise Salesforce systems at Tata Consultancy Services."}
-          </p>
-        </div>
+            <div>
+              <SectionLabel number="03" label={isDe ? "ERFAHRUNG" : "EXPERIENCE"} />
+              <h2
+                className="font-display"
+                style={{
+                  fontSize: "clamp(2.2rem, 4.5vw, 3.2rem)",
+                  color: "var(--ink-primary)",
+                  letterSpacing: "0.02em",
+                  fontWeight: 400,
+                  lineHeight: 1.1,
+                }}
+              >
+                {isDe ? "Berufserfahrung" : "Work Experience"}
+              </h2>
+            </div>
+
+            <p
+              style={{
+                fontFamily: "var(--font-ibm-plex-sans), sans-serif",
+                fontSize: "0.95rem",
+                color: "var(--ink-secondary)",
+                maxWidth: "460px",
+                lineHeight: 1.6,
+              }}
+            >
+              {isDe
+                ? "Praktische Softwareentwicklung und Support für Enterprise-Salesforce-Systeme bei Tata Consultancy Services."
+                : "Practical software development and support on enterprise Salesforce systems at Tata Consultancy Services."}
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* Employment Block */}
+        <ScrollReveal delay={0.1} variant="blur-in">
         <div
           style={{
             background: "var(--bg-surface)",
@@ -241,14 +244,17 @@ export default function HomeExperience({ locale }: HomeExperienceProps) {
             </div>
           </div>
         </div>
+        </ScrollReveal>
 
         {/* Section Footer Link */}
+        <ScrollReveal delay={0.15} variant="fade-up">
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Link href={isDe ? "/de/experience" : "/experience"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
             <span>{isDe ? "VOLLSTÄNDIGE BERUFSERFAHRUNG ANSEHEN" : "VIEW FULL WORK EXPERIENCE"}</span>
             <ArrowRight size={14} />
           </Link>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

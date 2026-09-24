@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono, VT323, Jersey_25 } from "next/font/google";
 import ScrollObserver from "@/components/ui/ScrollObserver";
 import LocaleHtmlLangSync from "@/components/ui/LocaleHtmlLangSync";
+import ClientOverlayMount from "@/components/ui/ClientOverlayMount";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -131,8 +132,8 @@ const themeScript = `
   (function() {
     try {
       var stored = localStorage.getItem('theme');
-      var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      var theme = stored || system;
+      // Default to dark on first visit (no stored preference)
+      var theme = stored || 'dark';
       document.documentElement.setAttribute('data-theme', theme);
     } catch(e) {}
   })();
@@ -189,6 +190,7 @@ export default function RootLayout({
       >
         <LocaleHtmlLangSync />
         <ScrollObserver />
+        <ClientOverlayMount />
         {children}
       </body>
     </html>

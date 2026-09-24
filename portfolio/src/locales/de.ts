@@ -46,7 +46,7 @@ export const de: Translations = {
     greetingTag: "01 // HALLO",
     headlineLine1: "PRASHANT",
     headlineLine2: "SINHA",
-    leadBio: "Salesforce-Entwickler mit mehr als 3 Jahren Erfahrung bei Tata Consultancy Services im globalen Avery-Dennison-Kundenprojekt. Ich entwickle Enterprise-Automatisierungen, betreue Systemintegrationen und baue eigenständige Softwaresysteme für algorithmischen Handel und Portfolio-Optimierung.",
+    leadBio: "Ich arbeite hauptsächlich im Bereich Salesforce, Automatisierung und Integrationen. Außerhalb der Arbeit baue ich gerne kleine Softwareprojekte, um zu verstehen, wie Systeme von Grund auf funktionieren.",
     ctaExploreWork: "PROJEKTE ENTDECKEN",
     ctaResume: "LEBENSLAUF ANSEHEN",
     ctaGetInTouch: "KONTAKT AUFNEHMEN",

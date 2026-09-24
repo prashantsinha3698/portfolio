@@ -8,6 +8,7 @@ import { profile } from "@/data/profile";
 import { GitHubIcon, LinkedInIcon, CodewarsIcon } from "@/components/ui/SocialIcons";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
+import { smoothScrollToElement } from "@/lib/scroll";
 
 interface NavigationProps {
   locale?: Locale;
@@ -95,7 +96,7 @@ export default function Navigation({ locale }: NavigationProps) {
       e.preventDefault();
       const el = document.getElementById("contact");
       if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
+        smoothScrollToElement(el, { duration: 650, offset: -70 });
       }
     } else {
       e.preventDefault();

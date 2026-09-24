@@ -7,6 +7,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import { Mail, Copy, Check, ArrowUpRight, Download } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, CodewarsIcon } from "@/components/ui/SocialIcons";
 import { getLocaleFromPathname, Locale } from "@/locales";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 interface HomeContactProps {
   locale?: Locale;
@@ -40,22 +41,25 @@ export default function HomeContact({ locale }: HomeContactProps) {
       }}
     >
       <div className="container">
-        <SectionLabel number="06" label={isDe ? "KONTAKT" : "CONTACT"} />
+        <ScrollReveal variant="fade-up">
+          <SectionLabel number="07" label={isDe ? "KONTAKT" : "CONTACT"} />
+        </ScrollReveal>
 
         {/* Poster Layout */}
-        <div
-          style={{
-            background: "var(--bg-surface)",
-            border: "1px solid var(--border-primary)",
-            boxShadow: "var(--shadow-tactile)",
-            padding: "3.5rem",
-            display: "grid",
-            gridTemplateColumns: "1.2fr 0.8fr",
-            gap: "4rem",
-            alignItems: "start",
-          }}
-          className="contact-poster-grid"
-        >
+        <ScrollReveal variant="fade-up" delay={0.05}>
+          <div
+            style={{
+              background: "var(--bg-surface)",
+              border: "1px solid var(--border-primary)",
+              boxShadow: "var(--shadow-tactile)",
+              padding: "3.5rem",
+              display: "grid",
+              gridTemplateColumns: "1.2fr 0.8fr",
+              gap: "4rem",
+              alignItems: "start",
+            }}
+            className="contact-poster-grid"
+          >
           {/* Left Column: Direct Invitation & Paragraph */}
           <div>
             <h2
@@ -344,6 +348,7 @@ export default function HomeContact({ locale }: HomeContactProps) {
             </div>
           </div>
         </div>
+        </ScrollReveal>
       </div>
 
       <style suppressHydrationWarning>{`

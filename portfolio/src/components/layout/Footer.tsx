@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { profile } from "@/data/profile";
 import { ArrowUp } from "lucide-react";
 import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
+import { smoothScrollToTop } from "@/lib/scroll";
 
 const BASH_SPINNER = ["/", "\\", "|", "—"];
 
@@ -28,7 +29,8 @@ export default function Footer({ locale }: FooterProps) {
 
   const scrollToTop = (e: React.MouseEvent) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    e.stopPropagation();
+    smoothScrollToTop(550);
   };
 
   return (
@@ -40,6 +42,9 @@ export default function Footer({ locale }: FooterProps) {
         padding: "3.5rem 0 3rem",
         color: "var(--ink-secondary)",
         width: "100%",
+        position: "relative",
+        zIndex: 30,
+        pointerEvents: "auto",
       }}
       className="font-mono"
     >
@@ -162,8 +167,16 @@ export default function Footer({ locale }: FooterProps) {
 
             {/* Return to Top Tactile Button */}
             <button
+              type="button"
+              id="footer-return-to-top"
               onClick={scrollToTop}
               className="btn-tactile-secondary footer-return-btn"
+              style={{
+                position: "relative",
+                zIndex: 50,
+                pointerEvents: "auto",
+                cursor: "pointer",
+              }}
               aria-label="Return to top of page"
             >
               <ArrowUp size={15} />
@@ -219,6 +232,10 @@ export default function Footer({ locale }: FooterProps) {
             letter-spacing: 0.04em;
           }
           .footer-return-btn {
+            position: relative !important;
+            z-index: 50 !important;
+            pointer-events: auto !important;
+            cursor: pointer !important;
             font-size: 0.82rem;
             font-weight: 700;
             padding: 0.75rem 1.75rem;
@@ -270,6 +287,10 @@ export default function Footer({ locale }: FooterProps) {
             width: 100%;
           }
           .footer-return-btn {
+            position: relative !important;
+            z-index: 50 !important;
+            pointer-events: auto !important;
+            cursor: pointer !important;
             font-size: 0.82rem;
             font-weight: 700;
             padding: 0.75rem 2rem;

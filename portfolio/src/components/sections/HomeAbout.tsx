@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { ArrowRight } from "lucide-react";
 import { getLocaleFromPathname, Locale } from "@/locales";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 interface HomeAboutProps {
   locale?: Locale;
@@ -22,53 +23,55 @@ export default function HomeAbout({ locale }: HomeAboutProps) {
       style={{
         padding: "5rem 0 5.5rem",
         borderBottom: "1px solid var(--border-primary)",
-        background: "var(--bg-canvas)",
+        background: "transparent",
       }}
     >
       <div className="container">
         {/* Section Header */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            flexWrap: "wrap",
-            gap: "1.5rem",
-            marginBottom: "3rem",
-          }}
-        >
-          <div>
-            <SectionLabel number="05" label={isDe ? "ÜBER MICH" : "ABOUT"} />
-            <h2
-              className="font-display"
-              style={{
-                fontSize: "clamp(2rem, 4.5vw, 3rem)",
-                color: "var(--ink-primary)",
-                letterSpacing: "-0.03em",
-                fontWeight: 700,
-                lineHeight: 1.1,
-              }}
-            >
-              {isDe ? "Über mich" : "About Me"}
-            </h2>
-          </div>
-
-          <p
+        <ScrollReveal variant="fade-up" style={{ marginBottom: "3rem" }}>
+          <div
             style={{
-              fontFamily: "var(--font-ibm-plex-sans), sans-serif",
-              fontSize: "0.95rem",
-              color: "var(--ink-secondary)",
-              maxWidth: "460px",
-              lineHeight: 1.6,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "1.5rem",
             }}
           >
-            {isDe
-              ? "Ein kurzer Einblick in meine Person, meine Herangehensweise an Software und was meine Arbeit antreibt."
-              : "A quick introduction to who I am, how I approach software, and what drives my work."}
-          </p>
-        </div>
+            <div>
+              <SectionLabel number="06" label={isDe ? "ÜBER MICH" : "ABOUT"} />
+              <h2
+                className="font-display"
+                style={{
+                  fontSize: "clamp(2rem, 4.5vw, 3rem)",
+                  color: "var(--ink-primary)",
+                  letterSpacing: "-0.03em",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                }}
+              >
+                {isDe ? "Über mich" : "About Me"}
+              </h2>
+            </div>
+
+            <p
+              style={{
+                fontFamily: "var(--font-ibm-plex-sans), sans-serif",
+                fontSize: "0.95rem",
+                color: "var(--ink-secondary)",
+                maxWidth: "460px",
+                lineHeight: 1.6,
+              }}
+            >
+              {isDe
+                ? "Ein kurzer Einblick in meine Person, meine Herangehensweise an Software und was meine Arbeit antreibt."
+                : "A quick introduction to who I am, how I approach software, and what drives my work."}
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* 2-Column Layout */}
+        <ScrollReveal delay={0.1}>
         <div
           style={{
             display: "grid",
@@ -187,14 +190,17 @@ export default function HomeAbout({ locale }: HomeAboutProps) {
             </div>
           </div>
         </div>
+        </ScrollReveal>
 
         {/* Section Footer Link */}
+        <ScrollReveal delay={0.15}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Link href={isDe ? "/de/about" : "/about"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
             <span>{isDe ? "MEHR ÜBER MICH UND MEINEN WERDEGANG" : "MORE ABOUT ME AND MY JOURNEY"}</span>
             <ArrowRight size={14} />
           </Link>
         </div>
+        </ScrollReveal>
       </div>
 
       <style suppressHydrationWarning>{`

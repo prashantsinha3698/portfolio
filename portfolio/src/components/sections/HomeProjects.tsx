@@ -10,6 +10,7 @@ import FolderTab from "@/components/ui/FolderTab";
 import { ArrowRight, ExternalLink, FileText } from "lucide-react";
 import { GitHubIcon } from "@/components/ui/SocialIcons";
 import { getLocaleFromPathname, getTranslation, Locale } from "@/locales";
+import ScrollReveal, { ParallaxReveal } from "@/components/ui/ScrollReveal";
 
 interface CardContentProps {
   locale: Locale;
@@ -470,141 +471,150 @@ export default function HomeProjects({ locale }: HomeProjectsProps) {
     >
       <div className="container">
         {/* Section Header */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            flexWrap: "wrap",
-            gap: "1.5rem",
-            marginBottom: "3.5rem",
-          }}
-        >
-          <div>
-            <SectionLabel number="01" label={isDe ? "PROJEKTE" : "PROJECTS"} />
-            <h2
-              className="font-display"
+        <ScrollReveal variant="fade-up" style={{ marginBottom: "3.5rem" }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "1.5rem",
+            }}
+          >
+            <div>
+              <SectionLabel number="02" label={isDe ? "PROJEKTE" : "PROJECTS"} />
+              <h2
+                className="font-display"
+                style={{
+                  fontSize: "clamp(2rem, 4.5vw, 3rem)",
+                  color: "var(--ink-primary)",
+                  letterSpacing: "-0.03em",
+                  fontWeight: 700,
+                  lineHeight: 1.1,
+                }}
+              >
+                {hp.title}
+              </h2>
+            </div>
+
+            <p
               style={{
-                fontSize: "clamp(2rem, 4.5vw, 3rem)",
-                color: "var(--ink-primary)",
-                letterSpacing: "-0.03em",
-                fontWeight: 700,
-                lineHeight: 1.1,
+                fontFamily: "var(--font-ibm-plex-sans), sans-serif",
+                fontSize: "0.95rem",
+                color: "var(--ink-secondary)",
+                maxWidth: "460px",
+                lineHeight: 1.6,
               }}
             >
-              {hp.title}
-            </h2>
+              {hp.subtitle}
+            </p>
           </div>
-
-          <p
-            style={{
-              fontFamily: "var(--font-ibm-plex-sans), sans-serif",
-              fontSize: "0.95rem",
-              color: "var(--ink-secondary)",
-              maxWidth: "460px",
-              lineHeight: 1.6,
-            }}
-          >
-            {hp.subtitle}
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Desktop & Horizontal Tablet: Interactive Folder Tabs */}
-        <div className="desktop-projects-tabbed scroll-reveal" style={{ position: "relative", marginBottom: "3rem" }}>
-          <div
-            role="tablist"
-            aria-label="Projects tab navigation"
-            style={{ display: "flex", gap: "0.25rem", alignItems: "flex-end" }}
-          >
-            <FolderTab
-              active={activeTab === 0}
-              number="01"
-              title="ONYXFLOW.SYS"
-              id="project-tab-0"
-              controls="project-panel-0"
-              onClick={() => setActiveTab(0)}
-            />
+        <ScrollReveal variant="fade-up" delay={0.05} style={{ marginBottom: "3rem" }}>
+          <div className="desktop-projects-tabbed" style={{ position: "relative" }}>
+            <div
+              role="tablist"
+              aria-label="Projects tab navigation"
+              style={{ display: "flex", gap: "0.25rem", alignItems: "flex-end" }}
+            >
+              <FolderTab
+                active={activeTab === 0}
+                number="01"
+                title="ONYXFLOW.SYS"
+                id="project-tab-0"
+                controls="project-panel-0"
+                onClick={() => setActiveTab(0)}
+              />
 
-            <FolderTab
-              active={activeTab === 1}
-              number="02"
-              title="QUANTFOLIO.APP"
-              id="project-tab-1"
-              controls="project-panel-1"
-              onClick={() => setActiveTab(1)}
-            />
-          </div>
+              <FolderTab
+                active={activeTab === 1}
+                number="02"
+                title="QUANTFOLIO.APP"
+                id="project-tab-1"
+                controls="project-panel-1"
+                onClick={() => setActiveTab(1)}
+              />
+            </div>
 
-          <div
-            role="tabpanel"
-            id={`project-panel-${activeTab}`}
-            aria-labelledby={`project-tab-${activeTab}`}
-            style={{
-              background: "var(--bg-surface)",
-              border: "1px solid var(--border-primary)",
-              boxShadow: "var(--shadow-tactile)",
-              position: "relative",
-              zIndex: 2,
-            }}
-          >
-            {activeTab === 0 ? <OnyxFlowCardContent locale={activeLocale} /> : <QuantfolioCardContent locale={activeLocale} />}
+            <div
+              role="tabpanel"
+              id={`project-panel-${activeTab}`}
+              aria-labelledby={`project-tab-${activeTab}`}
+              style={{
+                background: "var(--bg-surface)",
+                border: "1px solid var(--border-primary)",
+                boxShadow: "var(--shadow-tactile)",
+                position: "relative",
+                zIndex: 2,
+              }}
+            >
+              {activeTab === 0 ? <OnyxFlowCardContent locale={activeLocale} /> : <QuantfolioCardContent locale={activeLocale} />}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Mobile: Sequential Stacked One-by-One */}
         <div className="mobile-projects-stacked" style={{ display: "flex", flexDirection: "column", gap: "3.5rem", marginBottom: "3rem" }}>
           {/* Project 01: OnyxFlow */}
-          <div className="scroll-reveal" style={{ position: "relative" }}>
-            <div style={{ display: "flex", gap: "0.5rem" }}>
-              <FolderTab
-                active={true}
-                number="01"
-                title="ONYXFLOW.SYS"
-              />
+          <ScrollReveal variant="fade-up">
+            <div style={{ position: "relative" }}>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <FolderTab
+                  active={true}
+                  number="01"
+                  title="ONYXFLOW.SYS"
+                />
+              </div>
+              <div
+                style={{
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-primary)",
+                  boxShadow: "var(--shadow-tactile)",
+                  position: "relative",
+                  zIndex: 2,
+                }}
+              >
+                <OnyxFlowCardContent locale={activeLocale} />
+              </div>
             </div>
-            <div
-              style={{
-                background: "var(--bg-surface)",
-                border: "1px solid var(--border-primary)",
-                boxShadow: "var(--shadow-tactile)",
-                position: "relative",
-                zIndex: 2,
-              }}
-            >
-              <OnyxFlowCardContent locale={activeLocale} />
-            </div>
-          </div>
+          </ScrollReveal>
 
           {/* Project 02: Quantfolio */}
-          <div className="scroll-reveal" style={{ position: "relative" }}>
-            <div style={{ display: "flex", gap: "0.5rem" }}>
-              <FolderTab
-                active={true}
-                number="02"
-                title="QUANTFOLIO.APP"
-              />
+          <ScrollReveal variant="fade-up" delay={0.08}>
+            <div style={{ position: "relative" }}>
+              <div style={{ display: "flex", gap: "0.5rem" }}>
+                <FolderTab
+                  active={true}
+                  number="02"
+                  title="QUANTFOLIO.APP"
+                />
+              </div>
+              <div
+                style={{
+                  background: "var(--bg-surface)",
+                  border: "1px solid var(--border-primary)",
+                  boxShadow: "var(--shadow-tactile)",
+                  position: "relative",
+                  zIndex: 2,
+                }}
+              >
+                <QuantfolioCardContent locale={activeLocale} />
+              </div>
             </div>
-            <div
-              style={{
-                background: "var(--bg-surface)",
-                border: "1px solid var(--border-primary)",
-                boxShadow: "var(--shadow-tactile)",
-                position: "relative",
-                zIndex: 2,
-              }}
-            >
-              <QuantfolioCardContent locale={activeLocale} />
-            </div>
-          </div>
+          </ScrollReveal>
         </div>
 
         {/* Section Footer Link */}
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Link href={isDe ? "/de/projects" : "/projects"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-            <span>{isDe ? "ALLE 2 PROJEKTE ANSEHEN" : "VIEW ALL PROJECTS"}</span>
-            <ArrowRight size={14} />
-          </Link>
-        </div>
+        <ScrollReveal delay={0.12}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Link href={isDe ? "/de/projects" : "/projects"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+              <span>{isDe ? "ALLE 2 PROJEKTE ANSEHEN" : "VIEW ALL PROJECTS"}</span>
+              <ArrowRight size={14} />
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
 
       <style suppressHydrationWarning>{`

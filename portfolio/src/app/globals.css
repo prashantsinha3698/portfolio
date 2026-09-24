@@ -197,7 +197,6 @@ h1[style*="Jersey 25"], h2[style*="Jersey 25"], h3[style*="Jersey 25"], h4[style
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

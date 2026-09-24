@@ -10,6 +10,7 @@ import StatusBadge from "@/components/ui/StatusBadge";
 import TechTag from "@/components/ui/TechTag";
 import { ArrowLeft, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { getLocaleFromPathname, getLocalizedPath, Locale } from "@/locales";
+import { smoothScrollToElement } from "@/lib/scroll";
 
 export interface ProjectChapter {
   id: string;
@@ -107,12 +108,7 @@ export default function ProjectDocumentationLayout({
   const scrollToChapter = (id: string) => {
     setActiveChapter(id);
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      const yOffset = -85;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
+    smoothScrollToElement(id, { duration: 600, offset: -85 });
   };
 
   const currentChapterObj = chapters.find((c) => c.id === activeChapter) ?? chapters[0] ?? { id: "", label: "" };

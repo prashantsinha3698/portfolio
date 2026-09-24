@@ -189,8 +189,8 @@ function DottedGlobeStars({
       stPos[i3 + 1] = v * 12.0;
       stPos[i3 + 2] = w * 6.0 - 1.0;
 
-      // Initial position around profile section in Hero (30-40% to the left, rest behind)
-      curPos[i3] = ux * R0 + 1.95;
+      // Initial position around profile section in Hero (shifted slightly towards right)
+      curPos[i3] = ux * R0 + 2.50;
       curPos[i3 + 1] = uy * R0 + 0.05;
       curPos[i3 + 2] = uz * R0 - 0.5;
 
@@ -249,7 +249,7 @@ function DottedGlobeStars({
       stPos[i3 + 1] = v * 12.0;
       stPos[i3 + 2] = w * 6.0 - 1.0;
 
-      curPos[i3] = 1.95;
+      curPos[i3] = 2.50;
       curPos[i3 + 1] = 0.05;
       curPos[i3 + 2] = -0.5;
 
@@ -298,7 +298,7 @@ function DottedGlobeStars({
 
     const R0 = 2.40;
 
-    let initialCenterX = 1.95;
+    let initialCenterX = 2.50;
     let initialCenterY = 0.05;
 
     if (profileCardPosRef.current) {
@@ -307,8 +307,8 @@ function DottedGlobeStars({
       const cardCenterWorldY =
         profileCardPosRef.current.cardCenterNdcY * (visibleFrustumHeight / 2);
 
-      // Properly balanced: 30-40% of the globe diameter to the left of this div, ~60-70% behind it
-      initialCenterX = cardLeftWorldX - 0.08 * R0;
+      // Shifted slightly towards right in horizontal axis only
+      initialCenterX = cardLeftWorldX + 0.20 * R0;
       // Centrally vertically aligned with the profile section
       initialCenterY = cardCenterWorldY;
     }
@@ -664,6 +664,8 @@ export default function SubtleScrollCanvas() {
     window.addEventListener("page_reveal_start", updateProfilePos, { once: true });
     const timerAvatar1 = setTimeout(updateProfilePos, 150);
     const timerAvatar2 = setTimeout(updateProfilePos, 700);
+    const timerAvatar3 = setTimeout(updateProfilePos, 1400);
+    const timerAvatar4 = setTimeout(updateProfilePos, 2200);
 
     // Synchronize canvas entrance with hero reveal
     if (
@@ -718,6 +720,8 @@ export default function SubtleScrollCanvas() {
       window.removeEventListener("page_reveal_start", updateProfilePos);
       clearTimeout(timerAvatar1);
       clearTimeout(timerAvatar2);
+      clearTimeout(timerAvatar3);
+      clearTimeout(timerAvatar4);
     };
   }, []);
 

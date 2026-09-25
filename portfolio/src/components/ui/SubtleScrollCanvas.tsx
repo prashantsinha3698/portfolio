@@ -761,7 +761,7 @@ export default function SubtleScrollCanvas() {
           powerPreference: "high-performance",
           alpha: true,
         }}
-        dpr={Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 1.75)}
+        dpr={Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, isTouch ? 1.15 : 1.5)}
         frameloop="always"
         style={{ background: "transparent", pointerEvents: "none" }}
       >

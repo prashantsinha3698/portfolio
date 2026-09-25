@@ -39,7 +39,7 @@ export default function HomeEducation({ locale }: HomeEducationProps) {
             }}
           >
             <div>
-              <SectionLabel number="05" label={isDe ? "AUSBILDUNG" : "EDUCATION"} />
+              <SectionLabel number="05" label={isDe ? "STUDIUM" : "EDUCATION"} />
               <h2
                 className="font-display"
                 style={{
@@ -50,7 +50,7 @@ export default function HomeEducation({ locale }: HomeEducationProps) {
                   lineHeight: 1.1,
                 }}
               >
-                {isDe ? "Ausbildung & Qualifikationen" : "Education & Credentials"}
+                {isDe ? "Studium & Qualifikationen" : "Education & Credentials"}
               </h2>
             </div>
 
@@ -208,7 +208,7 @@ export default function HomeEducation({ locale }: HomeEducationProps) {
         <ScrollReveal delay={0.15}>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Link href={isDe ? "/de/education" : "/education"} className="btn-tactile-secondary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
-              <span>{isDe ? "VOLLSTÄNDIGE AUSBILDUNGSDETAILS ANSEHEN" : "VIEW COMPLETE EDUCATION DETAILS"}</span>
+              <span>{isDe ? "VOLLSTÄNDIGE STUDIENDETAILS ANSEHEN" : "VIEW COMPLETE EDUCATION DETAILS"}</span>
               <ArrowRight size={14} />
             </Link>
           </div>

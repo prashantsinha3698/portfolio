@@ -64,6 +64,18 @@ export default function Navigation({ locale }: NavigationProps) {
     setMobileOpen(false);
   }, [pathname]);
 
+  // Lock body scroll when mobile menu or modal is open to eliminate jank
+  useEffect(() => {
+    if (mobileOpen || contactOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen, contactOpen]);
+
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
@@ -109,6 +121,8 @@ export default function Navigation({ locale }: NavigationProps) {
     <>
       <header
         role="banner"
+        className="notranslate"
+        translate="no"
         style={{
           position: "fixed",
           top: 0,
@@ -155,6 +169,7 @@ export default function Navigation({ locale }: NavigationProps) {
             >
               <span
                 className="font-display"
+                suppressHydrationWarning
                 style={{
                   fontSize: "clamp(0.95rem, 2.5vw, 1.08rem)",
                   letterSpacing: "-0.02em",
@@ -220,6 +235,7 @@ export default function Navigation({ locale }: NavigationProps) {
                 <Link
                   key={link.href}
                   href={link.href}
+                  suppressHydrationWarning
                   style={{
                     color: active ? "var(--accent-primary)" : "var(--ink-secondary)",
                     fontWeight: active ? 700 : 500,
@@ -235,7 +251,7 @@ export default function Navigation({ locale }: NavigationProps) {
                     if (!active) e.currentTarget.style.color = "var(--ink-secondary)";
                   }}
                 >
-                  {link.label}
+                  <span suppressHydrationWarning>{link.label}</span>
                   {active && (
                     <span
                       style={{
@@ -379,6 +395,7 @@ export default function Navigation({ locale }: NavigationProps) {
               <Link
                 key={link.href}
                 href={link.href}
+                suppressHydrationWarning
                 onClick={() => setMobileOpen(false)}
                 style={{
                   fontSize: "1.1rem",
@@ -394,7 +411,7 @@ export default function Navigation({ locale }: NavigationProps) {
                   width: "100%",
                 }}
               >
-                <span style={{ whiteSpace: "nowrap" }}>{link.label}</span>
+                <span suppressHydrationWarning style={{ whiteSpace: "nowrap" }}>{link.label}</span>
                 {active && (
                   <span
                     className="font-mono"

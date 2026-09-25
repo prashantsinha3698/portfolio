@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Space_Grotesk, IBM_Plex_Sans, IBM_Plex_Mono, VT323, Jersey_25 } from "next/font/google";
 import ScrollObserver from "@/components/ui/ScrollObserver";
 import LocaleHtmlLangSync from "@/components/ui/LocaleHtmlLangSync";
@@ -10,7 +11,6 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
   weight: ["500", "600", "700"],
-  preload: false,
 });
 
 const ibmPlexSans = IBM_Plex_Sans({
@@ -18,7 +18,6 @@ const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
-  preload: false,
 });
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -26,7 +25,6 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
-  preload: false,
 });
 
 const vt323 = VT323({
@@ -170,13 +168,20 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" href="/picon.png" />
+        <link rel="icon" type="image/svg+xml" href="/avatar.svg" />
+        <link rel="icon" type="image/png" href="/icon.png" />
         <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/picon.png" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <script dangerouslySetInnerHTML={{ __html: localeScript }} />
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <link rel="apple-touch-icon" href="/icon.png" />
+        <Script
+          id="locale-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: localeScript }}
+        />
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

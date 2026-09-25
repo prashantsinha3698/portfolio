@@ -7,7 +7,7 @@ export const de: Translations = {
     projects: "Projekte",
     experience: "Erfahrung",
     skills: "Kenntnisse",
-    education: "Ausbildung",
+    education: "Studium",
     about: "Über mich",
     contact: "Kontakt",
     resume: "Lebenslauf",
@@ -495,11 +495,11 @@ export const de: Translations = {
     ],
   },
   educationPage: {
-    metaTitle: "Ausbildung & Akademische Qualifikationen | Prashant Sinha",
+    metaTitle: "Studium & Qualifikationen | Prashant Sinha",
     metaDescription: "Akademischer Werdegang, 28 Laborpraktika, Notenspiegel, ingenieurwissenschaftliches Studium und Weiterbildungen von Prashant Sinha.",
     headerNumber: "04",
-    headerCategory: "FORMALE AUSBILDUNG UND QUALIFIKATIONEN",
-    headerTitle: "Ausbildung",
+    headerCategory: "HOCHSCHULSTUDIUM & QUALIFIKATIONEN",
+    headerTitle: "Studium",
     headerDescription: "Ingenieurwissenschaftliches Fundament, vollständiger Notenspiegel mit 28 Laborpraktika, fachspezifische Weiterbildungen, Zertifikate und Auszeichnungen.",
     degreeSummary: {
       title: "Überblick über den Hochschulabschluss",

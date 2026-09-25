@@ -105,7 +105,7 @@ export default function PixelAvatar({ className, style }: PixelAvatarProps) {
 
           <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Image
-              src="/picon.png"
+              src="/avatar.svg"
               alt="Prashant Sinha pixel portrait"
               width={68}
               height={68}

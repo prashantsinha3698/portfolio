@@ -341,7 +341,7 @@ export default function EducationView({ locale }: EducationViewProps) {
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                   <Trophy size={18} color="var(--accent-yellow)" />
                   <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)" }}>
-                    Aayam Kulturfestival
+                    {isDe ? "Aayam Kulturfestival" : "Aayam Cultural Fest"}
                   </span>
                 </div>
                 <div className="font-mono" style={{ fontSize: "0.76rem", color: "var(--accent-primary)", fontWeight: 700, marginBottom: "0.5rem" }}>
@@ -358,7 +358,7 @@ export default function EducationView({ locale }: EducationViewProps) {
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.4rem" }}>
                   <Trophy size={18} color="var(--accent-yellow)" />
                   <span style={{ fontFamily: "var(--font-display)", fontWeight: 400, letterSpacing: "0.03em", fontSize: "1.25rem", color: "var(--ink-primary)" }}>
-                    Aavesh Technik-Festival
+                    {isDe ? "Aavesh Technik-Festival" : "Aavesh Technical Fest"}
                   </span>
                 </div>
                 <div className="font-mono" style={{ fontSize: "0.76rem", color: "var(--accent-primary)", fontWeight: 700, marginBottom: "0.5rem" }}>
@@ -367,7 +367,7 @@ export default function EducationView({ locale }: EducationViewProps) {
                 <p style={{ fontFamily: "var(--font-sans)", fontSize: "0.88rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
                   {isDe
                     ? "Anerkennungsschreiben für technische Medienberichterstattung und Videoregie während des Aavesh Tech Fest."
-                    : "Letter of Appreciation for videography direction and technical media coverage at the Aavesh Tech Fest."}
+                    : "Letter of Appreciation for videography direction and technical media coverage at the Aavesh Technical Fest."}
                 </p>
               </div>
 
